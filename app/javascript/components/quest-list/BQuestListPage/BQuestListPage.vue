@@ -1,5 +1,8 @@
 <template>
-  <div>{{ hello }}</div>
+  <div>
+    {{ hello }}
+    <b-button type="is-primary">Primary</b-button>
+  </div>
 </template>
 
 <script lang="ts">
