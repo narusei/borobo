@@ -1,5 +1,5 @@
 <template>
-  <div class="card" v-on:click="to_quest_detail">
+  <div class="card" v-on:click="toQuestDetail">
     <div class="card-content">
       <div class="media">
         <div class="media-left">
@@ -9,26 +9,26 @@
             </b-icon>
         </div>
         <div class="media-content">
-          <p class="user_name">{{user_name}}</p>
-          <div class="quest_title">{{quest_title}}</div>
-          <div class="quest_period">
+          <p class="user-name">{{userName}}</p>
+          <div class="quest-title">{{questTitle}}</div>
+          <div class="quest-period">
             <b-icon
                 icon="calendar"
                 class="clock">
             </b-icon>
-            {{quest_period}}
+            {{questPeriod}}
           </div>
-          <div class="quest_reword">
+          <div class="quest-reword">
             <b-icon
                 icon="gift"
                 class="reword">
             </b-icon>
-            {{quest_reword}}
+            {{questReword}}
           </div>
         </div>
       </div>
     </div>
-    <hr />
+    <hr class="quest-border"/>
   </div>
 </template>
 
@@ -39,19 +39,18 @@ import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 export default class BQuest extends Vue {
 
   @Prop({default:"トニーあああああああ"})
-  user_name!: string;
+  userName!: string;
 
   @Prop({default:"関数電卓を貸してああああああああああああああああ"})
-  quest_title!:string;
+  questTitle!:string;
 
   @Prop({default:"10/04 16:43 ~ 10/05 15:00"})
-  quest_period!:string
+  questPeriod!:string
 
   @Prop({default:"たけのこの里"})
-  quest_reword!:string
+  questReword!:string
 
-  to_quest_detail(): void{
-    //move to quest detail
+  toQuestDetail(): void{
   }
 }
 </script>
@@ -62,7 +61,7 @@ export default class BQuest extends Vue {
   padding-top: 9px;
   padding-bottom: 5px;
 }
-.user_icon {
+.user-icon {
   border-radius: 50%; /* 角丸半径を50%にする(=円形にする) */
   width: 42px; /* ※縦横を同値に */
   height: 42px; /* ※縦横を同値に */
@@ -72,21 +71,16 @@ export default class BQuest extends Vue {
   border-radius: 5px;
   box-shadow: 0 2px 5px #ccc;
 }
-.user_name {
+.user-name {
   padding-top: 3px;
   padding-bottom: 3px;
   font-size: 24px;
 }
 
-.quest_title {
-  /* 関数電卓を貸して！ */
+.quest-title {
   margin-bottom: 10px;
-  /* h2/Medium 30px */
   font-size: 30px;
   line-height: 35px;
-  /* identical to box height */
-
-  /* #333333 - Dark Grey */
   color: #333333;
 }
 
@@ -103,15 +97,15 @@ export default class BQuest extends Vue {
   width: 22px;
 }
 
-.quest_period {
+.quest-period {
   display: flex;
 }
 
-.quest_reword {
+.quest-reword {
   display: flex;
 }
 
-hr {
+.quest-border {
   background: #51e898;
   margin: 0px;
 }

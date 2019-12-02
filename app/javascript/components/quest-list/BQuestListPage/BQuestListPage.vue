@@ -1,33 +1,37 @@
 <template>
   <div>
-    <header class="header">
-      <div class="header-container">
-        <b-icon class="user_icon" icon="account-circle" size="is-large"></b-icon>
-        <div @click="to_search_page">
-          <b-icon icon="magnify" size="is-medium" class="magnify">
-          </b-icon>
+    <div>
+      <header class="header">
+        <div class="header-container">
+          <b-icon class="user-icon" icon="account-circle" size="is-large"></b-icon>
+          <div @click="toSearchPage">
+            <b-icon icon="magnify" size="is-medium" class="magnify"></b-icon>
+          </div>
         </div>
+      </header>
+      <ul class="tab">
+        <div class="hito" @click="setTab(0)">
+          ヒト
+          <div id="chose" v-if="pageTabNum==0"></div>
+        </div>
+        <div class="mono" @click="setTab(1)">
+          モノ
+          <div id="chose" v-if="pageTabNum==1"></div>
+        </div>
+      </ul>
+      <div class="quest_box">
+        <BQuestList v-bind:tabNum="pageTabNum" v-bind:questList="questList"></BQuestList>
       </div>
-    </header>
-    <ul class="tab">
-      <div class="hito" @click="setTab(0)">
-        ヒト
-        <div id="chose" v-if="page_tab_num==0"></div>
-      </div>
-      <div class="mono" @click="setTab(1)">
-        モノ
-        <div id="chose" v-if="page_tab_num==1"></div>
-      </div>
-    </ul>
-    <div class="quest_box">
-      <BQuestList v-bind:tab_num="page_tab_num" :questlist="questlist"></BQuestList>
+    </div>
+    <div class="plus-icon-button" @click="newCreateQuest()">
+      <b-icon class="plus-icon" icon="plus-circle" size="is-large"></b-icon>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
-import BQuestList from "@/components/quest-list/BQuestList";
+import BQuestList from "@/components/quest-list/BQuestList/BQuestList.vue";
 
 @Component({
   components: {
@@ -40,14 +44,17 @@ export default class BQuestListPage extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-  search_word: string = "";
+  questList: string[] = null;
+  pageTabNum: number = 0;
 
-  page_tab_num: number = 0;
   setTab(num: number) {
-    this.page_tab_num = num;
+    this.pageTabNum = num;
   }
 
-  to_search_page() {
+  toSearchPage() {
+  }
+
+  newCreateQuest(){
   }
 }
 </script>
@@ -66,7 +73,7 @@ export default class BQuestListPage extends Vue {
   padding-left: 12px;
   padding-right: 12px;
 
-  .user_icon {
+  .user-icon {
     border-radius: 50%; /* 角丸半径を50%にする(=円形にする) */
     width: 42px; /* ※縦横を同値に */
     height: 42px; /* ※縦横を同値に */
@@ -111,4 +118,12 @@ ul.tab {
   clear: both;
 }
 
+
+.plus-icon-button {
+  color: #51e898;
+  position: fixed;
+  right: 8%;
+  bottom: 5%;
+  z-index: 100;
+}
 </style>
