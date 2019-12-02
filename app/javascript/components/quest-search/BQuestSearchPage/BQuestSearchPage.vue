@@ -1,24 +1,24 @@
 <template>
   <div>
     <div class="header">
-      <div class="back_button" @click="back()">
+      <div class="back-button" @click="back()">
         <b-icon icon="chevron-left" size="is-medium"></b-icon>
       </div>
-      <div class="PageTitle">検索</div>
+      <div class="page-title">検索</div>
     </div>
-    <BQuestSearchContainer class="TopBar" />
+    <BQuestSearchContainer />
     <ul class="tab">
       <div class="hito" @click="setTab(0)">
         ヒト
-        <div id="chose" v-if="page_tab_num==0"></div>
+        <div id="chose" v-if="pageTabNum==0"></div>
       </div>
       <div class="mono" @click="setTab(1)">
         モノ
-        <div id="chose" v-if="page_tab_num==1"></div>
+        <div id="chose" v-if="pageTabNum==1"></div>
       </div>
     </ul>
-    <div class="quest_box">
-      <BQuestList v-bind:tab_num="page_tab_num" :questlist="questlist"></BQuestList>
+    <div class="quest-box">
+      <BQuestList v-bind:tab_num="pageTabNum" v-bind:questList="questList"></BQuestList>
     </div>
   </div>
 </template>
@@ -41,19 +41,20 @@ export default class BQuestSearchPage extends Vue {
   // 4.@Watch
   // 5.method
 
-  page_tab_num: number = 0;
-
-  quest_search() {
-    //alert();
-  }
+  pageTabNum: number = 0;
+  questList: string[] = null;
 
   setTab(num: number) {
-    this.page_tab_num = num;
+    this.pageTabNum = num;
+  }
+  back(){
+    
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
 .header {
   position: -webkit-sticky;
   position: sticky;
@@ -69,20 +70,18 @@ export default class BQuestSearchPage extends Vue {
 
   display: flex;
 
-  .back_button {
+  .back-button {
     height: 46px;
     width: 40px;
   }
-  .PageTitle {
+  .page-title {
     font-size: 20px;
     margin-top: 1px;
   }
 }
 
-//tab hito mono
 ul.tab {
   .hito {
-    /* Text/Regular 14px */
     font-size: 20px;
     width: 50%;
     float: left;
@@ -108,7 +107,7 @@ ul.tab {
   }
 }
 
-.quest_box {
+.quest-box {
   clear: both;
 }
 
