@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TopBar />
+    <BTopBar pageName="新規作成"/>
     <BQuestCreate />
   </div>
 </template>
@@ -8,10 +8,10 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import BQuestCreate from "@/components/quest-create/BQuestCreate/BQuestCreate.vue";
-import TopBar from "@/components/quest-create/BQuestCreateTopBar/BQuestCreateTopBar.vue";
+import BTopBar from "@/components/common/BTopBar/BTopBar.vue";
 @Component({
   components: {
-    TopBar,
+    BTopBar,
     BQuestCreate
   }
 })
@@ -21,7 +21,6 @@ export default class BQuestCreatePage extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-  
 }
 </script>
 <style lang="scss" scoped>

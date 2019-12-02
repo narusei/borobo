@@ -1,32 +1,38 @@
 <template>
   <div class="header">
-    <div class="back_button" @click="back()">
-      <b-icon icon="chevron-left" size="is-medium"></b-icon>
+    <div class="back-button" @click="back()">
+      <b-icon 
+      icon="chevron-left" 
+      size="is-medium"></b-icon>
     </div>
-    <div class="PageTitle">新規作成</div>
+    <div class="page-title">
+      {{pageName}}
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-
 @Component({
   components: {}
 })
-export default class BQuestCreateTopBar extends Vue {
+export default class BUserTopBar extends Vue {
   // 1.@Prop
   // 2.property
   // 3.getter
   // 4.@Watch
   // 5.method
+  @Prop({default:"borobo"})
+  pageName!: string;
 
+  back(){
 
-//to back page
-  back() {
   }
 }
 </script>
+
 <style lang="scss" scoped>
+
 .header {
   position: -webkit-sticky;
   position: sticky;
@@ -42,13 +48,17 @@ export default class BQuestCreateTopBar extends Vue {
 
   display: flex;
 
-  .back_button {
+  .back-button {
+ 
     height: 46px;
+   
     width: 40px;
   }
-  .PageTitle{
+  .page-title{
     font-size: 20px;
+  
     margin-top: 1px;
   }
 }
+
 </style>

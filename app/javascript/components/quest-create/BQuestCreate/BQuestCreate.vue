@@ -1,60 +1,59 @@
 <template>
   <div>
     <div class="card">
-      <div class="item_text">カテゴリー</div>
-      <div class="cp_ipselect cp_sl01">
+      <div class="item-text">カテゴリー</div>
+      <div class="cp-ipselect cp-sl01">
         <select required v-model="category">
           <option value hidden>モノ/ヒト</option>
           <option value="モノ">モノ</option>
           <option value="ヒト">ヒト</option>
         </select>
       </div>
-      <div class="item_text">タイトル</div>
-      <div class="cp_iptxt">
+      <div class="item-text">タイトル</div>
+      <div class="cp-iptxt">
         <label class="ef">
           <input type="text" placeholder="タイトル" v-model="title" required />
         </label>
       </div>
-      <div class="item_text">詳細</div>
-      <form class="quest_detail">
+      <div class="item-text">詳細</div>
+      <form class="quest-detail">
         <textarea name="テキストエリア" rows="5" wrap="hard" placeholder="クエスト詳細"></textarea>
       </form>
-      <div class="item_text">タグ</div>
+      <div class="item-text">タグ</div>
       <section>
         <b-field label="">
-          <b-taginput　class="tag_input" v-model="tags" ellipsis icon="label" placeholder="タグを入力"/>
+          <b-taginput　class="tag-input" v-model="tags" ellipsis icon="label" placeholder="タグを入力"/>
         </b-field>
       </section>
 
-      <div class="item_text">利用開始</div>
+      <div class="item-text">利用開始</div>
       <b-field label>
         <b-datetimepicker
           placeholder="Type or select a date..."
           icon="calendar-today"
-          v-model="start_datetime"
+          v-model="startDatetime"
           editable
         ></b-datetimepicker>
       </b-field>
-      {{start_datetime}}
-      <div class="item_text">利用終了</div>
+      <div class="item-text">利用終了</div>
       <b-field label>
         <b-datetimepicker
           placeholder="Type or select a date..."
           icon="calendar-today"
-          v-model="end_datetime"
+          v-model="endDatetime"
           editable
         ></b-datetimepicker>
       </b-field>
 
-      <div class="item_text">報酬</div>
-      <div class="cp_iptxt">
+      <div class="item-text">報酬</div>
+      <div class="cp-iptxt">
         <label class="ef">
           <input type="text" placeholder="報酬を入力" v-model="reword" />
         </label>
       </div>
       <div>
         <section>
-          <b-button @click="quest_create" class="quest_create_button">投稿</b-button>
+          <b-button @click="questCreate" class="quest-create-button">投稿</b-button>
         </section>
       </div>
     </div>
@@ -76,12 +75,11 @@ export default class BQuestCreate extends Vue {
   category: string = "";
   title: string = "";
   tags:Array<string>=[];
-  start_datetime: Date = null;
-  end_datetime: Date = null;
+  startDatetime: Date = null;
+  endDatetime: Date = null;
   reword: string = "";
 
-  //quest_create
-  quest_create() {}
+  questCreate() {}
 }
 </script>
 
@@ -97,19 +95,19 @@ export default class BQuestCreate extends Vue {
   margin: 16px auto;
   padding: 0px 24px;
 
-  .item_text {
+  .item-text {
     margin-top: 15px;
     font-size: 28px;
   }
 
   //category pulldown
-  .cp_ipselect {
+  .cp-ipselect {
     overflow: hidden;
     width: 100%;
     margin: 0;
     text-align: center;
   }
-  .cp_ipselect select {
+  .cp-ipselect select {
     width: 100%;
     padding-right: 1em;
     cursor: pointer;
@@ -124,16 +122,16 @@ export default class BQuestCreate extends Vue {
     appearance: none;
     font-size: 18px;
   }
-  .cp_ipselect select::-ms-expand {
+  .cp-ipselect select::-ms-expand {
     display: none;
   }
-  .cp_ipselect.cp_sl01 {
+  .cp-ipselect.cp-sl01 {
     position: relative;
     border: 1px solid #bbbbbb;
     background: #ffffff;
     border-radius: 4px;
   }
-  .cp_ipselect.cp_sl01::before {
+  .cp-ipselect.cp-sl01::before {
     position: absolute;
     top: 1.2em;
     right: 0.9em;
@@ -146,18 +144,17 @@ export default class BQuestCreate extends Vue {
     border-top: 6px solid #666666;
     pointer-events: none;
   }
-  .cp_ipselect.cp_sl01 select {
+  .cp-ipselect.cp-sl01 select {
     padding: 8px 8px 8px 8px;
     color: #000000;
     border-radius: 4px;
   }
 
-  //title textbox
-  .cp_iptxt {
+  .cp-iptxt {
     position: relative;
     width: 100%;
   }
-  .cp_iptxt input[type="text"] {
+  .cp-iptxt input[type="text"] {
     padding: 8px 8px 8px 8px;
     box-sizing: border-box;
     width: 100%;
@@ -172,7 +169,7 @@ export default class BQuestCreate extends Vue {
     outline: none;
   }
 
-  .quest_detail {
+  .quest-detail {
     textarea {
       width: 100%;
       color: #000000;
@@ -183,10 +180,7 @@ export default class BQuestCreate extends Vue {
     }
   }
 
-  //tag
-  
-  //quest_create
-  .quest_create_button {
+  .quest-create-button {
     width: 20%;
     margin-left: 78%;
     margin-top: 20px;
