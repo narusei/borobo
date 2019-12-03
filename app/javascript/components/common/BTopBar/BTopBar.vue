@@ -3,7 +3,7 @@
     <div class="back-button" @click="back()">
       <b-icon icon="chevron-left" size="is-medium"></b-icon>
     </div>
-    <div class="page-title">{{pageName}}</div>
+    <div class="page-title">{{ pageName }}</div>
   </div>
 </template>
 
