@@ -20,7 +20,7 @@
         </div>
       </ul>
       <div class="quest_box">
-        <BQuestList v-bind:tabNum="pageTabNum" v-bind:questList="questList"></BQuestList>
+        <b-quest-list v-bind:tabNum="pageTabNum" v-bind:questList="questList" />
       </div>
     </div>
     <div class="plus-icon-button" @click="toCreateQuest()">

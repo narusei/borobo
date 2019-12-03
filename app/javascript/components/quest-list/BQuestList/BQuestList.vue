@@ -2,12 +2,12 @@
   <div>
     <div v-if="tabNum==0">
       <div v-for="n in 10" :key="n">
-        <BQuest></BQuest>
+        <b-quest />
       </div>
     </div>
     <div v-if="tabNum==1">
       <div v-for="n in 10" :key="n">
-        <BQuest></BQuest>
+        <b-quest />
       </div>
     </div>
   </div>
