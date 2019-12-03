@@ -3,32 +3,23 @@
     <div class="card-content">
       <div class="media">
         <div class="media-left">
-          <b-icon
-                icon="account-circle"
-                size="is-large">
-            </b-icon>
+          <b-icon icon="account-circle" size="is-large"></b-icon>
         </div>
         <div class="media-content">
           <p class="user-name">{{userName}}</p>
           <div class="quest-title">{{questTitle}}</div>
           <div class="quest-period">
-            <b-icon
-                icon="calendar"
-                class="clock">
-            </b-icon>
+            <b-icon icon="calendar" class="clock"></b-icon>
             {{questPeriod}}
           </div>
           <div class="quest-reword">
-            <b-icon
-                icon="gift"
-                class="reword">
-            </b-icon>
+            <b-icon icon="gift" class="reword"></b-icon>
             {{questReword}}
           </div>
         </div>
       </div>
     </div>
-    <hr class="quest-border"/>
+    <hr class="quest-border" />
   </div>
 </template>
 
@@ -37,21 +28,19 @@ import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 
 @Component
 export default class BQuest extends Vue {
-
-  @Prop({default:"トニーあああああああ"})
+  @Prop({ default: "トニーあああああああ" })
   userName!: string;
 
-  @Prop({default:"関数電卓を貸してああああああああああああああああ"})
-  questTitle!:string;
+  @Prop({ default: "関数電卓を貸してああああああああああああああああ" })
+  questTitle!: string;
 
-  @Prop({default:"10/04 16:43 ~ 10/05 15:00"})
-  questPeriod!:string
+  @Prop({ default: "10/04 16:43 ~ 10/05 15:00" })
+  questPeriod!: string;
 
-  @Prop({default:"たけのこの里"})
-  questReword!:string
+  @Prop({ default: "たけのこの里" })
+  questReword!: string;
 
-  toQuestDetail(): void{
-  }
+  toQuestDetail(): void {}
 }
 </script>
 

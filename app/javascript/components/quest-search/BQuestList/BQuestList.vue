@@ -1,15 +1,15 @@
 <template>
   <div>
-      <div v-if="tabNum==0">
-        <div v-for="n in 10" :key="n">
-          <BQuest></BQuest>
-        </div>
+    <div v-if="tabNum==0">
+      <div v-for="n in 10" :key="n">
+        <b-quest />
       </div>
-      <div v-if="tabNum==1">
-        <div v-for="n in 10" :key="n">
-          <BQuest></BQuest>
-        </div>
+    </div>
+    <div v-if="tabNum==1">
+      <div v-for="n in 10" :key="n">
+        <b-quest />
       </div>
+    </div>
   </div>
 </template>
 
@@ -23,11 +23,11 @@ import BQuest from "@/components/quest-search/BQuest/BQuest.vue";
 })
 export default class BQuestList extends Vue {
   // 1.@Prop
-  
-  @Prop({default:0})
+
+  @Prop({ default: 0 })
   tabNum!: number;
 
-  @Prop({default:"aaa"})
+  @Prop({ default: "aaa" })
   questList!: string;
   // 2.property
   // 3.getter

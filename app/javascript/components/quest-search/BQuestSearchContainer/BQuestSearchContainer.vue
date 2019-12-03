@@ -39,12 +39,10 @@ export default class BQuestSearchContainer extends Vue {
   searchWordTags: string[] = null;
   searchWordReword: string = "";
 
-  questSearch(){
-  }
+  questSearch() {}
 }
 </script>
 <style lang="scss" scoped>
-
 .cp-iptxt {
   position: relative;
   margin: 10px;

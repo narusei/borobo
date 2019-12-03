@@ -6,7 +6,7 @@
       </div>
       <div class="page-title">検索</div>
     </div>
-    <BQuestSearchContainer />
+    <b-quest-search-container />
     <ul class="tab">
       <div class="hito" @click="setTab(0)">
         ヒト
@@ -18,7 +18,7 @@
       </div>
     </ul>
     <div class="quest-box">
-      <BQuestList v-bind:tab_num="pageTabNum" v-bind:questList="questList"></BQuestList>
+      <b-quest-list v-bind:tab_num="pageTabNum" v-bind:questList="questList" />
     </div>
   </div>
 </template>
@@ -47,14 +47,11 @@ export default class BQuestSearchPage extends Vue {
   setTab(num: number) {
     this.pageTabNum = num;
   }
-  back(){
-    
-  }
+  back() {}
 }
 </script>
 
 <style lang="scss" scoped>
-
 .header {
   position: -webkit-sticky;
   position: sticky;
@@ -110,5 +107,4 @@ ul.tab {
 .quest-box {
   clear: both;
 }
-
 </style>
