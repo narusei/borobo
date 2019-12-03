@@ -23,7 +23,7 @@
         <BQuestList v-bind:tabNum="pageTabNum" v-bind:questList="questList"></BQuestList>
       </div>
     </div>
-    <div class="plus-icon-button" @click="newCreateQuest()">
+    <div class="plus-icon-button" @click="toCreateQuest()">
       <b-icon class="plus-icon" icon="plus-circle" size="is-large"></b-icon>
     </div>
   </div>
@@ -31,7 +31,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
-import BQuestList from "@/components/quest-list/BQuestList/BQuestList.vue";
+import BQuestList from "@/components/quest-list/BQuestList";
 
 @Component({
   components: {
@@ -51,11 +51,9 @@ export default class BQuestListPage extends Vue {
     this.pageTabNum = num;
   }
 
-  toSearchPage() {
-  }
+  toSearchPage() {}
 
-  newCreateQuest(){
-  }
+  toCreateQuest() {}
 }
 </script>
 
@@ -117,7 +115,6 @@ ul.tab {
 .quest_box {
   clear: both;
 }
-
 
 .plus-icon-button {
   color: #51e898;
