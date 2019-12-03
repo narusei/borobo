@@ -1,13 +1,9 @@
 <template>
   <div class="header">
     <div class="back-button" @click="back()">
-      <b-icon 
-      icon="chevron-left" 
-      size="is-medium"></b-icon>
+      <b-icon icon="chevron-left" size="is-medium"></b-icon>
     </div>
-    <div class="page-title">
-      {{pageName}}
-    </div>
+    <div class="page-title">{{pageName}}</div>
   </div>
 </template>
 
@@ -22,17 +18,14 @@ export default class BUserTopBar extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-  @Prop({default:"borobo"})
+  @Prop({ default: "borobo" })
   pageName!: string;
 
-  back(){
-
-  }
+  back() {}
 }
 </script>
 
 <style lang="scss" scoped>
-
 .header {
   position: -webkit-sticky;
   position: sticky;
@@ -49,16 +42,14 @@ export default class BUserTopBar extends Vue {
   display: flex;
 
   .back-button {
- 
     height: 46px;
-   
+
     width: 40px;
   }
-  .page-title{
+  .page-title {
     font-size: 20px;
-  
+
     margin-top: 1px;
   }
 }
-
 </style>

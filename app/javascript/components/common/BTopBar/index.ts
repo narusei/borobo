@@ -1,3 +1,3 @@
-import TopBar from "./TopBar.vue";
+import BTopBar from "./BTopBar.vue";
 
-export default TopBar;
+export default BTopBar;

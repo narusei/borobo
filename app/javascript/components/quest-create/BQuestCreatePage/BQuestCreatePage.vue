@@ -1,14 +1,14 @@
 <template>
   <div>
-    <BTopBar pageName="新規作成"/>
-    <BQuestCreate />
+    <b-top-bar pageName="新規作成" />
+    <b-quest-create />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import BQuestCreate from "@/components/quest-create/BQuestCreate/BQuestCreate.vue";
-import BTopBar from "@/components/common/BTopBar/BTopBar.vue";
+import BQuestCreate from "@/components/quest-create/BQuestCreate";
+import BTopBar from "@/components/common/BTopBar";
 @Component({
   components: {
     BTopBar,

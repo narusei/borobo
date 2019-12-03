@@ -21,9 +21,9 @@
       </form>
       <div class="item-text">タグ</div>
       <section>
-        <b-field label="">
-          <b-taginput　class="tag-input" v-model="tags" ellipsis icon="label" placeholder="タグを入力"/>
-        </b-field>
+        <b-field
+          label
+        ><b-taginput class="tag-input" v-model="tags" ellipsis icon="label" placeholder="タグを入力"/></b-field>
       </section>
 
       <div class="item-text">利用開始</div>
@@ -74,7 +74,7 @@ export default class BQuestCreate extends Vue {
   // 5.method
   category: string = "";
   title: string = "";
-  tags:Array<string>=[];
+  tags: Array<string> = [];
   startDatetime: Date = null;
   endDatetime: Date = null;
   reword: string = "";
