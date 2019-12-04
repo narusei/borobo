@@ -1,9 +1,18 @@
 <template>
   <div class="header">
-    <div class="back-button" @click="back()">
-      <b-icon icon="chevron-left" size="is-medium"></b-icon>
+    <div class="back-button" @click="back">
+      <b-icon 
+      icon="chevron-left" 
+      size="is-medium"></b-icon>
     </div>
-    <div class="page-title">{{ userName }}のページ</div>
+    <div class="page-title">
+      {{ userName }}のページ
+    </div>
+    <div class="user-edit" v-if="myPage" @click="settingMyPage">
+      <b-icon 
+      icon="cogs" 
+      size="is-medium"></b-icon>
+    </div>
   </div>
 </template>
 
@@ -18,14 +27,19 @@ export default class BUserTopBar extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-  @Prop({ default: "borobo" })
+  @Prop({default:"borobo"})
   userName!: string;
 
-  back() {}
+  @Prop({default:false})
+  myPage!:boolean;
+
+  back(){alert()}
+  settingMyPage(){alert()}
 }
 </script>
 
 <style lang="scss" scoped>
+
 .header {
   position: -webkit-sticky;
   position: sticky;
@@ -43,13 +57,15 @@ export default class BUserTopBar extends Vue {
 
   .back-button {
     height: 46px;
-
     width: 40px;
   }
-  .page-title {
+  .page-title{
     font-size: 20px;
-
     margin-top: 1px;
   }
+  .user-edit{
+     margin: 0 5px 0 auto;
+  }
 }
+
 </style>
