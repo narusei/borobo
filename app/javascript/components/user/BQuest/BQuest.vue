@@ -12,9 +12,9 @@
             <b-icon icon="calendar" class="clock"></b-icon>
             {{ questPeriod }}
           </div>
-          <div class="quest-reword">
-            <b-icon icon="gift" class="reword"></b-icon>
-            {{ questReword }}
+          <div class="quest-reward">
+            <b-icon icon="gift" class="reward"></b-icon>
+            {{ questReward }}
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@ export default class BQuest extends Vue {
   questPeriod!: string;
 
   @Prop({ default: "たけのこの里" })
-  questReword!: string;
+  questReward!: string;
 
   toQuestDetail(){}
 }
@@ -79,7 +79,7 @@ export default class BQuest extends Vue {
   height: 22px;
   width: 22px;
 }
-.reword {
+.reward {
   margin-right: 20px;
   margin-bottom: 10px;
   height: 22px;
@@ -90,7 +90,7 @@ export default class BQuest extends Vue {
   display: flex;
 }
 
-.quest-reword {
+.quest-reward {
   display: flex;
 }
 
