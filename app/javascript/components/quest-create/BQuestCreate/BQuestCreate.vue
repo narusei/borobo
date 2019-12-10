@@ -17,13 +17,13 @@
       </div>
       <div class="item-text">詳細</div>
       <form class="quest-detail">
-        <textarea name="テキストエリア" rows="5" wrap="hard" placeholder="クエスト詳細"></textarea>
+        <textarea name="テキストエリア" rows="5" wrap="hard" placeholder="クエスト詳細" v-model ="detail"></textarea>
       </form>
       <div class="item-text">タグ</div>
       <section>
-        <b-field
-          label
-        ><b-taginput class="tag-input" v-model="tags" ellipsis icon="label" placeholder="タグを入力"/></b-field>
+        <b-field label>
+          <b-taginput class="tag-input" v-model="tags" ellipsis icon="label" placeholder="タグを入力" />
+        </b-field>
       </section>
 
       <div class="item-text">利用開始</div>
@@ -74,6 +74,7 @@ export default class BQuestCreate extends Vue {
   // 5.method
   category: string = "";
   title: string = "";
+  detail: string = "";
   tags: Array<string> = [];
   startDatetime: Date = null;
   endDatetime: Date = null;
@@ -100,7 +101,6 @@ export default class BQuestCreate extends Vue {
     font-size: 28px;
   }
 
-  //category pulldown
   .cp-ipselect {
     overflow: hidden;
     width: 100%;
