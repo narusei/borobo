@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BTopHeader />
+    <b-top-header />
     <div class="what-borobo-title">What is Borobo?</div>
     <div class="columns is-gapless">
       <div class="column">

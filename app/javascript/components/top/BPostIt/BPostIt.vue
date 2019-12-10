@@ -41,7 +41,7 @@ export default class BPostIt extends Vue {
   margin: 20px;
   border: solid 1px rgb(185, 185, 185);
   border-radius: 0 0 20px 0;
-  background-color: rgb(253, 253, 121);
+  background-color: rgb(250, 250, 179);
   height: auto;
   box-shadow: 3px 2px 1px rgba(0, 0, 0, 0.4);
 
