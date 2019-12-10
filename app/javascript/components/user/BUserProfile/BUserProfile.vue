@@ -22,7 +22,7 @@ import BUserRate from "@/components/user/BUserRate";
     BUserRate
   }
 })
-export default class UserProfile extends Vue {
+export default class BUserProfile extends Vue {
   // 1.@Prop
   // 2.property
   // 3.getter

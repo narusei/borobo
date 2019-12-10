@@ -13,7 +13,7 @@ import BUserPage from "@/components/user/BUserPage";
       BUserPage
   }
 })
-export default class NAME extends Vue {
+export default class UserPage extends Vue {
   // 1.@Prop
   // 2.property
   // 3.getter
