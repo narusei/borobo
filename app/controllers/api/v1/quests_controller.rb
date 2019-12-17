@@ -18,14 +18,13 @@ class Api::V1::QuestsController < ApplicationController
     end
     # PUT /Quests/:id
     def update
-        @quest.update(quest_params)
-        head :no_content
+        @quest= Quest.update(quest_params)
+        json_response(@quest)
     end
     # DELETE /Quests/:id
     def destroy
-        @quest.destroy(params[:id])
-        head :no_content
-        render json: {code:200}
+        @quest = Quest.destroy(params[:id])
+        json_response(@quest)
     end
 
     private
@@ -33,8 +32,4 @@ class Api::V1::QuestsController < ApplicationController
     def quest_params
         params.permit(:category, :detail, :from_to, :status, :tag, :author, :title,:reward)
     end
-
-    # def set_quest
-    #     @quest = Quest.find(params[:id])
-    # end
 end
