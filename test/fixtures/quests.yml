@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  detail: MyText
+  tag: MyString
+  from_to: MyString
+  author: MyString
+  reward: MyString
+
+two:
+  title: MyString
+  detail: MyText
+  tag: MyString
+  from_to: MyString
+  author: MyString
+  reward: MyString
