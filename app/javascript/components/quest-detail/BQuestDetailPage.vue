@@ -20,7 +20,7 @@
       <div class="qd-description">{{ description }}</div>
       <div class="qd-period">
         <b-icon icon="calendar"></b-icon>
-        <div class="period">{{ startDatetime }} ~ {{ endDatetime }}</div>
+        <div class="period">{{ startDatetime }} ~ {{ dueDatetime }}</div>
       </div>
       <div class="qd-reward">
         <b-icon icon="gift"></b-icon>
@@ -28,7 +28,12 @@
       </div>
     </div>
     <div class="qd-chat">
-      <b-button type="is-mainColor" size="is-medium">チャット開始</b-button>
+      <b-button
+        type="is-mainColor"
+        size="is-large"
+        icon-right="comment-text-multiple-outline"
+        rounded
+      ></b-button>
     </div>
   </section>
 </template>
@@ -53,13 +58,19 @@ export default class BQuestDetailPage extends Vue {
     "テストで関数電卓が必要になったのでかしてほしいです。使用したい時間はテストの時間のみなので終わったらすぐお返しします。引き渡し場所は2号館3階を希望です。";
   tags: Array<string> = [];
   startDatetime: string = format(new Date(), "MM/dd hh:mm:ss");
-  endDatetime: string = format(new Date(), "MM/dd hh:mm:ss");
+  dueDatetime: string = format(new Date(), "MM/dd hh:mm:ss");
   reward: string = "たけのこの里一個";
   questCreate() {}
 }
 </script>
 
 <style lang="scss" scoped>
+.quest-detail {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .qd-header {
   position: -webkit-sticky;
   position: sticky;
@@ -135,7 +146,8 @@ export default class BQuestDetailPage extends Vue {
 .qd-chat {
   display: flex;
   justify-content: flex-end;
-  padding-top: 16px;
+  margin-top: auto;
+  margin-bottom: 32px;
   margin-right: 16px;
 }
 </style>
