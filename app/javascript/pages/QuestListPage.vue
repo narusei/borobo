@@ -26,8 +26,9 @@ created():void{
 }
 
 
-  get questListItem(): any{
-    return this.questListStore;
+  get questListItem(){
+    console.log("catch");
+    return this.questListStore.questList;
   }
 
   getQuestList(){

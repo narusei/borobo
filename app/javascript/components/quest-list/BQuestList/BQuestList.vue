@@ -32,7 +32,7 @@ export default class BQuestList extends Vue {
   tabNum!: number;
 
   @Prop({})
-  questList: any[];
+  questList: string;
   // 2.property
   // 3.getter
   // 4.@Watch

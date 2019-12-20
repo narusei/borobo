@@ -47,17 +47,13 @@ export default class BQuestListPage extends Vue {
   // 4.@Watch
   // 5.method
   @Prop({})
-  questList: any[];
+  questList: string;
   
   pageTabNum: number = 0;
 
   @Emit("getQuestList")
   getQuestList(){
     return this.questList;
-  }
-
-  created(){
-    this.getQuestList();
   }
 
   setTab(num: number) {
