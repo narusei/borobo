@@ -1,1 +1,3 @@
-export class QuestItem { }
+export class QuestItem {
+    
+ }

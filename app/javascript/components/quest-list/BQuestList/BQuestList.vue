@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div v-for="quest in questList" :key="quest">
+      {{ quest }}
+    </div>
     <div v-if="tabNum==0">
       <div v-for="n in 10" :key="n">
         <b-quest />
@@ -16,6 +19,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import BQuest from "@/components/quest-list/BQuest";
+import { QuestItem } from "@/models/quest-list/QuestItem.ts";
 @Component({
   components: {
     BQuest
@@ -27,8 +31,8 @@ export default class BQuestList extends Vue {
   @Prop({ default: 0 })
   tabNum!: number;
 
-  @Prop({ default: "aaa" })
-  questList!: string;
+  @Prop({})
+  questList: any[];
   // 2.property
   // 3.getter
   // 4.@Watch

@@ -20,7 +20,7 @@
         </div>
       </ul>
       <div class="quest_box">
-        <b-quest-list v-bind:tabNum="pageTabNum" v-bind:questList="questList" />
+        <b-quest-list v-bind:tabNum="pageTabNum" :questList="questList" />
       </div>
     </div>
     <div class="plus-icon-button" @click="toCreateQuest()">
@@ -31,7 +31,9 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
+
 import BQuestList from "@/components/quest-list/BQuestList";
+import { QuestItem } from "@/models/quest-list/QuestItem.ts";
 
 @Component({
   components: {
@@ -44,11 +46,23 @@ export default class BQuestListPage extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-  questList: string[] = null;
+  @Prop({})
+  questList: any[];
+  
   pageTabNum: number = 0;
+
+  @Emit("getQuestList")
+  getQuestList(){
+    return this.questList;
+  }
+
+  created(){
+    this.getQuestList();
+  }
 
   setTab(num: number) {
     this.pageTabNum = num;
+    this.getQuestList();
   }
 
   toSearchPage() {}
