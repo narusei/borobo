@@ -2,8 +2,12 @@
   <div class="top-bar">
     <div class="borobo-logo">
       Borobo
-      <a class="auth-bottun" href>Sign up</a>
-      <a class="auth-bottun" href>Log in</a>
+      <router-link to="/sign-up">
+        <a class="auth-bottun" href>Sign up</a>
+      </router-link>
+      <router-link to="/log-in">
+        <a class="auth-bottun" href>Log in</a>
+      </router-link>
     </div>
     <div class="top-about-borobo">
       <div class="borobo-theme">貸すよ！が<br>見つかる</div>
