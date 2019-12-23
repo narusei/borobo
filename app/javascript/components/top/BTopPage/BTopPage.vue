@@ -43,7 +43,9 @@
       </div>
     </div>
     <div class="start-button">
-      <button class="button is-large is-rounded">さあ、はじめよう！</button>
+      <router-link to="/sign-up">
+        <button class="button is-large is-rounded">さあ、はじめよう！</button>
+      </router-link>
     </div>
     <footer class="b-footer">
       <div class="team-name">2019 TDUから学生を守る党</div>
