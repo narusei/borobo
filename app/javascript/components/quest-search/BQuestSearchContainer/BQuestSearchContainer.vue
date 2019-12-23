@@ -13,18 +13,18 @@
       </div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input type="text" placeholder="報酬を入力" v-model="searchWordReword" />
+          <input type="text" placeholder="報酬を入力" v-model="searchWordReward" />
         </label>
       </div>
       <section>
-        <b-button @click="questSearch" class="quest-search-button">検索</b-button>
+        <b-button @click="postQuestSearch" class="quest-search-button">検索</b-button>
       </section>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
 @Component({
   components: {}
 })
@@ -37,9 +37,19 @@ export default class BQuestSearchContainer extends Vue {
 
   searchWordTitle: string = "";
   searchWordTags: string[] = null;
-  searchWordReword: string = "";
+  searchWordReward: string = "";
 
-  questSearch() {}
+  get searchWord(){
+    return{
+      searchWordTitle: this.searchWordTitle,
+      searchWordTags: this.searchWordTags,
+      searchWordReward: this.searchWordReward
+    };
+  }
+  @Emit("postQuestSearch")
+  postQuestSearch():any {
+    return this.searchWord
+  }
 }
 </script>
 <style lang="scss" scoped>

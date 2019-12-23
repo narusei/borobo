@@ -1,0 +1,1 @@
+export const POST_SEARCH_QUEST_LIST_ITEM = '[quest-list] POST_SEARCH_QUEST_LIST_ITEM';
