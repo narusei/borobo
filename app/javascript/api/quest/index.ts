@@ -1,4 +1,4 @@
-import axios from "axios";
+import http from "@/utils/requests";
 export default {
     getQuestList(param:any): any{
         console.log("api catch")
