@@ -8,6 +8,7 @@
     "@rails/webpacker": "^4.2.0",
     "axios": "^0.19.0",
     "buefy": "^0.8.8",
+    "date-fns": "^2.8.1",
     "ts-loader": "^6.2.1",
     "turbolinks": "^5.2.0",
     "typescript": "^3.7.2",
