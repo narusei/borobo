@@ -1,16 +1,13 @@
 <template>
   <div>
-    <div v-for="quest in questList" :key="quest">
-      {{ quest }}
-    </div>
     <div v-if="tabNum==0">
-      <div v-for="n in 10" :key="n">
-        <b-quest />
+      <div v-for="quest in questList" :key="quest.quest_id">
+        <b-quest :userName="quest.user_name" :questTitle="quest.title" :questStartDate="quest.start_date" :questDueDate="quest.due_date" :questReward="quest.reward"/>
       </div>
     </div>
     <div v-if="tabNum==1">
-      <div v-for="n in 10" :key="n">
-        <b-quest />
+      <div v-for="quest in questList" :key="quest.quest_id">
+        <b-quest :userName="quest.user_name" :questTitle="quest.title" :questStartDate="quest.start_date" :questDueDate="quest.due_date" :questReward="quest.reward"/>
       </div>
     </div>
   </div>
@@ -32,7 +29,7 @@ export default class BQuestList extends Vue {
   tabNum!: number;
 
   @Prop({})
-  questList: string;
+  questList: [];
   // 2.property
   // 3.getter
   // 4.@Watch

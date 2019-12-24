@@ -1,6 +1,6 @@
 <template>
 <div>
-  <b-quest-list-page @getQuestList="getQuestList($event)" :questList="questListItem" />
+  <b-quest-list-page @getQuestList="getQuestList($event)" :questList="questList" />
 </div>
 </template>
 
@@ -8,7 +8,7 @@
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 import { getModule } from "vuex-module-decorators";
 import BQuestListPage from "@/components/quest-list/BQuestListPage";
-import QuestListStore from "@/store/quest-list/index.ts";
+import QuestListStore from "@/store/quest";
 @Component({
   components: {
     BQuestListPage
@@ -21,12 +21,16 @@ export default class QuestListPage extends Vue {
   //get
   //@Watch()
   //通常メソッド
-created():void{
-  this.getQuestList();
+created() {
+    try {
+      this.questListStore.getQuestList("ヒト");
+    } catch {
+      console.log("fails");
+    }
 }
 
 
-  get questListItem(){
+  get questList(){
     console.log("catch");
     return this.questListStore.questList;
   }

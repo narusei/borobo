@@ -10,11 +10,11 @@
           <div class="quest-title">{{questTitle}}</div>
           <div class="quest-period">
             <b-icon icon="calendar" class="clock"></b-icon>
-            {{questPeriod}}
+            {{ questStartDate }}~{{ questDueDate }}
           </div>
           <div class="quest-reword">
-            <b-icon icon="gift" class="reword"></b-icon>
-            {{questReword}}
+            <b-icon icon="gift" class="reward"></b-icon>
+            {{questReward}}
           </div>
         </div>
       </div>
@@ -35,10 +35,13 @@ export default class BQuest extends Vue {
   questTitle!: string;
 
   @Prop({ default: "10/04 16:43 ~ 10/05 15:00" })
-  questPeriod!: string;
+  questStartDate!: string;
+
+  @Prop({ default: "10/04 16:43 ~ 10/05 15:00" })
+  questDueDate!: string;
 
   @Prop({ default: "たけのこの里" })
-  questReword!: string;
+  questReward!: string;
 
   toQuestDetail(): void {}
 }
@@ -90,7 +93,7 @@ export default class BQuest extends Vue {
   display: flex;
 }
 
-.quest-reword {
+.quest-reward {
   display: flex;
 }
 
