@@ -1,14 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import QuestListPage from "@/pages/QuestListPage.vue";
+import QuestCreatePage from "@/pages/QuestCreatePage.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: "/",
-        name: "QuestListPage",
-        component: QuestListPage
+        name: "QuestCreatePage",
+        component: QuestCreatePage
     }
 ];
 
