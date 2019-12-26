@@ -6,15 +6,15 @@
       </div>
       <div class="page-title">検索</div>
     </div>
-    <b-quest-search-container @postSearchQuest="postSearchQuest"/>
+    <b-quest-search-container @postSearchQuest="postSearchQuest" />
     <ul class="tab">
       <div class="hito" @click="setTab(0)">
         ヒト
-        <div id="chose" v-if="pageTabNum==0"></div>
+        <div id="chose" v-if="pageTabNum == 0"></div>
       </div>
       <div class="mono" @click="setTab(1)">
         モノ
-        <div id="chose" v-if="pageTabNum==1"></div>
+        <div id="chose" v-if="pageTabNum == 1"></div>
       </div>
     </ul>
     <div class="quest-box">
@@ -27,6 +27,7 @@
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 import BQuestList from "@/components/quest-search/BQuestList/BQuestList.vue";
 import BQuestSearchContainer from "@/components/quest-search/BQuestSearchContainer/BQuestSearchContainer.vue";
+import { QuestItem } from "@/models/quest-list/QuestItem.ts";
 
 @Component({
   components: {
@@ -41,19 +42,28 @@ export default class BQuestSearchPage extends Vue {
   // 4.@Watch
   // 5.method
 
+  @Prop({})
+  questList: QuestItem[];
   pageTabNum: number = 0;
 
-  @Prop({})
-  questList: string;
-
-  @Emit("postSearchQuest")
-  postSearchQuest(param:any){
-    console.log("aaaa")
-    return param
+  @Emit("getQuestList")
+  getQuestList(param: any) {
+    return this.questList;
   }
 
   setTab(num: number) {
     this.pageTabNum = num;
+    if (num == 0) {
+      this.getQuestList("ヒト");
+    } else {
+      this.getQuestList("モノ");
+    }
+  }
+
+  @Emit("postSearchQuest")
+  postSearchQuest(param: any) {
+    console.log("aaaa");
+    return param;
   }
   back() {}
 }

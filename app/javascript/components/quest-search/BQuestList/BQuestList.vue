@@ -1,13 +1,26 @@
 <template>
   <div>
-    <div v-if="tabNum==0">
-      <div v-for="n in 10" :key="n">
-        <b-quest />
+    <div v-if="tabNum == 0">
+      <div v-for="quest in questList.each_quest" :key="quest.quest_id">
+        <b-quest
+          :questId="quest.quest_id"
+          :userName="quest.user_name"
+          :questTitle="quest.title"
+          :questStartDate="quest.start_date"
+          :questDueDate="quest.due_date"
+          :questReward="quest.reward"
+        />
       </div>
     </div>
-    <div v-if="tabNum==1">
-      <div v-for="n in 10" :key="n">
-        <b-quest />
+    <div v-if="tabNum == 1">
+      <div v-for="quest in questList.each_quest" :key="quest.quest_id">
+        <b-quest
+          :userName="quest.user_name"
+          :questTitle="quest.title"
+          :questStartDate="quest.start_date"
+          :questDueDate="quest.due_date"
+          :questReward="quest.reward"
+        />
       </div>
     </div>
   </div>
@@ -15,7 +28,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import BQuest from "@/components/quest-search/BQuest/BQuest.vue";
+import BQuest from "@/components/quest-search/BQuest";
+import { QuestItem } from "@/models/quest-list/QuestItem.ts";
 @Component({
   components: {
     BQuest
@@ -23,17 +37,14 @@ import BQuest from "@/components/quest-search/BQuest/BQuest.vue";
 })
 export default class BQuestList extends Vue {
   // 1.@Prop
-
   @Prop({ default: 0 })
   tabNum!: number;
-
-  @Prop({ default: "aaa" })
-  questList!: string;
+  @Prop({})
+  questList: QuestItem[];
   // 2.property
   // 3.getter
   // 4.@Watch
   // 5.method
 }
 </script>
-<style lang="scss"scoped>
-</style>
+<style lang="scss" scoped></style>
