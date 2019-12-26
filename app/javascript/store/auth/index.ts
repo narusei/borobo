@@ -1,11 +1,11 @@
 import { Module, VuexModule, Action, Mutation } from "vuex-module-decorators";
 import * as MUTATION from "store/auth/mutation-types";
 import authApi from "api/auth";
-import { QuestItem } from "@/models/quest-list/QuestItem.ts";
+import { QuestItem } from "models/quest/QuestItem";
 
 @Module({ name: "auth", namespaced: true })
 export default class AuthStore extends VuexModule {
-  items: QuestItem = {};
+  items: QuestItem[] = [];
 
   //   @Action
   //   async getNoticeBoardList() {

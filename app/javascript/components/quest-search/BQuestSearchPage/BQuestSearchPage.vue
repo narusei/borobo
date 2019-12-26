@@ -18,7 +18,7 @@
       </div>
     </ul>
     <div class="quest-box">
-      <b-quest-list v-bind:tab_num="pageTabNum" v-bind:questList="questList" />
+      <b-quest-list v-bind:tab_num="pageTabNum" :questList="questList" />
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 import BQuestList from "@/components/quest-search/BQuestList/BQuestList.vue";
 import BQuestSearchContainer from "@/components/quest-search/BQuestSearchContainer/BQuestSearchContainer.vue";
-import { QuestItem } from "@/models/quest-list/QuestItem.ts";
+import { QuestItem } from "@/models/quest/QuestItem";
 
 @Component({
   components: {
