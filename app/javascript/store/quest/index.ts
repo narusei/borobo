@@ -1,10 +1,10 @@
 import { Module, VuexModule, Action, Mutation } from "vuex-module-decorators";
-import * as MUTATION from "@/store/quest-list/mutation-types.ts";
-import noticeBoardApi from "api/quest";
+import * as MUTATION from "store/quest/mutation-types";
+import questApi from "api/quest";
 import { QuestItem } from "@/models/quest-list/QuestItem.ts";
 
-@Module({ name: "default" })
-export default class DefaultStore extends VuexModule {
+@Module({ name: "quest", namespaced: true })
+export default class QuestStore extends VuexModule {
   items: QuestItem = {};
 
   //   @Action
