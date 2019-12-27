@@ -41,7 +41,7 @@
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 
 import BQuestList from "@/components/quest-list/BQuestList";
-import { QuestItem } from "@/models/quest-list/QuestItem.ts";
+import { QuestItem } from "@/models/quest/QuestItem.ts";
 import QuestCreatePage from "@/pages/QuestCreatePage.vue";
 
 @Component({

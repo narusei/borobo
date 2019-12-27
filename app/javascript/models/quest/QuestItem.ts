@@ -1,4 +1,4 @@
-import { QuestItemProperty } from "models/quest-list/QuestProperty";
+import { QuestItemProperty } from "models/quest/QuestProperty";
 
 export class QuestItem {
   data_num: string;

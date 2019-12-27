@@ -1,7 +1,7 @@
 import { Module, VuexModule, Action, Mutation } from "vuex-module-decorators";
 import * as MUTATION from "store/quest/mutation-types";
 import questApi from "api/quest";
-import { QuestItem } from "@/models/quest-list/QuestItem.ts";
+import { QuestItem } from "models/quest/QuestItem";
 
 @Module({ name: "quest", namespaced: true })
 export default class QuestListStore extends VuexModule {
