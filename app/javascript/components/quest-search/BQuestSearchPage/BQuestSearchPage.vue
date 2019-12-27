@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="header">
-      <div class="back-button" @click="back()">
-        <b-icon icon="chevron-left" size="is-medium"></b-icon>
+      <div class="back-button">
+        <router-link to="/quest-list">
+          <b-icon icon="chevron-left" size="is-medium"></b-icon>
+        </router-link>
       </div>
       <div class="page-title">検索</div>
     </div>
-    <b-quest-search-container
-      @postSearchQuestList="postSearchQuestList($event)"
-    />
+    <b-quest-search-container @postSearchQuestList="postSearchQuestList($event)" />
     <div class="quest-box">
       <b-quest-list :questList="questList" />
     </div>
@@ -41,7 +41,6 @@ export default class BQuestSearchPage extends Vue {
   postSearchQuestList(param: any) {
     return param;
   }
-  back() {}
 }
 </script>
 
