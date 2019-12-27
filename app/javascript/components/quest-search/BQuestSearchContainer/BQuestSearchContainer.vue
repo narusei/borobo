@@ -3,21 +3,35 @@
     <div class="search-container">
       <div class="cp-iptxt">
         <label class="ef">
-          <input type="text" placeholder="タイトルを入力" v-model="searchWordTitle" />
+          <input
+            type="text"
+            placeholder="タイトルを入力"
+            v-model="searchWordTitle"
+          />
         </label>
       </div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input type="text" placeholder="タグを入力" v-model="searchWordTags" />
+          <input
+            type="text"
+            placeholder="タグを入力"
+            v-model="searchWordTagsStr"
+          />
         </label>
       </div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input type="text" placeholder="報酬を入力" v-model="searchWordReward" />
+          <input
+            type="text"
+            placeholder="報酬を入力"
+            v-model="searchWordReward"
+          />
         </label>
       </div>
       <section>
-        <b-button @click="postQuestSearch" class="quest-search-button">検索</b-button>
+        <b-button @click="postSearchQuestList" class="quest-search-button"
+          >検索</b-button
+        >
       </section>
     </div>
   </div>
@@ -34,21 +48,42 @@ export default class BQuestSearchContainer extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
+  @Prop({})
+  pageTabNum: number;
 
+  pageTabStr: string = "";
   searchWordTitle: string = "";
+  searchWordTagsStr: string = "";
   searchWordTags: string[] = null;
   searchWordReward: string = "";
 
-  get searchWord(){
-    return{
+  get searchWord() {
+    if (this.pageTabNum == 0) {
+      this.pageTabStr = "ヒト";
+    } else if (this.pageTabNum == 1) {
+      this.pageTabStr = "モノ";
+    }
+    this.searchWordTags = this.replaceAll(
+      this.searchWordTagsStr,
+      "　",
+      " "
+    ).split(" ");
+    return {
+      searchCategory: this.pageTabStr,
       searchWordTitle: this.searchWordTitle,
       searchWordTags: this.searchWordTags,
       searchWordReward: this.searchWordReward
     };
   }
-  @Emit("postQuestSearch")
-  postQuestSearch():any {
-    return this.searchWord
+  @Emit("postSearchQuestList")
+  postSearchQuestList(): any {
+    return this.searchWord;
+  }
+
+  //tag splitAll
+  replaceAll(str, beforeStr, afterStr) {
+    var reg = new RegExp(beforeStr, "g");
+    return str.replace(reg, afterStr);
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <b-quest-search-page
-    @postQuestSearch="postQuestSearch($event)"
+    @postSearchQuestList="postSearchQuestList($event)"
     @getQuestList="getQuestList($event)"
     :questList="questList"
   ></b-quest-search-page>
@@ -37,8 +37,8 @@ export default class QuestSearchPage extends Vue {
     this.questSearchStore.getQuestList(param);
   }
 
-  postQuestSearch(param: any) {
-    //this.questSearchStore.postQuestSearch(param);
+  postSearchQuestList(param: any) {
+    this.questSearchStore.postSearchQuestList(param);
   }
 }
 </script>

@@ -6,7 +6,10 @@
       </div>
       <div class="page-title">検索</div>
     </div>
-    <b-quest-search-container @postSearchQuest="postSearchQuest" />
+    <b-quest-search-container
+      :pageTabNum="pageTabNum"
+      @postSearchQuestList="postSearchQuestList($event)"
+    />
     <ul class="tab">
       <div class="hito" @click="setTab(0)">
         ヒト
@@ -44,7 +47,9 @@ export default class BQuestSearchPage extends Vue {
 
   @Prop({})
   questList: QuestItem[];
+
   pageTabNum: number = 0;
+  pageTabStr: string = "";
 
   @Emit("getQuestList")
   getQuestList(param: any) {
@@ -54,15 +59,15 @@ export default class BQuestSearchPage extends Vue {
   setTab(num: number) {
     this.pageTabNum = num;
     if (num == 0) {
-      this.getQuestList("ヒト");
+      this.pageTabStr = "ヒト";
     } else {
-      this.getQuestList("モノ");
+      this.pageTabStr = "モノ";
     }
   }
 
-  @Emit("postSearchQuest")
-  postSearchQuest(param: any) {
-    console.log("aaaa");
+  @Emit("postSearchQuestList")
+  postSearchQuestList(param: any) {
+    param.searchCategory = this.pageTabStr;
     return param;
   }
   back() {}

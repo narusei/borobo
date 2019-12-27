@@ -17,9 +17,25 @@ export default class QuestStore extends VuexModule {
       .catch(response => console.log(response));
   }
 
+  @Action({ rawError: true })
+  async postSearchQuestList(param: any) {
+    await questApi
+      .postSearchQuestList(param)
+      .then(response => {
+        this.context.commit(MUTATION.SET_SEARCH_QUEST_LIST_ITEM);
+      })
+      .catch(response => console.log(response));
+  }
+
   @Mutation
   [MUTATION.SET_QUEST_LIST_ITEM](payload: any) {
     console.log("mutation");
+    this.questList = payload;
+  }
+
+  @Mutation
+  [MUTATION.SET_SEARCH_QUEST_LIST_ITEM](payload: any) {
+    console.log("mutation-search");
     this.questList = payload;
   }
 }
