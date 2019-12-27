@@ -28,6 +28,16 @@
           />
         </label>
       </div>
+      <ul class="tab">
+        <div class="hito" @click="setTab(0)">
+          ヒト
+          <div id="chose" v-if="pageTabNum == 0"></div>
+        </div>
+        <div class="mono" @click="setTab(1)">
+          モノ
+          <div id="chose" v-if="pageTabNum == 1"></div>
+        </div>
+      </ul>
       <section>
         <b-button @click="postSearchQuestList" class="quest-search-button"
           >検索</b-button
@@ -48,9 +58,7 @@ export default class BQuestSearchContainer extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-  @Prop({})
-  pageTabNum: number;
-
+  pageTabNum: number = 0;
   pageTabStr: string = "";
   searchWordTitle: string = "";
   searchWordTagsStr: string = "";
@@ -78,6 +86,10 @@ export default class BQuestSearchContainer extends Vue {
   @Emit("postSearchQuestList")
   postSearchQuestList(): any {
     return this.searchWord;
+  }
+
+  setTab(num: number) {
+    this.pageTabNum = num;
   }
 
   //tag splitAll
@@ -111,10 +123,39 @@ export default class BQuestSearchContainer extends Vue {
 .quest-search-button {
   width: 20%;
   margin-left: 78%;
-  margin-top: 0px;
+  margin-top: 10px;
   margin-bottom: 10px;
   font-size: 15px;
   border: 1px solid #51e898;
   box-shadow: 1px 1px 1px 1px #bbbbbb;
+}
+
+ul.tab {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  .hito {
+    font-size: 20px;
+    width: 50%;
+    float: left;
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 1px;
+
+    #chose {
+      border-bottom: solid 2px #51e898;
+    }
+  }
+  .mono {
+    font-size: 20px;
+    width: 50%;
+    float: right;
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 1px;
+
+    #chose {
+      border-bottom: solid 2px #51e898;
+    }
+  }
 }
 </style>

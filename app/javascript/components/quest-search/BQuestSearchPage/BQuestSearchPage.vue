@@ -7,21 +7,10 @@
       <div class="page-title">検索</div>
     </div>
     <b-quest-search-container
-      :pageTabNum="pageTabNum"
       @postSearchQuestList="postSearchQuestList($event)"
     />
-    <ul class="tab">
-      <div class="hito" @click="setTab(0)">
-        ヒト
-        <div id="chose" v-if="pageTabNum == 0"></div>
-      </div>
-      <div class="mono" @click="setTab(1)">
-        モノ
-        <div id="chose" v-if="pageTabNum == 1"></div>
-      </div>
-    </ul>
     <div class="quest-box">
-      <b-quest-list v-bind:tab_num="pageTabNum" :questList="questList" />
+      <b-quest-list :questList="questList" />
     </div>
   </div>
 </template>
@@ -45,29 +34,11 @@ export default class BQuestSearchPage extends Vue {
   // 4.@Watch
   // 5.method
 
-  @Prop({})
+  @Prop({ default: () => [] })
   questList: QuestItem[];
-
-  pageTabNum: number = 0;
-  pageTabStr: string = "";
-
-  @Emit("getQuestList")
-  getQuestList(param: any) {
-    return this.questList;
-  }
-
-  setTab(num: number) {
-    this.pageTabNum = num;
-    if (num == 0) {
-      this.pageTabStr = "ヒト";
-    } else {
-      this.pageTabStr = "モノ";
-    }
-  }
 
   @Emit("postSearchQuestList")
   postSearchQuestList(param: any) {
-    param.searchCategory = this.pageTabStr;
     return param;
   }
   back() {}
@@ -97,33 +68,6 @@ export default class BQuestSearchPage extends Vue {
   .page-title {
     font-size: 20px;
     margin-top: 1px;
-  }
-}
-
-ul.tab {
-  .hito {
-    font-size: 20px;
-    width: 50%;
-    float: left;
-    text-align: center;
-    padding-top: 1px;
-    padding-bottom: 1px;
-
-    #chose {
-      border-bottom: solid 2px #51e898;
-    }
-  }
-  .mono {
-    font-size: 20px;
-    width: 50%;
-    float: right;
-    text-align: center;
-    padding-top: 1px;
-    padding-bottom: 1px;
-
-    #chose {
-      border-bottom: solid 2px #51e898;
-    }
   }
 }
 
