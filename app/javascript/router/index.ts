@@ -8,8 +8,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "QuestSearchPage",
-    component: QuestSearchPage
+    name: "QuestListPage",
+    component: QuestListPage
   }
 ];
 
