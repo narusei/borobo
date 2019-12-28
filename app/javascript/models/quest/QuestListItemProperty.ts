@@ -1,4 +1,4 @@
-export class QuestItemProperty {
+export class QuestListItemProperty {
   quest_id: string;
   stance: string;
   category: string;

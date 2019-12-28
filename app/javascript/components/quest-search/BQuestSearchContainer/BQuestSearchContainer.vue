@@ -39,7 +39,7 @@
         </div>
       </ul>
       <section>
-        <b-button @click="postSearchQuestList" class="quest-search-button"
+        <b-button @click="searchQuestList" class="quest-search-button"
           >検索</b-button
         >
       </section>
@@ -83,8 +83,8 @@ export default class BQuestSearchContainer extends Vue {
       searchWordReward: this.searchWordReward
     };
   }
-  @Emit("postSearchQuestList")
-  postSearchQuestList(): any {
+  @Emit("searchQuestList")
+  searchQuestList(): any {
     return this.searchWord;
   }
 

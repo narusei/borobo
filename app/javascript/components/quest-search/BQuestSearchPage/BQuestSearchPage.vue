@@ -3,12 +3,16 @@
     <div class="header">
       <div class="back-button">
         <router-link to="/quest-list">
-          <b-icon icon="chevron-left" size="is-medium"></b-icon>
+          <b-icon
+            class="back-button-color"
+            icon="chevron-left"
+            size="is-medium"
+          ></b-icon>
         </router-link>
       </div>
       <div class="page-title">検索</div>
     </div>
-    <b-quest-search-container @postSearchQuestList="postSearchQuestList($event)" />
+    <b-quest-search-container @searchQuestList="searchQuestList($event)" />
     <div class="quest-box">
       <b-quest-list :questList="questList" />
     </div>
@@ -19,7 +23,7 @@
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 import BQuestList from "@/components/quest-search/BQuestList/BQuestList.vue";
 import BQuestSearchContainer from "@/components/quest-search/BQuestSearchContainer/BQuestSearchContainer.vue";
-import { QuestItem } from "@/models/quest/QuestItem";
+import { QuestListItemProperty } from "@/models/quest/QuestListItemProperty";
 
 @Component({
   components: {
@@ -35,10 +39,10 @@ export default class BQuestSearchPage extends Vue {
   // 5.method
 
   @Prop({ default: () => [] })
-  questList: QuestItem[];
+  questList: QuestListItemProperty[];
 
-  @Emit("postSearchQuestList")
-  postSearchQuestList(param: any) {
+  @Emit("searchQuestList")
+  searchQuestList(param: any) {
     return param;
   }
 }
@@ -61,6 +65,9 @@ export default class BQuestSearchPage extends Vue {
   display: flex;
 
   .back-button {
+    .back-button-color {
+      color: rgb(87, 87, 87);
+    }
     height: 46px;
     width: 40px;
   }
