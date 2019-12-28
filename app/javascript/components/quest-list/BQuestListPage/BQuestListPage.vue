@@ -42,7 +42,7 @@ import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 
 import BQuestList from "@/components/quest-list/BQuestList";
 import QuestCreatePage from "@/pages/QuestCreatePage.vue";
-import { QuestListItemProperty } from "@/models/quest/QuestListItemProperty";
+import { QuestProperty } from "@/models/quest/QuestProperty";
 
 @Component({
   components: {
@@ -56,7 +56,7 @@ export default class BQuestListPage extends Vue {
   // 4.@Watch
   // 5.method
   @Prop({})
-  questList: QuestListItemProperty[];
+  questList: QuestProperty[];
 
   pageTabNum: number = 0;
 

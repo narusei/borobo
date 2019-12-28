@@ -54,8 +54,8 @@ export default class BQuest extends Vue {
   questReward!: string;
 
   get questFormatedDate(): string {
-    const startDate = String(format(new Date(), "MM/dd hh:mm"));
-    const dueDate = String(format(new Date(), "MM/dd hh:mm"));
+    const startDate = String(format(this.questStartDate, "MM/dd hh:mm"));
+    const dueDate = String(format(this.questDueDate, "MM/dd hh:mm"));
     return startDate + "~" + dueDate;
   }
 }
