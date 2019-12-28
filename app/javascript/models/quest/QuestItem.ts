@@ -1,4 +1,4 @@
-export class Quest {
+export class QuestItem {
   quest_id: string;
   stance: string;
   category: string;
