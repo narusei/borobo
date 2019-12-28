@@ -1,7 +1,7 @@
 import http from "@/utils/requests";
 
 export default {
-  getQuestList(): any {
-    return "API response";
+  editQuest(param: any, questId: string) {
+    return http.put("/api/v1/quests/" + questId, { params: param });
   }
 };
