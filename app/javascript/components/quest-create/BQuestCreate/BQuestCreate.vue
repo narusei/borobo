@@ -17,12 +17,24 @@
       </div>
       <div class="item-text">詳細</div>
       <form class="quest-detail">
-        <textarea name="テキストエリア" rows="5" wrap="hard" placeholder="クエスト詳細" v-model ="detail"></textarea>
+        <textarea
+          name="テキストエリア"
+          rows="5"
+          wrap="hard"
+          placeholder="クエスト詳細"
+          v-model="detail"
+        ></textarea>
       </form>
       <div class="item-text">タグ</div>
       <section>
         <b-field label>
-          <b-taginput class="tag-input" v-model="tags" ellipsis icon="label" placeholder="タグを入力" />
+          <b-taginput
+            class="tag-input"
+            v-model="tags"
+            ellipsis
+            icon="label"
+            placeholder="タグを入力"
+          />
         </b-field>
       </section>
 
@@ -40,7 +52,7 @@
         <b-datetimepicker
           placeholder="Type or select a date..."
           icon="calendar-today"
-          v-model="endDatetime"
+          v-model="dueDatetime"
           editable
         ></b-datetimepicker>
       </b-field>
@@ -48,12 +60,14 @@
       <div class="item-text">報酬</div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input type="text" placeholder="報酬を入力" v-model="reword" />
+          <input type="text" placeholder="報酬を入力" v-model="reward" />
         </label>
       </div>
       <div>
         <section>
-          <b-button @click="questCreate" class="quest-create-button">投稿</b-button>
+          <b-button @click="questCreate" class="quest-create-button"
+            >投稿</b-button
+          >
         </section>
       </div>
     </div>
@@ -61,7 +75,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
 
 @Component({
   components: {}
@@ -77,13 +91,24 @@ export default class BQuestCreate extends Vue {
   detail: string = "";
   tags: Array<string> = [];
   startDatetime: Date = null;
-  endDatetime: Date = null;
-  reword: string = "";
+  dueDatetime: Date = null;
+  reward: string = "";
 
-  questCreate() {}
+  @Emit("questCreate")
+  questCreate() {
+    return {
+      category: this.category,
+      stance: "demand",
+      title: this.title,
+      detail: this.detail,
+      tags: this.tags,
+      start_date: this.startDatetime,
+      due_date: this.dueDatetime,
+      reward: this.reward
+    };
+  }
 }
 </script>
-
 
 <style lang="scss" scoped>
 .card {

@@ -1,7 +1,6 @@
 import http from "@/utils/requests";
-
 export default {
-  getQuestList(): any {
-    return "API response";
+  createQuest(param: any) {
+    return http.post("/api/v1/quests", param);
   }
 };
