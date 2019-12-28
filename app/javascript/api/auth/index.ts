@@ -1,7 +1,7 @@
 import http from "@/utils/requests";
 
 export default {
-  postAuthInfo(): any {
-    return "API response";
+  postSignInInfo(params: any) {
+    return http.post("/api/v1/auth/sign_in", { params: params });
   }
 };
