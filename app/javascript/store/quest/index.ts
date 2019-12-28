@@ -1,11 +1,11 @@
 import { Module, VuexModule, Action, Mutation } from "vuex-module-decorators";
 import * as MUTATION from "store/quest/mutation-types";
 import questApi from "api/quest";
-import { QuestListItemProperty } from "models/quest/QuestListItemProperty";
+import { QuestProperty } from "models/quest/QuestProperty";
 
 @Module({ name: "quest", namespaced: true })
 export default class QuestStore extends VuexModule {
-  questList: QuestListItemProperty[] = [];
+  questList: QuestProperty[] = [];
 
   @Action({ rawError: true })
   async getQuestList(param: any) {

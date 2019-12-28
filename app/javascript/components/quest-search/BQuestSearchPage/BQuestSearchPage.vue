@@ -23,7 +23,7 @@
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 import BQuestList from "@/components/quest-search/BQuestList/BQuestList.vue";
 import BQuestSearchContainer from "@/components/quest-search/BQuestSearchContainer/BQuestSearchContainer.vue";
-import { QuestListItemProperty } from "@/models/quest/QuestListItemProperty";
+import { QuestProperty } from "@/models/quest/QuestProperty";
 
 @Component({
   components: {
@@ -39,7 +39,7 @@ export default class BQuestSearchPage extends Vue {
   // 5.method
 
   @Prop({ default: () => [] })
-  questList: QuestListItemProperty[];
+  questList: QuestProperty[];
 
   @Emit("searchQuestList")
   searchQuestList(param: any) {

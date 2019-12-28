@@ -29,7 +29,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import BQuest from "@/components/quest-search/BQuest";
-import { QuestListItemProperty } from "@/models/quest/QuestListItemProperty";
+import { QuestProperty } from "@/models/quest/QuestProperty";
 @Component({
   components: {
     BQuest
@@ -40,7 +40,7 @@ export default class BQuestList extends Vue {
   @Prop({ default: 0 })
   tabNum!: number;
   @Prop({})
-  questList: QuestListItemProperty[];
+  questList: QuestProperty[];
   // 2.property
   // 3.getter
   // 4.@Watch
