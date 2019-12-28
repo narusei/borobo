@@ -1,11 +1,11 @@
 import { Module, VuexModule, Action, Mutation } from "vuex-module-decorators";
 import * as MUTATION from "@/store/quest/mutation-types.ts";
 import questApi from "api/quest";
-import { QuestItem } from "models/quest/QuestListItem";
+import { Quest } from "models/quest/Quest";
 
 @Module({ name: "quest", namespaced: true })
 export default class QuestStore extends VuexModule {
-  questItem: QuestItem[] = [];
+  quest: Quest[] = [];
 
   //   @Action
   //   async getNoticeBoardList() {
@@ -16,9 +16,9 @@ export default class QuestStore extends VuexModule {
   //   }
 
   @Action({ rawError: true })
-  async getQuest(param: any) {
+  async getQuest(param: any, questId: string) {
     await questApi
-      .getQuest(param)
+      .getQuest(param, questId)
       .then(response => {
         this.context.commit(MUTATION.SET_QUEST_ITEM, response.data);
       })
@@ -33,6 +33,6 @@ export default class QuestStore extends VuexModule {
   @Mutation
   [MUTATION.SET_QUEST_ITEM](payload: any) {
     console.log("mutation");
-    this.questItem = payload;
+    this.quest = payload;
   }
 }

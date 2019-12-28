@@ -75,9 +75,6 @@ export default class BQuestDetailPage extends Vue {
   @Prop({ default: "たけのこの里一個" })
   reward: string;
 
-  @Prop({})
-  backPageName: string;
-
   back() {
     router.go(-1);
   }

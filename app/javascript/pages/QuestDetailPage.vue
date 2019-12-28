@@ -29,13 +29,13 @@ export default class QuestDetailPage extends Vue {
   //通常メソッド
   created() {
     try {
-      this.questDetailStore.getQuest("aaa");
+      this.questDetailStore.getQuest("", this.$route.params.questId);
     } catch {
       console.log("fails");
     }
   }
   get questItem() {
-    return this.questDetailStore.questItem;
+    return this.questDetailStore.quest;
   }
 }
 </script>
