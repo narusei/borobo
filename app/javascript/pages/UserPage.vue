@@ -7,10 +7,12 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import BUserPage from "@/components/user/BUserPage";
+import { getModule } from "vuex-module-decorators";
+import UserStore from "@/store/quest";
 
 @Component({
   components: {
-      BUserPage
+    BUserPage
   }
 })
 export default class UserPage extends Vue {
@@ -21,5 +23,4 @@ export default class UserPage extends Vue {
   // 5.method
 }
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
