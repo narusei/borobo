@@ -1,24 +1,20 @@
 <template>
   <div>
     <div class="header">
-      <div class="back-button" @click="back()">
-        <b-icon icon="chevron-left" size="is-medium"></b-icon>
+      <div class="back-button">
+        <router-link to="/quest-list">
+          <b-icon
+            class="back-button-color"
+            icon="chevron-left"
+            size="is-medium"
+          ></b-icon>
+        </router-link>
       </div>
       <div class="page-title">検索</div>
     </div>
-    <b-quest-search-container />
-    <ul class="tab">
-      <div class="hito" @click="setTab(0)">
-        ヒト
-        <div id="chose" v-if="pageTabNum==0"></div>
-      </div>
-      <div class="mono" @click="setTab(1)">
-        モノ
-        <div id="chose" v-if="pageTabNum==1"></div>
-      </div>
-    </ul>
+    <b-quest-search-container @searchQuestList="searchQuestList($event)" />
     <div class="quest-box">
-      <b-quest-list v-bind:tab_num="pageTabNum" v-bind:questList="questList" />
+      <b-quest-list :questList="questList" />
     </div>
   </div>
 </template>
@@ -27,6 +23,7 @@
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 import BQuestList from "@/components/quest-search/BQuestList/BQuestList.vue";
 import BQuestSearchContainer from "@/components/quest-search/BQuestSearchContainer/BQuestSearchContainer.vue";
+import { QuestProperty } from "@/models/quest/QuestProperty";
 
 @Component({
   components: {
@@ -41,13 +38,13 @@ export default class BQuestSearchPage extends Vue {
   // 4.@Watch
   // 5.method
 
-  pageTabNum: number = 0;
-  questList: string[] = null;
+  @Prop({ default: () => [] })
+  questList: QuestProperty[];
 
-  setTab(num: number) {
-    this.pageTabNum = num;
+  @Emit("searchQuestList")
+  searchQuestList(param: any) {
+    return param;
   }
-  back() {}
 }
 </script>
 
@@ -68,39 +65,15 @@ export default class BQuestSearchPage extends Vue {
   display: flex;
 
   .back-button {
+    .back-button-color {
+      color: rgb(87, 87, 87);
+    }
     height: 46px;
     width: 40px;
   }
   .page-title {
     font-size: 20px;
     margin-top: 1px;
-  }
-}
-
-ul.tab {
-  .hito {
-    font-size: 20px;
-    width: 50%;
-    float: left;
-    text-align: center;
-    padding-top: 1px;
-    padding-bottom: 1px;
-
-    #chose {
-      border-bottom: solid 2px #51e898;
-    }
-  }
-  .mono {
-    font-size: 20px;
-    width: 50%;
-    float: right;
-    text-align: center;
-    padding-top: 1px;
-    padding-bottom: 1px;
-
-    #chose {
-      border-bottom: solid 2px #51e898;
-    }
   }
 }
 

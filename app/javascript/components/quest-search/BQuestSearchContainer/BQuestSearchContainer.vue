@@ -3,28 +3,52 @@
     <div class="search-container">
       <div class="cp-iptxt">
         <label class="ef">
-          <input type="text" placeholder="タイトルを入力" v-model="searchWordTitle" />
+          <input
+            type="text"
+            placeholder="タイトルを入力"
+            v-model="searchWordTitle"
+          />
         </label>
       </div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input type="text" placeholder="タグを入力" v-model="searchWordTags" />
+          <input
+            type="text"
+            placeholder="タグを入力"
+            v-model="searchWordTagsStr"
+          />
         </label>
       </div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input type="text" placeholder="報酬を入力" v-model="searchWordReword" />
+          <input
+            type="text"
+            placeholder="報酬を入力"
+            v-model="searchWordReward"
+          />
         </label>
       </div>
+      <ul class="tab">
+        <div class="hito" @click="setTab(0)">
+          ヒト
+          <div id="chose" v-if="pageTabNum == 0"></div>
+        </div>
+        <div class="mono" @click="setTab(1)">
+          モノ
+          <div id="chose" v-if="pageTabNum == 1"></div>
+        </div>
+      </ul>
       <section>
-        <b-button @click="questSearch" class="quest-search-button">検索</b-button>
+        <b-button @click="searchQuestList" class="quest-search-button"
+          >検索</b-button
+        >
       </section>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
 @Component({
   components: {}
 })
@@ -34,12 +58,45 @@ export default class BQuestSearchContainer extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-
+  pageTabNum: number = 0;
+  pageTabStr: string = "";
   searchWordTitle: string = "";
+  searchWordTagsStr: string = "";
   searchWordTags: string[] = null;
-  searchWordReword: string = "";
+  searchWordReward: string = "";
 
-  questSearch() {}
+  get searchWord() {
+    if (this.pageTabNum == 0) {
+      this.pageTabStr = "ヒト";
+    } else if (this.pageTabNum == 1) {
+      this.pageTabStr = "モノ";
+    }
+    this.searchWordTags = this.replaceAll(
+      this.searchWordTagsStr,
+      "　",
+      " "
+    ).split(" ");
+    return {
+      searchCategory: this.pageTabStr,
+      searchWordTitle: this.searchWordTitle,
+      searchWordTags: this.searchWordTags,
+      searchWordReward: this.searchWordReward
+    };
+  }
+  @Emit("searchQuestList")
+  searchQuestList(): any {
+    return this.searchWord;
+  }
+
+  setTab(num: number) {
+    this.pageTabNum = num;
+  }
+
+  //tag splitAll
+  replaceAll(str, beforeStr, afterStr) {
+    var reg = new RegExp(beforeStr, "g");
+    return str.replace(reg, afterStr);
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -66,10 +123,39 @@ export default class BQuestSearchContainer extends Vue {
 .quest-search-button {
   width: 20%;
   margin-left: 78%;
-  margin-top: 0px;
+  margin-top: 10px;
   margin-bottom: 10px;
   font-size: 15px;
   border: 1px solid #51e898;
   box-shadow: 1px 1px 1px 1px #bbbbbb;
+}
+
+ul.tab {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  .hito {
+    font-size: 20px;
+    width: 50%;
+    float: left;
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 1px;
+
+    #chose {
+      border-bottom: solid 2px #51e898;
+    }
+  }
+  .mono {
+    font-size: 20px;
+    width: 50%;
+    float: right;
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 1px;
+
+    #chose {
+      border-bottom: solid 2px #51e898;
+    }
+  }
 }
 </style>
