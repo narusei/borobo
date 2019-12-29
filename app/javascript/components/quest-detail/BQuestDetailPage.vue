@@ -1,7 +1,13 @@
 <template>
   <section class="quest-detail">
     <div class="qd-header">
-      <b-icon class="back-button" icon="chevron-left" size="is-medium"></b-icon>
+      <div @click="back()">
+        <b-icon
+          class="back-button"
+          icon="chevron-left"
+          size="is-medium"
+        ></b-icon>
+      </div>
       <div class="qd-title">{{ title }}</div>
     </div>
     <div class="qd-user-info">
@@ -41,6 +47,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { format } from "date-fns";
+import router from "@/router/index.ts";
 @Component({
   components: {}
 })
@@ -51,16 +58,26 @@ export default class BQuestDetailPage extends Vue {
   // 4.@Watch
   // 5.method
   // 仮置き
-  category: string = "";
-  name: string = "トニー";
-  title: string = "関数電卓を貸して！";
-  description: string =
-    "テストで関数電卓が必要になったのでかしてほしいです。使用したい時間はテストの時間のみなので終わったらすぐお返しします。引き渡し場所は2号館3階を希望です。";
-  tags: Array<string> = [];
-  startDatetime: string = format(new Date(), "MM/dd hh:mm:ss");
-  dueDatetime: string = format(new Date(), "MM/dd hh:mm:ss");
-  reward: string = "たけのこの里一個";
-  questCreate() {}
+  @Prop({ default: "トニー" })
+  name: string;
+  @Prop({ default: "関数電卓を貸して！" })
+  title: string;
+  @Prop({
+    default:
+      "テストで関数電卓が必要になったのでかしてほしいです。使用したい時間はテストの時間のみなので終わったらすぐお返しします。引き渡し場所は2号館3階を希望です。"
+  })
+  description: string;
+  @Prop({ default: format(new Date(), "MM/dd hh:mm:ss") })
+  startDatetime: string;
+
+  @Prop({ default: format(new Date(), "MM/dd hh:mm:ss") })
+  dueDatetime: string;
+  @Prop({ default: "たけのこの里一個" })
+  reward: string;
+
+  back() {
+    router.go(-1);
+  }
 }
 </script>
 
