@@ -1,13 +1,13 @@
-import { QuestListItemProperty } from "models/quest/QuestListItemProperty";
+import { QuestProperty } from "models/quest/QuestProperty";
 
 export class UserItem {
-  id: string;
-  name: string;
-  detail: string;
-  good: number;
-  ok: number;
-  bad: number;
-  quests: QuestListItemProperty[];
+  id?: string;
+  name?: string;
+  detail?: string;
+  good?: number;
+  ok?: number;
+  bad?: number;
+  quest?: QuestProperty[];
 
   // {
   //     "id": "17fi080",

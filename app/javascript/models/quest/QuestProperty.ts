@@ -1,5 +1,5 @@
-export class QuestListItemProperty {
-  quest_id: string;
+export class QuestProperty {
+  quest_id: number;
   stance: string;
   category: string;
   latest_qid: string;
