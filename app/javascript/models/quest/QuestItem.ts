@@ -5,6 +5,7 @@ export class QuestItem {
   user_name: string;
   title: string;
   detail: string;
+  tags: string[];
   start_date: string;
   end_date: string;
   reward: string;
