@@ -13,7 +13,7 @@ import { QuestInfo } from "@/models/quest-list/QuestInfo";
     BQuestEditPage
   }
 })
-export default class NAME extends Vue {
+export default class QuestEditPage extends Vue {
   private questStore = getModule(QuestStore, this.$store);
   // 1.@Prop
   // 2.property
