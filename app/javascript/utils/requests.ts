@@ -44,8 +44,8 @@ export default {
   post(url, options) {
     return this.request("post", url, options);
   },
-  patch(url, options) {
-    return this.request("patch", url, options);
+  put(url, options) {
+    return this.request("put", url, options);
   },
   delete(url, options) {
     return this.request("delete", url, options);
