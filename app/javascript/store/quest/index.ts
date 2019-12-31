@@ -2,13 +2,14 @@ import { Module, VuexModule, Action, Mutation } from "vuex-module-decorators";
 import * as MUTATION from "store/quest/mutation-types";
 import questApi from "@/api/quest";
 import { QuestItem } from "@/models/quest-list/QuestItem.ts";
+import { QuestInfo } from "@/models/quest-list/QuestInfo.ts";
 
 @Module({ name: "default" })
 export default class DefaultStore extends VuexModule {
   questItem: QuestItem = {};
 
   @Action({ rawError: true })
-  async questCreate(param: QuestItem) {
+  async questCreate(param: QuestInfo) {
     await questApi
       .createQuest(param)
       .then(response => {
