@@ -3,7 +3,7 @@ export class QuestInfo {
   stance?: string;
   title?: string;
   detail?: string;
-  tag?: Array<string>;
+  tags?: Array<string>;
   start_date?: Date;
   due_date?: Date;
   reward?: string;

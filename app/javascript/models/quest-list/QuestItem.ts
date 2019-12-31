@@ -5,7 +5,7 @@ export class QuestItem {
   stance?: string;
   title?: string;
   detail?: string;
-  tag?: Array<string>;
+  tags?: Array<string>;
   start_date?: string;
   due_date?: string;
   reward?: string;
