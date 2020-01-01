@@ -7,21 +7,21 @@ import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 import { getModule } from "vuex-module-decorators";
 import BQuestCreatePage from "@/components/quest-create/BQuestCreatePage";
 import QuestStore from "@/store/quest/index.ts";
-import { QuestItem } from "@/models/quest-list/QuestItem.ts";
+import { QuestInfo } from "@/models/quest-list/QuestInfo.ts";
 
 @Component({
   components: {
     BQuestCreatePage
   }
 })
-export default class XDefaultPage extends Vue {
+export default class QuestCreatePage extends Vue {
   private questStore = getModule(QuestStore, this.$store);
   //@Prop()
   //通常プロパティ
   //get
   //@Watch()
   //通常メソッド
-  questCreate(param: QuestItem) {
+  questCreate(param: QuestInfo) {
     try {
       this.questStore.questCreate(param);
       this.$router.push({

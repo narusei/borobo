@@ -3,7 +3,7 @@
     <div class="card">
       <div class="item-text">カテゴリー</div>
       <div class="cp-ipselect cp-sl01">
-        <select required v-model="category">
+        <select required v-model="questInfoModel.category">
           <option value hidden>モノ/ヒト</option>
           <option value="モノ">モノ</option>
           <option value="ヒト">ヒト</option>
@@ -12,7 +12,12 @@
       <div class="item-text">タイトル</div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input type="text" placeholder="タイトル" v-model="title" required />
+          <input
+            type="text"
+            placeholder="タイトル"
+            v-model="questInfoModel.title"
+            required
+          />
         </label>
       </div>
       <div class="item-text">詳細</div>
@@ -22,7 +27,7 @@
           rows="5"
           wrap="hard"
           placeholder="クエスト詳細"
-          v-model="detail"
+          v-model="questInfoModel.detail"
         ></textarea>
       </form>
       <div class="item-text">タグ</div>
@@ -30,7 +35,7 @@
         <b-field label>
           <b-taginput
             class="tag-input"
-            v-model="tags"
+            v-model="questInfoModel.tag"
             ellipsis
             icon="label"
             placeholder="タグを入力"
@@ -43,7 +48,7 @@
         <b-datetimepicker
           placeholder="Type or select a date..."
           icon="calendar-today"
-          v-model="startDatetime"
+          v-model="questInfoModel.start_date"
           editable
         ></b-datetimepicker>
       </b-field>
@@ -52,7 +57,7 @@
         <b-datetimepicker
           placeholder="Type or select a date..."
           icon="calendar-today"
-          v-model="dueDatetime"
+          v-model="questInfoModel.due_date"
           editable
         ></b-datetimepicker>
       </b-field>
@@ -60,7 +65,11 @@
       <div class="item-text">報酬</div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input type="text" placeholder="報酬を入力" v-model="reward" />
+          <input
+            type="text"
+            placeholder="報酬を入力"
+            v-model="questInfoModel.reward"
+          />
         </label>
       </div>
       <div>
@@ -76,36 +85,25 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
+import { QuestInfo } from "@/models/quest-list/QuestInfo";
 
 @Component({
   components: {}
 })
 export default class BQuestCreate extends Vue {
   // 1.@Prop
+  @Prop({ default: {} })
+  questInfo!: QuestInfo;
   // 2.property
+  questInfoModel: QuestInfo = this.questInfo;
   // 3.getter
   // 4.@Watch
   // 5.method
-  category: string = "";
-  title: string = "";
-  detail: string = "";
-  tags: Array<string> = [];
-  startDatetime: Date = null;
-  dueDatetime: Date = null;
-  reward: string = "";
 
   @Emit("questCreate")
   questCreate() {
-    return {
-      category: this.category,
-      stance: "demand",
-      title: this.title,
-      detail: this.detail,
-      tags: this.tags,
-      start_date: this.startDatetime,
-      due_date: this.dueDatetime,
-      reward: this.reward
-    };
+    this.questInfoModel.stance = "demand";
+    return this.questInfoModel;
   }
 }
 </script>
