@@ -1,20 +1,32 @@
 <template>
-  <b-user-edit-page />
+  <b-user-edit-page @editUser="editUser($event)" />
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
+import { getModule } from "vuex-module-decorators";
+import QuestStore from "@/store/quest";
 import BUserEditPage from "@/components/user-edit/BUserEditPage";
+import { UserInfo } from "@/models/user/UserInfo";
+
 @Component({
   components: {
     BUserEditPage
   }
 })
-export default class XDefaultPage extends Vue {
+export default class UserEditPage extends Vue {
+  private questStore = getModule(QuestStore, this.$store);
   //@Prop()
   //通常プロパティ
   //get
   //@Watch()
   //通常メソッド
+  editUser(param: UserInfo) {
+    try {
+      this.questStore.updateUser(param);
+    } catch {
+      console.log("Update User faild!");
+    }
+  }
 }
 </script>

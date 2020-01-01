@@ -7,7 +7,12 @@
       <div class="my-user-name">
         <div class="cp-iptxt">
           <label class="ef">
-            <input type="text" placeholder="ユーザーネーム" v-model="editedMyUserName" required />
+            <input
+              type="text"
+              placeholder="ユーザーネーム"
+              v-model="userInfoModel.user_name"
+              required
+            />
           </label>
         </div>
       </div>
@@ -19,20 +24,21 @@
           rows="14"
           wrap="hard"
           placeholder="プロフィール"
-          v-model="editedMyUserProfile"
+          v-model="userInfoModel.profile"
         ></textarea>
       </form>
     </div>
     <div>
       <section>
-        <b-button @click="edit" class="edit-button">適用</b-button>
+        <b-button @click="editUser" class="edit-button">適用</b-button>
       </section>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
+import { UserInfo } from "@/models/user/UserInfo";
 @Component({
   components: {}
 })
@@ -42,22 +48,15 @@ export default class BUserEditContents extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-  @Prop({ default: "" })
-  myUserName!: string;
+  @Prop({ default: {} })
+  userInfo!: UserInfo;
 
-  editedMyUserName: string = "";
+  userInfoModel: UserInfo = this.userInfo;
 
-  @Prop({ default: "" })
-  myUserProfile!: string;
-
-  editedMyUserProfile: string = "";
-
-  created() {
-    this.editedMyUserName = this.myUserName;
-    this.editedMyUserProfile = this.myUserProfile;
+  @Emit("editUser")
+  editUser() {
+    return this.userInfoModel;
   }
-
-  edit() {}
 }
 </script>
 
