@@ -7,17 +7,27 @@
       <div class="card sign-in-card">
         <div class="sign-in-title">Sign In to Borobo</div>
         <div class="card-content">
-          <b-field label="user_name">
-            <b-input v-model="userName"></b-input>
+          <b-field label="mail">
+            <b-input v-model="mail"></b-input>
           </b-field>
           <b-field label="password">
-            <b-input v-model="password" type="password" password-reveal></b-input>
+            <b-input
+              v-model="password"
+              type="password"
+              password-reveal
+            ></b-input>
           </b-field>
           <b-field label="re-password">
-            <b-input v-model="rePassword" type="password" password-reveal></b-input>
+            <b-input
+              v-model="rePassword"
+              type="password"
+              password-reveal
+            ></b-input>
           </b-field>
           <div class="sign-in-button">
-            <b-button @click="postSignInInfo()" type="is-mainColor">Sign In</b-button>
+            <b-button @click="postSignInInfo()" type="is-mainColor"
+              >Sign In</b-button
+            >
           </div>
         </div>
       </div>
@@ -29,13 +39,18 @@
 import { Component, Prop, Vue, Emit } from "vue-property-decorator";
 
 @Component
-export default class SignInPage extends Vue {
-  userName: string;
+export default class BSignInPage extends Vue {
+  mail: string;
   password: string;
   rePassword: string;
 
   @Emit("postSignInInfo")
-  postSignInInfo() {}
+  postSignInInfo() {
+    return {
+      mail_addr: this.mail,
+      password: this.password
+    };
+  }
 }
 </script>
 
