@@ -1,22 +1,29 @@
 import { Module, VuexModule, Action, Mutation } from "vuex-module-decorators";
 import * as MUTATION from "store/quest/mutation-types";
 import questApi from "api/quest";
-import { QuestItem } from "@/models/quest-list/QuestItem.ts";
+import { QuestListItem } from "models/quest/QuestListItem";
+import { QuestProperty } from "models/quest/QuestProperty";
 
 @Module({ name: "quest", namespaced: true })
 export default class QuestStore extends VuexModule {
-  items: QuestItem = {};
+  questList: QuestProperty[] = [];
 
-  //   @Action
-  //   async getNoticeBoardList() {
-  //   }
+  @Action({ rawError: true })
+  async getQuestList(param: any) {
+    await questApi
+      .getQuestList(param)
+      .then(response => {
+        this.context.commit(
+          MUTATION.SET_QUEST_LIST_ITEM,
+          response.data.each_quest
+        );
+      })
+      .catch(response => console.log(response));
+  }
 
-  //   @Action({ rawError: true })
-  //   async addNoticeBoardItem(param: AddNoticeBoardArticleParameter) {
-  //   }
-
-  //   @Mutation
-  //   [MUTATION.SET_NOTICE_LISTS](payload: QueryableResponse<NoticeBoardArticleItem>) {
-  //     this.items = payload;
-  //   }
+  @Mutation
+  [MUTATION.SET_QUEST_LIST_ITEM](payload: any) {
+    console.log(this.questList);
+    this.questList = payload;
+  }
 }

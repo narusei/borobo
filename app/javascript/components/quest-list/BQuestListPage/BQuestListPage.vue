@@ -3,35 +3,46 @@
     <div>
       <header class="header">
         <div class="header-container">
-          <b-icon class="user-icon" icon="account-circle" size="is-large"></b-icon>
-          <div @click="toSearchPage">
+          <router-link :to="{ name: 'UserPage', params: { toMyPage: true } }">
+            <b-icon
+              class="user-icon"
+              icon="account-circle"
+              size="is-large"
+            ></b-icon>
+          </router-link>
+          <router-link :to="{ name: 'QuestSearchPage' }">
             <b-icon icon="magnify" size="is-medium" class="magnify"></b-icon>
-          </div>
+          </router-link>
         </div>
       </header>
       <ul class="tab">
         <div class="hito" @click="setTab(0)">
           ヒト
-          <div id="chose" v-if="pageTabNum==0"></div>
+          <div id="chose" v-if="pageTabNum == 0"></div>
         </div>
         <div class="mono" @click="setTab(1)">
           モノ
-          <div id="chose" v-if="pageTabNum==1"></div>
+          <div id="chose" v-if="pageTabNum == 1"></div>
         </div>
       </ul>
-      <div class="quest_box">
-        <b-quest-list v-bind:tabNum="pageTabNum" v-bind:questList="questList" />
+      <div class="quest-box">
+        <b-quest-list v-bind:tabNum="pageTabNum" :questList="questList" />
       </div>
     </div>
-    <div class="plus-icon-button" @click="toCreateQuest()">
-      <b-icon class="plus-icon" icon="plus-circle" size="is-large"></b-icon>
+    <div class="plus-icon-button">
+      <router-link :to="{ name: 'QuestCreatePage' }">
+        <b-icon class="plus-icon" icon="plus-circle" size="is-large"></b-icon>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
+
 import BQuestList from "@/components/quest-list/BQuestList";
+import QuestCreatePage from "@/pages/QuestCreatePage.vue";
+import { QuestProperty } from "@/models/quest/QuestProperty";
 
 @Component({
   components: {
@@ -44,11 +55,23 @@ export default class BQuestListPage extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-  questList: string[] = null;
+  @Prop({})
+  questList: QuestProperty[];
+
   pageTabNum: number = 0;
+
+  @Emit("getQuestList")
+  getQuestList(param: any) {
+    return this.questList;
+  }
 
   setTab(num: number) {
     this.pageTabNum = num;
+    if (num == 0) {
+      this.getQuestList("ヒト");
+    } else {
+      this.getQuestList("モノ");
+    }
   }
 
   toSearchPage() {}
@@ -72,6 +95,7 @@ export default class BQuestListPage extends Vue {
   padding-right: 12px;
 
   .user-icon {
+    color: rgb(87, 87, 87);
     border-radius: 50%; /* 角丸半径を50%にする(=円形にする) */
     width: 42px; /* ※縦横を同値に */
     height: 42px; /* ※縦横を同値に */
@@ -80,6 +104,7 @@ export default class BQuestListPage extends Vue {
     display: flex;
     justify-content: space-between;
     .magnify {
+      color: rgb(87, 87, 87);
       margin-top: 3px;
     }
   }
@@ -112,15 +137,17 @@ ul.tab {
     }
   }
 }
-.quest_box {
+.quest-box {
   clear: both;
 }
 
 .plus-icon-button {
-  color: #51e898;
   position: fixed;
   right: 8%;
   bottom: 5%;
   z-index: 100;
+  .plus-icon {
+    color: #51e898;
+  }
 }
 </style>
