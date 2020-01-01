@@ -7,17 +7,22 @@
       <div class="card sign-up-card">
         <div class="sign-up-title">Sign Up to Borobo</div>
         <div class="card-content">
-          <b-field label="user_name">
-            <b-input v-model="userName"></b-input>
+          <b-field label="mail">
+            <b-input v-model="mail"></b-input>
           </b-field>
           <b-field label="password">
-            <b-input v-model="password" type="password" password-reveal></b-input>
+            <b-input
+              v-model="password"
+              type="password"
+              password-reveal
+            ></b-input>
           </b-field>
           <b-field label="re-password">
-            <b-input v-model="rePassword" type="password" password-reveal></b-input>
-          </b-field>
-          <b-field label="profiel">
-            <b-input v-model="profiel" maxlength="200" type="textarea"></b-input>
+            <b-input
+              v-model="rePassword"
+              type="password"
+              password-reveal
+            ></b-input>
           </b-field>
           <b-field label="last_name">
             <b-input v-model="lastName"></b-input>
@@ -25,8 +30,15 @@
           <b-field label="first_name">
             <b-input v-model="firstName"></b-input>
           </b-field>
+          <div>
+            <router-link :to="{ name: 'SignInPage' }">
+              アカウントが既にある方はこちらから -サインイン
+            </router-link>
+          </div>
           <div class="sign-up-button">
-            <b-button @click="postSignUpInfo()" type="is-mainColor">Sign Up</b-button>
+            <b-button @click="postSignUpInfo()" type="is-mainColor"
+              >Sign Up</b-button
+            >
           </div>
         </div>
       </div>
@@ -38,16 +50,22 @@
 import { Component, Prop, Vue, Emit } from "vue-property-decorator";
 
 @Component
-export default class SignUpPage extends Vue {
-  userName: string;
-  password: string;
-  rePassword: string;
-  profile: string;
-  lastName: string;
-  firstName: string;
+export default class BSignUpPage extends Vue {
+  mail: string = "";
+  password: string = "";
+  rePassword: string = "";
+  lastName: string = "";
+  firstName: string = "";
 
   @Emit("postSignUpInfo")
-  postSignUpInfo() {}
+  postSignUpInfo() {
+    return {
+      mail_addr: this.mail,
+      password: this.password,
+      password_confirmation: this.rePassword,
+      name: this.lastName + this.firstName
+    };
+  }
 }
 </script>
 
