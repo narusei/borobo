@@ -1,5 +1,4 @@
 import http from "@/utils/requests";
-
 export default {
   createUser(param: any) {
     return http.post("http://localhost:8000/api/v1/users_info", {
@@ -14,5 +13,8 @@ export default {
         params: param
       }
     );
+  },
+  createQuest(param: any) {
+    return http.post("/api/v1/quests", { params: param });
   }
 };

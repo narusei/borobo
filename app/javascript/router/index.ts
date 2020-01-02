@@ -4,6 +4,7 @@ import TopPage from "@/pages/TopPage.vue";
 import SignUpPage from "@/pages/auth/SignUpPage.vue";
 import SignInPage from "@/pages/auth/SignInPage.vue";
 import QuestListPage from "@/pages/QuestListPage.vue";
+import QuestDetailPage from "@/pages/QuestDetailPage.vue";
 import QuestCreatePage from "@/pages/QuestCreatePage.vue";
 import UserCreate from "@/pages/UserCreate.vue";
 import UserEditPage from "@/pages/UserEditPage.vue";
@@ -45,6 +46,12 @@ const routes = [
     path: "/user-edit",
     name: "UserEditPage",
     component: UserEditPage
+  },
+  {
+    path: "/quest-detail/:questId",
+    name: "QuestDetailPage",
+    component: QuestDetailPage,
+    props: true
   }
 ];
 
