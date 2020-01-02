@@ -30,7 +30,7 @@ export default class BQuestEditPage extends Vue {
       stance: "demand",
       title: this.questStore.questItem.title,
       detail: this.questStore.questItem.detail,
-      tags: this.questStore.questItem.tag,
+      tags: this.questStore.questItem.tags,
       start_date: this.questStore.questItem.start_date,
       due_date: this.questStore.questItem.due_date,
       reward: this.questStore.questItem.reward
