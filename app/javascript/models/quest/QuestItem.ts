@@ -1,14 +1,14 @@
 export class QuestItem {
-  quest_id: string;
-  stance: string;
-  category: string;
-  user_name: string;
-  title: string;
-  detail: string;
-  tags: string[];
-  start_date: string;
-  end_date: string;
-  reward: string;
+  quest_id?: string;
+  stance?: string;
+  category?: string;
+  user_name?: string;
+  title?: string;
+  detail?: string;
+  tags?: string[];
+  start_date?: string;
+  end_date?: string;
+  reward?: string;
 }
 
 // {
