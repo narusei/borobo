@@ -47,6 +47,16 @@ export default class QuestStore extends VuexModule {
   }
 
   @Action({ rawError: true })
+  async getQuest(param: any, questId: string) {
+    await questApi
+      .getQuest(param, questId)
+      .then(response => {
+        this.context.commit(MUTATION.SET_QUEST_ITEM, response.data);
+      })
+      .catch(response => console.log(response));
+  }
+
+  @Action({ rawError: true })
   async createUser(param: UserInfo) {
     questApi
       .createUser(param)

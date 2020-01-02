@@ -19,6 +19,12 @@ export default {
     return http.get("http://0.0.0.0:8000/quests", { params: params });
   },
 
+  getQuest(params: any, questId: string): any {
+    return http.get("http://0.0.0.0:8000/quests/" + questId, {
+      params: params
+    });
+  },
+
   createQuest(param: any) {
     return http.post("/api/v1/quests", { params: param });
   },
