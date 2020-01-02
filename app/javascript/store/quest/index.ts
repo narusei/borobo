@@ -1,10 +1,9 @@
 import { Module, VuexModule, Action, Mutation } from "vuex-module-decorators";
 import * as MUTATION from "store/quest/mutation-types";
 import questApi from "@/api/quest";
-import { QuestListItem } from "models/quest/QuestListItem";
-import { QuestProperty } from "models/quest/QuestProperty";
-import { QuestItem } from "@/models/quest-list/QuestItem.ts";
-import { QuestInfo } from "@/models/quest-list/QuestInfo.ts";
+import { QuestProperty } from "@/models/quest/QuestProperty";
+import { QuestItem } from "@/models/quest/QuestItem";
+import { QuestInfo } from "@/models/quest/QuestInfo";
 import { UserItem } from "@/models/user/UserItem";
 import { UserInfo } from "@/models/user/UserInfo";
 

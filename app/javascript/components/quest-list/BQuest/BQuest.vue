@@ -4,11 +4,7 @@
       <router-link :to="{ name: 'QuestDetailPage', params: { questId } }">
         <div class="media">
           <div class="media-left">
-            <b-icon
-              class="user-icon"
-              icon="account-circle"
-              size="is-large"
-            ></b-icon>
+            <b-icon class="user-icon" icon="account-circle" size="is-large"></b-icon>
           </div>
           <div class="media-content">
             <p class="user-name">{{ userName }}</p>

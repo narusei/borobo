@@ -9,7 +9,7 @@
 import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
 import BQuestCreate from "@/components/quest-create/BQuestCreate";
 import BTopBar from "@/components/common/BTopBar";
-import { QuestItem } from "@/models/quest-list/QuestItem.ts";
+import { QuestItem } from "@/models/quest/QuestItem.ts";
 @Component({
   components: {
     BTopBar,

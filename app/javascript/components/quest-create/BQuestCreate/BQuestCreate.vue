@@ -12,12 +12,7 @@
       <div class="item-text">タイトル</div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input
-            type="text"
-            placeholder="タイトル"
-            v-model="questInfoModel.title"
-            required
-          />
+          <input type="text" placeholder="タイトル" v-model="questInfoModel.title" required />
         </label>
       </div>
       <div class="item-text">詳細</div>
@@ -65,18 +60,12 @@
       <div class="item-text">報酬</div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input
-            type="text"
-            placeholder="報酬を入力"
-            v-model="questInfoModel.reward"
-          />
+          <input type="text" placeholder="報酬を入力" v-model="questInfoModel.reward" />
         </label>
       </div>
       <div>
         <section>
-          <b-button @click="questCreate" class="quest-create-button"
-            >投稿</b-button
-          >
+          <b-button @click="questCreate" class="quest-create-button">投稿</b-button>
         </section>
       </div>
     </div>
@@ -85,7 +74,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
-import { QuestInfo } from "@/models/quest-list/QuestInfo";
+import { QuestInfo } from "@/models/quest/QuestInfo.ts";
 
 @Component({
   components: {}

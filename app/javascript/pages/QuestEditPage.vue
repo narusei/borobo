@@ -7,7 +7,7 @@ import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { getModule } from "vuex-module-decorators";
 import QuestStore from "@/store/quest/index.ts";
 import BQuestEditPage from "@/components/quest-edit/BQuestEditPage";
-import { QuestInfo } from "@/models/quest-list/QuestInfo";
+import { QuestInfo } from "@/models/quest/QuestInfo.ts";
 @Component({
   components: {
     BQuestEditPage

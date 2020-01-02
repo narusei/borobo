@@ -1,4 +1,4 @@
-import { QuestProperty } from "models/quest-list/QuestProperty";
+import { QuestProperty } from "models/quest/QuestProperty";
 
 export class UserItem {
   account_id?: number;

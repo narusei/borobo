@@ -11,7 +11,7 @@ import { getModule } from "vuex-module-decorators";
 import BQuestCreate from "@/components/quest-create/BQuestCreate";
 import BTopBar from "@/components/common/BTopBar";
 import QuestStore from "@/store/quest/index.ts";
-import { QuestInfo } from "@/models/quest-list/QuestInfo";
+import { QuestInfo } from "@/models/quest/QuestInfo";
 
 @Component({
   components: {
@@ -30,7 +30,7 @@ export default class BQuestEditPage extends Vue {
       stance: "demand",
       title: this.questStore.questItem.title,
       detail: this.questStore.questItem.detail,
-      tags: this.questStore.questItem.tag,
+      tags: this.questStore.questItem.tags,
       start_date: this.questStore.questItem.start_date,
       due_date: this.questStore.questItem.due_date,
       reward: this.questStore.questItem.reward
