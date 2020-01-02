@@ -1,6 +1,8 @@
 import { Module, VuexModule, Action, Mutation } from "vuex-module-decorators";
 import * as MUTATION from "store/quest/mutation-types";
 import questApi from "@/api/quest";
+import { QuestListItem } from "models/quest/QuestListItem";
+import { QuestProperty } from "models/quest/QuestProperty";
 import { QuestItem } from "@/models/quest-list/QuestItem.ts";
 import { QuestInfo } from "@/models/quest-list/QuestInfo.ts";
 import { UserItem } from "@/models/user/UserItem";
@@ -8,6 +10,7 @@ import { UserInfo } from "@/models/user/UserInfo";
 
 @Module({ name: "quest", namespaced: true })
 export default class QuestStore extends VuexModule {
+  questList: QuestProperty[] = [];
   questItem: QuestItem = {};
   userItem: UserItem;
 
@@ -17,6 +20,19 @@ export default class QuestStore extends VuexModule {
       .editQuest(param, this.questItem.quest_id)
       .then(response => {
         this.context.commit(MUTATION.SET_QUEST_ITEM, response.data);
+      })
+      .catch(response => console.log(response));
+  }
+
+  @Action({ rawError: true })
+  async getQuestList(param: any) {
+    await questApi
+      .getQuestList(param)
+      .then(response => {
+        this.context.commit(
+          MUTATION.SET_QUEST_LIST_ITEM,
+          response.data.each_quest
+        );
       })
       .catch(response => console.log(response));
   }
@@ -59,5 +75,10 @@ export default class QuestStore extends VuexModule {
   @Mutation
   [MUTATION.SET_QUEST_ITEM](payload: any) {
     this.questItem = payload;
+  }
+
+  @Mutation
+  [MUTATION.SET_QUEST_LIST_ITEM](payload: any) {
+    this.questList = payload;
   }
 }
