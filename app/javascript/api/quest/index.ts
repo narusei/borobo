@@ -14,7 +14,12 @@ export default {
       }
     );
   },
+
   createQuest(param: any) {
     return http.post("/api/v1/quests", { params: param });
+  },
+
+  editQuest(param: any, questId: string) {
+    return http.put("/api/v1/quests/" + questId, { params: param });
   }
 };

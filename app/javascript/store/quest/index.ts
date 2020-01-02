@@ -12,11 +12,11 @@ export default class QuestStore extends VuexModule {
   userItem: UserItem;
 
   @Action({ rawError: true })
-  async createUser(param: UserInfo) {
-    questApi
-      .createUser(param)
+  async questEdit(param: QuestInfo) {
+    await questApi
+      .editQuest(param, this.questItem.quest_id)
       .then(response => {
-        this.context.commit(MUTATION.SET_USER_ITEM, response.data);
+        this.context.commit(MUTATION.SET_QUEST_ITEM, response.data);
       })
       .catch(response => console.log(response));
   }
@@ -27,6 +27,16 @@ export default class QuestStore extends VuexModule {
       .createQuest(param)
       .then(response => {
         this.context.commit(MUTATION.SET_QUEST_ITEM, response.data);
+      })
+      .catch(response => console.log(response));
+  }
+
+  @Action({ rawError: true })
+  async createUser(param: UserInfo) {
+    questApi
+      .createUser(param)
+      .then(response => {
+        this.context.commit(MUTATION.SET_USER_ITEM, response.data);
       })
       .catch(response => console.log(response));
   }
