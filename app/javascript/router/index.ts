@@ -1,22 +1,22 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import QuestListPage from "@/pages/QuestListPage.vue";
-import QuestCreatePage from "@/pages/QuestCreatePage.vue";
+import UserPage from "@/pages/UserPage.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
-    {
-        path: "/",
-        name: "QuestCreatePage",
-        component: QuestCreatePage
-    }
+  {
+    path: "/",
+    name: "UserPage",
+    component: UserPage
+  }
 ];
 
 const router = new VueRouter({
-    mode: "history",
-    base: process.env.BASE_URL,
-    routes
+  mode: "history",
+  base: process.env.BASE_URL,
+  routes
 });
 
 export default router;

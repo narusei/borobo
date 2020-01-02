@@ -6,16 +6,23 @@
         <div class="user-name">{{ userName }}</div>
       </div>
       <div class="profile-contents">
-        <div class="profile-text">{{ profileText }}</div>
+        <div class="profile-text">{{ userDetail }}</div>
       </div>
-      <b-user-rate />
+      <b-user-rate
+        :userId="userItem.userId"
+        :propGoodNum="userItem.good"
+        :propOkNum="userItem.ok"
+        :propSadNum="userItem.sad"
+        @applyVoted="applyVoted($event)"
+      />
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
 import BUserRate from "@/components/user/BUserRate";
+import { UserItem } from "models/quest/UserItem";
 
 @Component({
   components: {
@@ -28,13 +35,21 @@ export default class BUserProfile extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
+  @Prop({})
+  userItem: UserItem;
+
   @Prop({ default: "トニー" })
-  userName!: string;
+  userName: string;
 
   @Prop({
     default: "東京電機大学未来科学部情報メディア学科17fi029大林正樹ああ"
   })
-  profileText!: string;
+  userDetail: string;
+
+  @Emit("applyVoted")
+  applyVoted(param: any) {
+    return param;
+  }
 }
 </script>
 
