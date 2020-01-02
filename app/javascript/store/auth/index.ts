@@ -25,6 +25,25 @@ export default class AuthStore extends VuexModule {
       .catch(response => console.log(response));
   }
 
+  @Action({ rawError: true })
+  async postSignUpInfo(param: any) {
+    authApi
+      .postSignUpInfo(param)
+      .then(response => {
+        this.context.commit(MUTATION.SET_AUTH_INFO, response.data);
+        const auth_header = {
+          uid: response.headers["uid"],
+          client: response.headers["client"],
+          "access-token": response.headers["access-token"]
+        };
+        this.context.commit(
+          MUTATION.SET_LOCALSTRAGE_HEADER,
+          JSON.stringify(auth_header)
+        );
+      })
+      .catch(response => console.log(response));
+  }
+
   @Mutation
   [MUTATION.SET_AUTH_INFO](payload: any) {
     this.authInfo = payload;
