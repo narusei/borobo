@@ -4,7 +4,11 @@
     <div class="qd-user-info">
       <div class="qd-user">
         <div>
-          <b-icon icon="account-circle" size="is-large"></b-icon>
+          <router-link
+            :to="{ name: UserPage, params: { accountId: accountId } }"
+          >
+            <b-icon icon="account-circle" size="is-large"></b-icon>
+          </router-link>
           <div>{{ name }}</div>
         </div>
       </div>
@@ -50,6 +54,8 @@ export default class BQuestDetailPage extends Vue {
   // 4.@Watch
   // 5.method
   // 仮置き
+  @Prop({ default: 0 })
+  accountId: number;
   @Prop({ default: "トニー" })
   name: string;
   @Prop({ default: "関数電卓を貸して！" })

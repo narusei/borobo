@@ -31,7 +31,6 @@ export default class QuestSearchPage extends Vue {
   }
 
   searchQuestList(param: any) {
-    console.log(param);
     this.getQuestList("");
     this.questSearchStore.searchQuestList(param);
   }

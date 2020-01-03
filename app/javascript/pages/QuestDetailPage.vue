@@ -1,5 +1,6 @@
 <template>
   <b-quest-detail-page
+    :userId="questItem.account_id"
     :name="questItem.user_name"
     :title="questItem.title"
     :description="questItem.description"

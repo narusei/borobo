@@ -18,7 +18,7 @@ export default {
     return http.get(baseUrl + "/api/v1/quests", { params: params });
   },
 
-  getQuest(params: any, questId: string): any {
+  getQuest(params: any, questId: number): any {
     return http.get(baseUrl + "/api/v1/quests/" + questId, {
       params: params
     });
@@ -28,7 +28,7 @@ export default {
     return http.post(baseUrl + "/api/v1/quests", { params: param });
   },
 
-  editQuest(param: any, questId: string) {
+  editQuest(param: any, questId: number) {
     return http.put(baseUrl + "/api/v1/quests/" + questId, { params: param });
   },
 
@@ -36,13 +36,15 @@ export default {
     return http.post(baseUrl + "/api/v1/quests/", { params: params });
   },
 
-  getUserItem(params: any, userId: string): any {
-    return http.get(baseUrl + "/api/v1/users/" + userId, { params: params });
+  getUserItem(params: any, accountId: number): any {
+    return http.get(baseUrl + "/api/v1/users/" + accountId + "/users_info", {
+      params: params
+    });
   },
 
-  applyVoted(params: any, userId: string): any {
+  applyVoted(params: any, accountId: number): any {
     console.log("applyVote");
-    return http.put(baseUrl + "/api/v1/users/" + userId + "/review", {
+    return http.put(baseUrl + "/api/v1/users/" + accountId + "/review", {
       params: params
     });
   }

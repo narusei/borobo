@@ -1,6 +1,10 @@
 <template>
   <div>
-    <b-user-page :userItem="userItem" @applyVoted="applyVoted($event)" :myPage="myPage" />
+    <b-user-page
+      :userItem="userItem"
+      @applyVoted="applyVoted($event)"
+      :myPage="myPage"
+    />
   </div>
 </template>
 
@@ -31,14 +35,17 @@ export default class UserPage extends Vue {
 
   get myPage() {
     //マイページであるかの判定
-    // if (this.authStore.auth_info.userid == this.userStore.userItem[0].id) {
-    //   return true;
-    // }
+    if (
+      this.authStore.authInfo.account_Id ==
+      this.userStore.userItem[0].account_id
+    ) {
+      return true;
+    }
     return true;
   }
 
   created() {
-    this.userStore.getUserItem("", "0");
+    this.userStore.getUserItem("", this.$route.params.accountId);
   }
 
   applyVoted(param: any) {

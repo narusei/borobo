@@ -1,4 +1,5 @@
 export class QuestItem {
+  account_id?: string;
   quest_id?: string;
   stance?: string;
   category?: string;
