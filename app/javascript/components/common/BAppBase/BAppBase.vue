@@ -4,7 +4,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 @Component({})
-export default class XDefaultPage extends Vue {
+export default class BAppBase extends Vue {
   //@Prop()
   //通常プロパティ
   //get
