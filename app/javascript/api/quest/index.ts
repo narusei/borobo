@@ -31,5 +31,9 @@ export default {
 
   editQuest(param: any, questId: string) {
     return http.put("/api/v1/quests/" + questId, { params: param });
+  },
+
+  searchQuestList(params: any) {
+    return http.post("http://0.0.0.0:8000/quests", { params: params });
   }
 };

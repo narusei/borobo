@@ -37,6 +37,19 @@ export default class QuestStore extends VuexModule {
   }
 
   @Action({ rawError: true })
+  async searchQuestList(param: any) {
+    await questApi
+      .searchQuestList(param)
+      .then(response => {
+        this.context.commit(
+          MUTATION.SET_QUEST_LIST_ITEM,
+          response.data.each_quest
+        );
+      })
+      .catch(response => console.log(response));
+  }
+
+  @Action({ rawError: true })
   async questCreate(param: QuestInfo) {
     await questApi
       .createQuest(param)

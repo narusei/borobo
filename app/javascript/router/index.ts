@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import TopPage from "@/pages/TopPage.vue";
 import SignUpPage from "@/pages/auth/SignUpPage.vue";
 import SignInPage from "@/pages/auth/SignInPage.vue";
+import QuestSearchPage from "@/pages/QuestSearchPage.vue";
 import QuestListPage from "@/pages/QuestListPage.vue";
 import QuestDetailPage from "@/pages/QuestDetailPage.vue";
 import QuestCreatePage from "@/pages/QuestCreatePage.vue";
@@ -31,6 +32,11 @@ const routes = [
     path: "/quest-list",
     name: "QuestListPage",
     component: QuestListPage
+  },
+  {
+    path: "/qyest-search",
+    name: "QuestSearchPage",
+    component: QuestSearchPage
   },
   {
     path: "/quest-create",
