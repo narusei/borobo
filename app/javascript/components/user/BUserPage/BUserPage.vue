@@ -40,6 +40,7 @@ export default class BUserPage extends Vue {
   applyVoted(param: any) {
     return param;
   }
+
   // 3.getter
   // 4.@Watch
   // 5.method

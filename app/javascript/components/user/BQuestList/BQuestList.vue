@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="tabNum == 0">
-      <div v-for="quest in questList" :key="quest.quest_id">
+      <div v-for="quest in categorizedHitoQuestList" :key="quest.quest_id">
         <b-quest
           :questId="quest.quest_id"
           :userName="quest.user_name"
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div v-if="tabNum == 1">
-      <div v-for="quest in questList" :key="quest.quest_id">
+      <div v-for="quest in categorizedMonoQuestList" :key="quest.quest_id">
         <b-quest
           :userName="quest.user_name"
           :questTitle="quest.title"
@@ -43,6 +43,12 @@ export default class BQuestList extends Vue {
 
   @Prop({})
   questList: QuestProperty[];
+
+  @Prop({})
+  categorizedHitoQuestList: QuestProperty[];
+
+  @Prop({})
+  categorizedMonoQuestList: QuestProperty[];
   // 2.property
   // 3.getter
   // 4.@Watch
