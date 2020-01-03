@@ -1,20 +1,20 @@
 <template>
   <div>
-    <b-user-edit-top-bar pageName="ユーザ情報登録" />
+    <top-bar pageName="ユーザ情報登録" />
     <b-user-edit-contents @editUser="createUser($event)" />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
-import BUserEditTopBar from "@/components/user-edit/BUserEditTopBar";
+import TopBar from "@/components/common/BTopBar";
 import BUserEditContents from "@/components/user-edit/BUserEditContents";
 import { UserItem } from "@/models/user/UserItem";
 import { UserInfo } from "@/models/user/UserInfo";
 
 @Component({
   components: {
-    BUserEditTopBar,
+    TopBar,
     BUserEditContents
   }
 })

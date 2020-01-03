@@ -1,15 +1,6 @@
 <template>
   <section class="quest-detail">
-    <div class="qd-header">
-      <div @click="back()">
-        <b-icon
-          class="back-button"
-          icon="chevron-left"
-          size="is-medium"
-        ></b-icon>
-      </div>
-      <div class="qd-title">{{ title }}</div>
-    </div>
+    <top-bar :pageName="title" />
     <div class="qd-user-info">
       <div class="qd-user">
         <div>
@@ -48,8 +39,9 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { format } from "date-fns";
 import router from "@/router/index.ts";
+import TopBar from "@/components/common/BTopBar";
 @Component({
-  components: {}
+  components: { TopBar }
 })
 export default class BQuestDetailPage extends Vue {
   // 1.@Prop

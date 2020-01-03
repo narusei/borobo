@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-top-bar pageName="新規作成" />
+    <top-bar pageName="新規作成" />
     <b-quest-create @questCreate="questCreate($event)" />
   </div>
 </template>
@@ -8,11 +8,11 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
 import BQuestCreate from "@/components/quest-create/BQuestCreate";
-import BTopBar from "@/components/common/BTopBar";
+import TopBar from "@/components/common/BTopBar";
 import { QuestItem } from "@/models/quest/QuestItem.ts";
 @Component({
   components: {
-    BTopBar,
+    TopBar,
     BQuestCreate
   }
 })
