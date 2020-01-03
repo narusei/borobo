@@ -9,6 +9,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import router from "@/router/index";
 @Component({
   components: {}
 })
@@ -21,7 +22,9 @@ export default class BUserTopBar extends Vue {
   @Prop({ default: "borobo" })
   pageName!: string;
 
-  back() {}
+  back() {
+    router.go(-1);
+  }
 }
 </script>
 

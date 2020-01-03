@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-top-bar pageName="新規作成" />
+    <top-bar pageName="新規作成" />
     <b-quest-create :questInfo="questInfo" @questCreate="questEdit($event)" />
   </div>
 </template>
@@ -9,13 +9,13 @@
 import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
 import { getModule } from "vuex-module-decorators";
 import BQuestCreate from "@/components/quest-create/BQuestCreate";
-import BTopBar from "@/components/common/BTopBar";
+import TopBar from "@/components/common/BTopBar";
 import QuestStore from "@/store/quest/index.ts";
 import { QuestInfo } from "@/models/quest/QuestInfo";
 
 @Component({
   components: {
-    BTopBar,
+    TopBar,
     BQuestCreate
   }
 })

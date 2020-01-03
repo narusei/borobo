@@ -7,7 +7,7 @@ export class QuestItem {
   detail?: string;
   tags?: Array<string>;
   start_date?: string;
-  end_date?: string;
+  due_date?: string;
   reward?: string;
 }
 

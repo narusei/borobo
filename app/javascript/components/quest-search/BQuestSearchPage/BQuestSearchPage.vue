@@ -1,17 +1,6 @@
 <template>
   <div>
-    <div class="header">
-      <div class="back-button">
-        <router-link to="/quest-list">
-          <b-icon
-            class="back-button-color"
-            icon="chevron-left"
-            size="is-medium"
-          ></b-icon>
-        </router-link>
-      </div>
-      <div class="page-title">検索</div>
-    </div>
+    <top-bar :pageName="pageName" />
     <b-quest-search-container @searchQuestList="searchQuestList($event)" />
     <div class="quest-box">
       <b-quest-list :questList="questList" />
@@ -23,12 +12,14 @@
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 import BQuestList from "@/components/quest-search/BQuestList/BQuestList.vue";
 import BQuestSearchContainer from "@/components/quest-search/BQuestSearchContainer/BQuestSearchContainer.vue";
+import TopBar from "@/components/common/BTopBar";
 import { QuestProperty } from "@/models/quest/QuestProperty";
 
 @Component({
   components: {
     BQuestSearchContainer,
-    BQuestList
+    BQuestList,
+    TopBar
   }
 })
 export default class BQuestSearchPage extends Vue {
@@ -45,6 +36,8 @@ export default class BQuestSearchPage extends Vue {
   searchQuestList(param: any) {
     return param;
   }
+
+  pageName: string = "検索";
 }
 </script>
 
