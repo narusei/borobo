@@ -47,7 +47,7 @@ export default class BSignInPage extends Vue {
   @Emit("postSignInInfo")
   postSignInInfo() {
     return {
-      mail_addr: this.mail,
+      email: this.mail,
       password: this.password
     };
   }

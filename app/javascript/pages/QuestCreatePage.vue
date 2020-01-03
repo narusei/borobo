@@ -26,7 +26,7 @@ export default class QuestCreatePage extends Vue {
       this.questStore.questCreate(param);
       this.$router.push({
         name: "QuestDetailPage",
-        params: { questId: this.questStore.questItem.quest_id }
+        params: { questId: String(this.questStore.questItem.id) }
       });
     } catch {
       console.log("POST Error!");

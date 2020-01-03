@@ -1,8 +1,9 @@
 export class QuestItem {
-  quest_id?: string;
+  id?: number;
   stance?: string;
   category?: string;
   user_name?: string;
+  user_id?: number;
   title?: string;
   detail?: string;
   tags?: Array<string>;
@@ -12,7 +13,7 @@ export class QuestItem {
 }
 
 // {
-//    "quest_id": "m_0000001",
+//    "id": "m_0000001",
 //    "category": "モノ",
 //    "user_name": "トニー"
 //    "stance": "demand",

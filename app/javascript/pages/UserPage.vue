@@ -1,6 +1,10 @@
 <template>
   <div>
-    <b-user-page :userItem="userItem" @applyVoted="applyVoted($event)" :myPage="myPage" />
+    <b-user-page
+      :userItem="userItem"
+      @applyVoted="applyVoted($event)"
+      :myPage="myPage"
+    />
   </div>
 </template>
 
@@ -38,12 +42,12 @@ export default class UserPage extends Vue {
   }
 
   created() {
-    this.userStore.getUserItem("", "0");
+    this.userStore.getUserItem("", 0);
   }
 
   applyVoted(param: any) {
     console.log("aaaaakkkkkkkk");
-    this.userStore.applyVoted(param, String(this.userItem.account_id));
+    this.userStore.applyVoted(param, this.userItem.user_id);
   }
 }
 </script>
