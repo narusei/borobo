@@ -31,7 +31,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
-import { format } from "date-fns";
+import { format, parseISO, parse } from "date-fns";
 
 @Component
 export default class BQuest extends Vue {
@@ -44,18 +44,23 @@ export default class BQuest extends Vue {
   @Prop({ default: "関数電卓を貸してああああああああああああああああ" })
   questTitle!: string;
 
-  @Prop({ default: "10/04 16:43" })
-  questStartDate!: Date;
+  @Prop({ default: "Fri Jan 03 2020 11:52:18 GMT+0900 (日本標準時)" })
+  questStartDate!: string;
 
-  @Prop({ default: "10/05 15:00" })
-  questDueDate!: Date;
+  @Prop({ default: "Fri Jan 03 2020 11:52:18 GMT+0900 (日本標準時)" })
+  questDueDate!: string;
 
   @Prop({ default: "たけのこの里" })
   questReward!: string;
 
   get questFormatedDate(): string {
-    const startDate = String(format(this.questStartDate, "MM/dd hh:mm"));
-    const dueDate = String(format(this.questDueDate, "MM/dd hh:mm"));
+    const startDate = String(
+      format(new Date("2004-04-01T00:00:01+09:00"), "MM/dd hh:mm")
+    );
+    const dueDate = String(
+      format(new Date("2004-04-01T00:00:01+09:00"), "MM/dd hh:mm")
+    );
+    console.log(new Date());
     return startDate + "~" + dueDate;
   }
 }
@@ -93,10 +98,11 @@ export default class BQuest extends Vue {
 }
 
 .clock {
-  margin-right: 20px;
+  margin-right: 5px;
   margin-bottom: 10px;
   height: 22px;
   width: 22px;
+  color: rgb(87, 87, 87);
 }
 .reward {
   margin-right: 5px;

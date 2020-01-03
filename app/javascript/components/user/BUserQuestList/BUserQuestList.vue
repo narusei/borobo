@@ -11,21 +11,26 @@
       </div>
     </ul>
     <div class="quest-box">
-      <BQuestList :tab_num="pageTabNum" :questList="showQuestList"></BQuestList>
+      <BQuestList
+        :tabNum="pageTabNum"
+        :questList="questList"
+        :categorizedHitoQuestList="categorizedHitoQuestList"
+        :categorizedMonoQuestList="categorizedMonoQuestList"
+      ></BQuestList>
     </div>
     <footer></footer>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Emit } from "vue-property-decorator";
+import { Vue, Component, Prop, Emit, Watch } from "vue-property-decorator";
 import BQuestList from "@/components/user/BQuestList/BQuestList.vue";
 import { QuestProperty } from "@/models/quest/QuestProperty";
+
 @Component({
   components: {
     BQuestList
-  },
-  filters: {}
+  }
 })
 export default class BQuestListPage extends Vue {
   // 1.@Prop()
@@ -36,34 +41,26 @@ export default class BQuestListPage extends Vue {
   @Prop({})
   questList: QuestProperty[];
 
+  pageTabNum: number = 0;
   categorizedHitoQuestList: QuestProperty[] = [];
   categorizedMonoQuestList: QuestProperty[] = [];
-  showQuestList: QuestProperty[] = [];
 
   //未変更 Userに関連のあるクエスト取ってくる
 
-  created() {
-    // for (var i = 0; i < 1; i++) {
-    //   if (this.questList[i].category == "ヒト") {
-    //     this.categorizedHitoQuestList.push(this.questList[i]);
-    //   } else if (this.questList[i].category == "モノ") {
-    //     this.categorizedMonoQuestList.push(this.questList[i]);
-    //   }
-    // }
-    console.log(this.questList);
-    console.log(this.categorizedMonoQuestList);
+  @Watch("questList")
+  setQuestList() {
+    this.categorizedHitoQuestList = this.questList.filter(
+      row => row.category == "ヒト"
+    );
+    this.categorizedMonoQuestList = this.questList.filter(
+      row => row.category == "モノ"
+    );
     console.log(this.categorizedHitoQuestList);
+    console.log(this.categorizedMonoQuestList);
   }
 
-  pageTabNum: number = 0;
   setTab(num: number) {
     this.pageTabNum = num;
-    this.showQuestList = [];
-    if (this.pageTabNum == 0) {
-      this.showQuestList = this.categorizedHitoQuestList;
-    } else if (this.pageTabNum == 1) {
-      this.showQuestList = this.categorizedMonoQuestList;
-    }
   }
 }
 </script>

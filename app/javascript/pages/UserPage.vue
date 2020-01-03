@@ -38,7 +38,6 @@ export default class UserPage extends Vue {
     // if (this.authStore.auth_info.userid == this.userStore.userItem[0].id) {
     //   return true;
     // }
-    console.log(this.userStore.userItem.bad);
     return true;
   }
 
