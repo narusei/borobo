@@ -35,5 +35,16 @@ export default {
 
   searchQuestList(params: any) {
     return http.post("http://0.0.0.0:8000/quests", { params: params });
+  },
+
+  getUserItem(params: any, userId: string): any {
+    return http.get("http://0.0.0.0:8000/users/" + userId, { params: params });
+  },
+
+  applyVoted(params: any, userId: string): any {
+    console.log("applyVote");
+    return http.put("http://0.0.0.0:8000/users/" + userId + "/review", {
+      params: params
+    });
   }
 };

@@ -9,6 +9,7 @@ import QuestDetailPage from "@/pages/QuestDetailPage.vue";
 import QuestCreatePage from "@/pages/QuestCreatePage.vue";
 import UserCreate from "@/pages/UserCreate.vue";
 import UserEditPage from "@/pages/UserEditPage.vue";
+import UserPage from "@/pages/UserPage.vue";
 
 Vue.use(VueRouter);
 
@@ -58,6 +59,11 @@ const routes = [
     name: "QuestDetailPage",
     component: QuestDetailPage,
     props: true
+  },
+  {
+    path: "/user-page",
+    name: "UserPage",
+    component: UserPage
   }
 ];
 

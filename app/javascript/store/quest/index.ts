@@ -11,7 +11,7 @@ import { UserInfo } from "@/models/user/UserInfo";
 export default class QuestStore extends VuexModule {
   questList: QuestProperty[] = [];
   questItem: QuestItem = {};
-  userItem: UserItem;
+  userItem: UserItem = {};
 
   @Action({ rawError: true })
   async questEdit(param: QuestInfo) {
@@ -19,6 +19,16 @@ export default class QuestStore extends VuexModule {
       .editQuest(param, this.questItem.quest_id)
       .then(response => {
         this.context.commit(MUTATION.SET_QUEST_ITEM, response.data);
+      })
+      .catch(response => console.log(response));
+  }
+
+  @Action({ rawError: true })
+  async getUserItem(param: any, userId: string) {
+    await questApi
+      .getUserItem(param, userId)
+      .then(response => {
+        this.context.commit(MUTATION.SET_USER_ITEM, response.data);
       })
       .catch(response => console.log(response));
   }
@@ -32,6 +42,16 @@ export default class QuestStore extends VuexModule {
           MUTATION.SET_QUEST_LIST_ITEM,
           response.data.each_quest
         );
+      })
+      .catch(response => console.log(response));
+  }
+
+  @Action({ rawError: true })
+  async applyVoted(param: any, userId: string) {
+    questApi
+      .applyVoted(param, userId)
+      .then(response => {
+        this.context.commit(MUTATION.APPLY_VOTE_ITEM, response.data);
       })
       .catch(response => console.log(response));
   }

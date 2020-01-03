@@ -7,5 +7,5 @@ export class UserItem {
   good?: number;
   ok?: number;
   bad?: number;
-  quests: QuestProperty[];
+  quests?: QuestProperty[];
 }
