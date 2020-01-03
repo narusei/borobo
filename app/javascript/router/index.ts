@@ -35,7 +35,7 @@ const routes = [
     component: QuestListPage
   },
   {
-    path: "/qyest-search",
+    path: "/quest-search",
     name: "QuestSearchPage",
     component: QuestSearchPage
   },

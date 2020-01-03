@@ -40,9 +40,9 @@ import { Component, Prop, Vue, Emit } from "vue-property-decorator";
 
 @Component
 export default class BSignInPage extends Vue {
-  mail: string;
-  password: string;
-  rePassword: string;
+  mail: string = "";
+  password: string = "";
+  rePassword: string = "";
 
   @Emit("postSignInInfo")
   postSignInInfo() {
