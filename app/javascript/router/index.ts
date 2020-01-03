@@ -7,7 +7,7 @@ import QuestSearchPage from "@/pages/QuestSearchPage.vue";
 import QuestListPage from "@/pages/QuestListPage.vue";
 import QuestDetailPage from "@/pages/QuestDetailPage.vue";
 import QuestCreatePage from "@/pages/QuestCreatePage.vue";
-import UserCreate from "@/pages/UserCreate.vue";
+import UserCreatePage from "@/pages/UserCreatePage.vue";
 import UserEditPage from "@/pages/UserEditPage.vue";
 import UserPage from "@/pages/UserPage.vue";
 
@@ -15,8 +15,8 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/top",
-    name: "Top",
+    path: "/",
+    name: "TopPage",
     component: TopPage
   },
   {
@@ -47,7 +47,7 @@ const routes = [
   {
     path: "/user-create",
     name: "UserCreatePage",
-    component: UserCreate
+    component: UserCreatePage
   },
   {
     path: "/user-edit",

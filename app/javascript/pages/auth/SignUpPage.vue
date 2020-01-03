@@ -12,7 +12,7 @@ import AuthStore from "@/store/auth";
     BSignUpPage
   }
 })
-export default class NAME extends Vue {
+export default class SignUpPage extends Vue {
   private authStore = getModule(AuthStore, this.$store);
   // 1.@Prop
   // 2.property
