@@ -45,7 +45,6 @@ export default class UserPage extends Vue {
 
   created() {
     this.userStore.getUserItem("", Number(this.$route.params.userId));
-    this.userStore.getUserItem("", 0);
   }
 
   applyVoted(param: any) {

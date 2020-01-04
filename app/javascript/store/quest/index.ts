@@ -16,7 +16,7 @@ export default class QuestStore extends VuexModule {
   @Action({ rawError: true })
   async questEdit(param: QuestInfo) {
     await questApi
-      .editQuest(param, this.questItem.quest_id)
+      .editQuest(param, this.questItem.id)
       .then(response => {
         this.context.commit(MUTATION.SET_QUEST_ITEM, response.data);
       })
