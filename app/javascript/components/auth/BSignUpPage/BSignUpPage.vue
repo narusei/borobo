@@ -24,12 +24,6 @@
               password-reveal
             ></b-input>
           </b-field>
-          <b-field label="last_name">
-            <b-input v-model="lastName"></b-input>
-          </b-field>
-          <b-field label="first_name">
-            <b-input v-model="firstName"></b-input>
-          </b-field>
           <div>
             <router-link :to="{ name: 'SignInPage' }">
               アカウントが既にある方はこちらから -サインイン
@@ -60,10 +54,9 @@ export default class BSignUpPage extends Vue {
   @Emit("postSignUpInfo")
   postSignUpInfo() {
     return {
-      mail_addr: this.mail,
+      email: this.mail,
       password: this.password,
-      password_confirmation: this.rePassword,
-      name: this.lastName + this.firstName
+      password_confirmation: this.rePassword
     };
   }
 }

@@ -1,9 +1,9 @@
 <template>
   <div>
     <div v-if="tabNum == 0">
-      <div v-for="quest in categorizedHitoQuestList" :key="quest.quest_id">
+      <div v-for="quest in categorizedHitoQuestList" :key="quest.id">
         <b-quest
-          :questId="quest.quest_id"
+          :questId="quest.id"
           :userName="quest.user_name"
           :questTitle="quest.title"
           :questStartDate="quest.start_date"
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div v-if="tabNum == 1">
-      <div v-for="quest in categorizedMonoQuestList" :key="quest.quest_id">
+      <div v-for="quest in categorizedMonoQuestList" :key="quest.id">
         <b-quest
           :userName="quest.user_name"
           :questTitle="quest.title"

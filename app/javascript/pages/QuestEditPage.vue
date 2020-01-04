@@ -25,7 +25,7 @@ export default class QuestEditPage extends Vue {
       this.questStore.questEdit(param);
       this.$router.push({
         name: "QuestDetailPage",
-        params: { questId: this.questStore.questItem.quest_id }
+        params: { questId: String(this.questStore.questItem.id) }
       });
     } catch {
       console.log("PUT Error!");
