@@ -36,16 +36,23 @@ export default {
     return http.post(baseUrl + "/api/v1/quests/", { params: params });
   },
 
-  getUserItem(params: any, accountId: number): any {
-    return http.get(baseUrl + "/api/v1/users/" + accountId + "/users_info", {
+  getUserItem(params: any, userId: number): any {
+    return http.get(baseUrl + "/api/v1/users/" + userId + "/users_info", {
       params: params
     });
   },
 
-  applyVoted(params: any, accountId: number): any {
-    console.log("applyVote");
-    return http.put(baseUrl + "/api/v1/users/" + accountId + "/review", {
-      params: params
-    });
+  applyVoted(params: any, userId: number, usersInfoId: number): any {
+    return http.put(
+      baseUrl +
+        "/api/v1/users/" +
+        userId +
+        "/users_info/" +
+        usersInfoId +
+        "/review",
+      {
+        params: params
+      }
+    );
   }
 };

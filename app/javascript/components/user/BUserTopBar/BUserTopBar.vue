@@ -5,15 +5,18 @@
     </div>
     <div class="page-title">{{ userName }}のページ</div>
     <div class="user-edit" v-if="myPage">
+      <a @click="signOut">
+        <b-icon icon="logout" size="is-medium" class="cogs"></b-icon>
+      </a>
       <router-link to="/user-edit">
-        <b-icon icon="cogs" size="is-medium" class="cogs"></b-icon>
+        <b-icon icon="pencil" size="is-medium" class="cogs"></b-icon>
       </router-link>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
 import router from "router/index";
 @Component({
   components: {}
@@ -30,11 +33,23 @@ export default class BUserTopBar extends Vue {
   @Prop({ default: false })
   myPage!: boolean;
 
+  @Emit("userSignOut")
+  userSignOut() {}
+
   back() {
     router.go(-1);
   }
   settingMyPage() {
     alert();
+  }
+
+  signOut() {
+    const answer = window.confirm("ログアウトしますか？");
+    if (answer) {
+      this.userSignOut();
+    } else {
+      return;
+    }
   }
 }
 </script>

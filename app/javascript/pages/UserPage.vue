@@ -3,6 +3,7 @@
     <b-user-page
       :userItem="userItem"
       @applyVoted="applyVoted($event)"
+      @userSignOut="userSignOut($event)"
       :myPage="myPage"
     />
   </div>
@@ -15,6 +16,7 @@ import { getModule } from "vuex-module-decorators";
 import UserStore from "@/store/quest";
 import AuthStore from "@/store/auth";
 import { UserItem } from "@/models/user/UserItem";
+import VueRouter from "vue-router";
 
 @Component({
   components: {
@@ -35,22 +37,29 @@ export default class UserPage extends Vue {
 
   get myPage() {
     //マイページであるかの判定
-    if (
-      this.authStore.authInfo.account_Id ==
-      this.userStore.userItem[0].account_id
-    ) {
-      return true;
-    }
+    // if (this.authStore.authInfo.id == this.userStore.userItem[0].user_id) {
+    //   return true;
+    // }
     return true;
   }
 
   created() {
-    this.userStore.getUserItem("", this.$route.params.accountId);
+    this.userStore.getUserItem("", Number(this.$route.params.userId));
+    this.userStore.getUserItem("", 0);
   }
 
   applyVoted(param: any) {
-    console.log("aaaaakkkkkkkk");
-    this.userStore.applyVoted(param, String(this.userItem.account_id));
+    console.log(param);
+    this.userStore.applyVoted(param, this.userItem);
+  }
+
+  userSignOut() {
+    try {
+      this.authStore.userSignOut();
+      this.$router.push({ name: "TopPage" });
+    } catch {
+      console.log("sign out faild");
+    }
   }
 }
 </script>

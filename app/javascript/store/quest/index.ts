@@ -24,7 +24,7 @@ export default class QuestStore extends VuexModule {
   }
 
   @Action({ rawError: true })
-  async getUserItem(param: any, userId: string) {
+  async getUserItem(param: any, userId: number) {
     await questApi
       .getUserItem(param, userId)
       .then(response => {
@@ -47,9 +47,9 @@ export default class QuestStore extends VuexModule {
   }
 
   @Action({ rawError: true })
-  async applyVoted(param: any, userId: string) {
+  async applyVoted(param: any, idObject: UserItem) {
     questApi
-      .applyVoted(param, userId)
+      .applyVoted(param, idObject.user_id, idObject.id)
       .then(response => {
         this.context.commit(MUTATION.APPLY_VOTE_ITEM, response.data);
       })
@@ -80,7 +80,7 @@ export default class QuestStore extends VuexModule {
   }
 
   @Action({ rawError: true })
-  async getQuest(param: any, questId: string) {
+  async getQuest(param: any, questId: number) {
     await questApi
       .getQuest(param, questId)
       .then(response => {
@@ -102,7 +102,7 @@ export default class QuestStore extends VuexModule {
   @Action({ rawError: true })
   async updateUser(param: UserInfo) {
     questApi
-      .updateUser(param, this.userItem.account_id)
+      .updateUser(param, this.userItem.user_id)
       .then(response => {
         this.context.commit(MUTATION.SET_USER_ITEM, response.data);
       })

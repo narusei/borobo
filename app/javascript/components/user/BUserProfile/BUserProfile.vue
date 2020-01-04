@@ -12,7 +12,7 @@
         :userId="userItem.userId"
         :propGoodNum="userItem.good"
         :propOkNum="userItem.ok"
-        :propSadNum="userItem.sad"
+        :propBadNum="userItem.bad"
         @applyVoted="applyVoted($event)"
       />
     </div>

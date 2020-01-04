@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-content">
-      <router-link :to="{ name: 'QuestDetailPage', params: { questId } }">
+      <router-link :to="{ name: 'QuestDetailPage', params: { id: questId } }">
         <div class="media">
           <div class="media-left">
             <b-icon
@@ -36,7 +36,7 @@ import { format, parseISO, parse } from "date-fns";
 @Component
 export default class BQuest extends Vue {
   @Prop({})
-  questId!: string;
+  questId!: number;
 
   @Prop({ default: "トニーあああああああ" })
   userName!: string;
@@ -60,7 +60,6 @@ export default class BQuest extends Vue {
     const dueDate = String(
       format(new Date("2004-04-01T00:00:01+09:00"), "MM/dd hh:mm")
     );
-    console.log(new Date());
     return startDate + "~" + dueDate;
   }
 }

@@ -4,10 +4,12 @@
     <div class="qd-user-info">
       <div class="qd-user">
         <div>
-          <router-link
-            :to="{ name: UserPage, params: { accountId: accountId } }"
-          >
-            <b-icon icon="account-circle" size="is-large"></b-icon>
+          <router-link :to="{ name: 'UserPage', params: { userId: userId } }">
+            <b-icon
+              icon="account-circle"
+              size="is-large"
+              class="account"
+            ></b-icon>
           </router-link>
           <div>{{ name }}</div>
         </div>
@@ -55,7 +57,7 @@ export default class BQuestDetailPage extends Vue {
   // 5.method
   // 仮置き
   @Prop({ default: 0 })
-  accountId: number;
+  userId: number;
   @Prop({ default: "トニー" })
   name: string;
   @Prop({ default: "関数電卓を貸して！" })
@@ -131,6 +133,9 @@ export default class BQuestDetailPage extends Vue {
     background-color: gainsboro;
     border-radius: 0.5em;
   }
+}
+.account {
+  color: rgb(87, 87, 87);
 }
 
 .qd-info {

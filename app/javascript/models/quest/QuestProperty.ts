@@ -1,6 +1,6 @@
 export class QuestProperty {
-  quest_id?: number;
-  account_id?: number;
+  id?: number;
+  user_id?: number;
   title?: number;
   stance?: string;
   category?: string;
