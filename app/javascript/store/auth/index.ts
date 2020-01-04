@@ -1,10 +1,11 @@
 import { Module, VuexModule, Action, Mutation } from "vuex-module-decorators";
 import * as MUTATION from "store/auth/mutation-types";
 import authApi from "api/auth";
+import { AuthItem } from "@/models/auth/AuthItem";
 
 @Module({ name: "auth", namespaced: true })
 export default class AuthStore extends VuexModule {
-  authInfo: {} = {};
+  authItem: AuthItem = {};
 
   @Action({ rawError: true })
   async postSignInInfo(param: any) {
@@ -56,7 +57,7 @@ export default class AuthStore extends VuexModule {
 
   @Mutation
   [MUTATION.SET_AUTH_INFO](payload: any) {
-    this.authInfo = payload;
+    this.authItem = payload;
   }
 
   @Mutation
