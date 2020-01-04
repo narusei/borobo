@@ -8,6 +8,11 @@ class Api::V1::DetailsController < ApplicationController
         @details = Detail.update(detail_params)
         json_response(@details)
     end
+    
+    def create
+        @detail = Detail.create!(detail_params)
+        json_response(@details)
+    end
 
     def review
         @details = Detail.update(ok:params[:ok],good:params[:good],bad:[:bad])
