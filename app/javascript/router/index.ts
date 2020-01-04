@@ -55,13 +55,13 @@ const routes = [
     component: UserEditPage
   },
   {
-    path: "/quest-detail/:questId",
+    path: "/quest-detail/:id",
     name: "QuestDetailPage",
     component: QuestDetailPage,
     props: true
   },
   {
-    path: "/user-page",
+    path: "/user-page/:userId",
     name: "UserPage",
     component: UserPage
   }

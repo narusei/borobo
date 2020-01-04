@@ -15,6 +15,7 @@
     <div v-if="tabNum == 1">
       <div v-for="quest in categorizedMonoQuestList" :key="quest.id">
         <b-quest
+          :questId="quest.id"
           :userName="quest.user_name"
           :questTitle="quest.title"
           :questStartDate="quest.start_date"

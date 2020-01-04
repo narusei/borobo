@@ -55,8 +55,6 @@ export default class BQuestListPage extends Vue {
     this.categorizedMonoQuestList = this.questList.filter(
       row => row.category == "モノ"
     );
-    console.log(this.categorizedHitoQuestList);
-    console.log(this.categorizedMonoQuestList);
   }
 
   setTab(num: number) {

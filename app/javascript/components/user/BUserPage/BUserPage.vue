@@ -1,13 +1,18 @@
 <template>
   <div>
-    <b-user-top-bar class="top-bar" :userName="userItem.name" :myPage="myPage" />
+    <b-user-top-bar
+      class="top-bar"
+      :userName="userItem.user_name"
+      :myPage="myPage"
+      @userSignOut="userSignOut($event)"
+    />
     <b-user-profile
       :userItem="userItem"
-      :userName="userItem.name"
-      :userDetail="userItem.detail"
+      :userName="userItem.user_name"
+      :userDetail="userItem.profile"
       @applyVoted="applyVoted($event)"
     />
-    <b-user-quest-list :questList="userItem.quest" />
+    <b-user-quest-list :questList="userItem.quests" />
   </div>
 </template>
 
@@ -36,6 +41,9 @@ export default class BUserPage extends Vue {
   applyVoted(param: any) {
     return param;
   }
+
+  @Emit("userSignOut")
+  userSignOut() {}
 
   // 3.getter
   // 4.@Watch

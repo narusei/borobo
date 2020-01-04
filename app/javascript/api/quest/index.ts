@@ -37,13 +37,22 @@ export default {
   },
 
   getUserItem(params: any, userId: number): any {
-    return http.get(baseUrl + "/api/v1/users/" + userId, { params: params });
-  },
-
-  applyVoted(params: any, userId: number): any {
-    console.log("applyVote");
-    return http.put(baseUrl + "/api/v1/users/" + userId + "/review", {
+    return http.get(baseUrl + "/api/v1/users/" + userId + "/users_info", {
       params: params
     });
+  },
+
+  applyVoted(params: any, userId: number, usersInfoId: number): any {
+    return http.put(
+      baseUrl +
+        "/api/v1/users/" +
+        userId +
+        "/users_info/" +
+        usersInfoId +
+        "/review",
+      {
+        params: params
+      }
+    );
   }
 };

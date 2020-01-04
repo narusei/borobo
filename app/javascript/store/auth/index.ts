@@ -44,6 +44,16 @@ export default class AuthStore extends VuexModule {
       .catch(response => console.log(response));
   }
 
+  @Action({ rawError: true })
+  async userSignOut() {
+    authApi
+      .userSignOut()
+      .then(response => {
+        this.context.commit(MUTATION.USER_LOG_OUT, response.data);
+      })
+      .catch(response => console.log(response));
+  }
+
   @Mutation
   [MUTATION.SET_AUTH_INFO](payload: any) {
     this.authInfo = payload;
@@ -52,5 +62,11 @@ export default class AuthStore extends VuexModule {
   @Mutation
   [MUTATION.SET_LOCALSTRAGE_HEADER](payload: any) {
     localStorage.setItem("AuthenticationHeader", payload);
+  }
+
+  @Mutation
+  [MUTATION.USER_LOG_OUT](payload: any) {
+    console.log(payload);
+    localStorage.removeItem("AuthenticationHeader");
   }
 }

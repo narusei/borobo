@@ -47,9 +47,9 @@ export default class QuestStore extends VuexModule {
   }
 
   @Action({ rawError: true })
-  async applyVoted(param: any, userId: number) {
+  async applyVoted(param: any, idObject: UserItem) {
     questApi
-      .applyVoted(param, userId)
+      .applyVoted(param, idObject.user_id, idObject.id)
       .then(response => {
         this.context.commit(MUTATION.APPLY_VOTE_ITEM, response.data);
       })
