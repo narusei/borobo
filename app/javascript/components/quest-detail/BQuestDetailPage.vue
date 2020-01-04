@@ -23,7 +23,7 @@
       <div class="qd-description">{{ description }}</div>
       <div class="qd-period">
         <b-icon icon="calendar"></b-icon>
-        <div class="period">{{ startDatetime }} ~ {{ dueDatetime }}</div>
+        <div class="period">{{ questFormatedDate }}</div>
       </div>
       <div class="qd-reward">
         <b-icon icon="gift"></b-icon>
@@ -74,6 +74,14 @@ export default class BQuestDetailPage extends Vue {
   dueDatetime: string;
   @Prop({ default: "たけのこの里一個" })
   reward: string;
+
+  get questFormatedDate(): string {
+    const startDate = String(
+      format(new Date(this.startDatetime), "MM/dd hh:mm")
+    );
+    const dueDate = String(format(new Date(this.dueDatetime), "MM/dd hh:mm"));
+    return startDate + "~" + dueDate;
+  }
 
   back() {
     router.go(-1);

@@ -14,26 +14,6 @@ export default class QuestStore extends VuexModule {
   userItem: UserItem = {};
 
   @Action({ rawError: true })
-  async questEdit(param: QuestInfo) {
-    await questApi
-      .editQuest(param, this.questItem.id)
-      .then(response => {
-        this.context.commit(MUTATION.SET_QUEST_ITEM, response.data);
-      })
-      .catch(response => console.log(response));
-  }
-
-  @Action({ rawError: true })
-  async getUserItem(param: any, userId: number) {
-    await questApi
-      .getUserItem(param, userId)
-      .then(response => {
-        this.context.commit(MUTATION.SET_USER_ITEM, response.data);
-      })
-      .catch(response => console.log(response));
-  }
-
-  @Action({ rawError: true })
   async getQuestList(param: any) {
     await questApi
       .getQuestList(param)
@@ -47,11 +27,31 @@ export default class QuestStore extends VuexModule {
   }
 
   @Action({ rawError: true })
-  async applyVoted(param: any, idObject: UserItem) {
-    questApi
-      .applyVoted(param, idObject.user_id, idObject.id)
+  async getQuest(param: any, questId: number) {
+    await questApi
+      .getQuest(param, questId)
       .then(response => {
-        this.context.commit(MUTATION.APPLY_VOTE_ITEM, response.data);
+        this.context.commit(MUTATION.SET_QUEST_ITEM, response.data);
+      })
+      .catch(response => console.log(response));
+  }
+
+  @Action({ rawError: true })
+  async questEdit(param: QuestInfo) {
+    await questApi
+      .editQuest(param, this.questItem.id)
+      .then(response => {
+        this.context.commit(MUTATION.SET_QUEST_ITEM, response.data);
+      })
+      .catch(response => console.log(response));
+  }
+
+  @Action({ rawError: true })
+  async questCreate(param: QuestInfo) {
+    await questApi
+      .createQuest(param)
+      .then(response => {
+        this.context.commit(MUTATION.SET_QUEST_ITEM, response.data);
       })
       .catch(response => console.log(response));
   }
@@ -70,29 +70,19 @@ export default class QuestStore extends VuexModule {
   }
 
   @Action({ rawError: true })
-  async questCreate(param: QuestInfo) {
+  async getUserItem(param: any, userId: number) {
     await questApi
-      .createQuest(param)
+      .getUserItem(param, userId)
       .then(response => {
-        this.context.commit(MUTATION.SET_QUEST_ITEM, response.data);
-      })
-      .catch(response => console.log(response));
-  }
-
-  @Action({ rawError: true })
-  async getQuest(param: any, questId: number) {
-    await questApi
-      .getQuest(param, questId)
-      .then(response => {
-        this.context.commit(MUTATION.SET_QUEST_ITEM, response.data);
+        this.context.commit(MUTATION.SET_USER_ITEM, response.data);
       })
       .catch(response => console.log(response));
   }
 
   @Action({ rawError: true })
   async createUser(param: UserInfo) {
-    questApi
-      .createUser(param)
+    await questApi
+      .createUser(param, this.userItem.user_id)
       .then(response => {
         this.context.commit(MUTATION.SET_USER_ITEM, response.data);
       })
@@ -101,10 +91,20 @@ export default class QuestStore extends VuexModule {
 
   @Action({ rawError: true })
   async updateUser(param: UserInfo) {
-    questApi
+    await questApi
       .updateUser(param, this.userItem.user_id)
       .then(response => {
         this.context.commit(MUTATION.SET_USER_ITEM, response.data);
+      })
+      .catch(response => console.log(response));
+  }
+
+  @Action({ rawError: true })
+  async applyVoted(param: any, idObject: UserItem) {
+    await questApi
+      .applyVoted(param, idObject.user_id, idObject.id)
+      .then(response => {
+        this.context.commit(MUTATION.APPLY_VOTE_ITEM, response.data);
       })
       .catch(response => console.log(response));
   }
