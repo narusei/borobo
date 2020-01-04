@@ -1,7 +1,7 @@
 <template>
   <div>
     <top-bar :pageName="pageName" />
-    <b-quest-search-container @searchQuestList="searchQuestList($event)" />
+    <b-quest-search-container :latestQid="latestQid" @searchQuestList="searchQuestList($event)" />
     <div class="quest-box">
       <b-quest-list :questList="questList" />
     </div>
@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
-import BQuestList from "@/components/quest-search/BQuestList/BQuestList.vue";
+import BQuestList from "@/components/common/BQuestList";
 import BQuestSearchContainer from "@/components/quest-search/BQuestSearchContainer/BQuestSearchContainer.vue";
 import TopBar from "@/components/common/BTopBar";
 import { QuestProperty } from "@/models/quest/QuestProperty";
@@ -28,6 +28,8 @@ export default class BQuestSearchPage extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
+  @Prop({})
+  latestQid: number;
 
   @Prop({ default: () => [] })
   questList: QuestProperty[];

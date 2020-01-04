@@ -3,29 +3,22 @@
     <div class="search-container">
       <div class="cp-iptxt">
         <label class="ef">
-          <input
-            type="text"
-            placeholder="タイトルを入力"
-            v-model="searchWordTitle"
-          />
+          <input type="text" placeholder="ユーザー名を入力" v-model="searchWordAuthor" />
         </label>
       </div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input
-            type="text"
-            placeholder="タグを入力"
-            v-model="searchWordTagsStr"
-          />
+          <input type="text" placeholder="キーワードを入力" v-model="searchWordTitle" />
         </label>
       </div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input
-            type="text"
-            placeholder="報酬を入力"
-            v-model="searchWordReward"
-          />
+          <input type="text" placeholder="タグを入力" v-model="searchWordTagsStr" />
+        </label>
+      </div>
+      <div class="cp-iptxt">
+        <label class="ef">
+          <input type="text" placeholder="報酬を入力" v-model="searchWordReward" />
         </label>
       </div>
       <ul class="tab">
@@ -39,9 +32,7 @@
         </div>
       </ul>
       <section>
-        <b-button @click="searchQuestList" class="quest-search-button"
-          >検索</b-button
-        >
+        <b-button @click="searchQuestList" class="quest-search-button">検索</b-button>
       </section>
     </div>
   </div>
@@ -58,8 +49,12 @@ export default class BQuestSearchContainer extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
+  @Prop({})
+  latestQId: number;
+
   pageTabNum: number = 0;
   pageTabStr: string = "";
+  searchWordAuthor: string = "";
   searchWordTitle: string = "";
   searchWordTagsStr: string = "";
   searchWordTags: string[] = null;
@@ -77,10 +72,12 @@ export default class BQuestSearchContainer extends Vue {
       " "
     ).split(" ");
     return {
-      searchCategory: this.pageTabStr,
-      searchWordTitle: this.searchWordTitle,
-      searchWordTags: this.searchWordTags,
-      searchWordReward: this.searchWordReward
+      search_uname: this.searchWordAuthor,
+      latest_qid: this.latestQId,
+      search_category: this.pageTabStr,
+      search_keyword: this.searchWordTitle,
+      search_tags: this.searchWordTags,
+      search_reward: this.searchWordReward
     };
   }
   @Emit("searchQuestList")

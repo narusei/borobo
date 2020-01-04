@@ -1,5 +1,6 @@
 <template>
   <b-quest-search-page
+    :latestQid="latestQid"
     @searchQuestList="searchQuestList($event)"
     :questList="questList"
   ></b-quest-search-page>
@@ -24,6 +25,12 @@ export default class QuestSearchPage extends Vue {
   //通常メソッド
   get questList() {
     return this.questSearchStore.questList;
+  }
+
+  get latestQid() {
+    return this.questSearchStore.questList[
+      this.questSearchStore.questList.length - 1
+    ].id;
   }
 
   getQuestList(param: any) {

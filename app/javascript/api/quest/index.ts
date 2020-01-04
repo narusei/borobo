@@ -27,6 +27,7 @@ export default {
   },
 
   searchQuestList(params: any) {
+    console.log(params);
     return http.post(baseUrl + "/quests", { params: params });
   },
 
