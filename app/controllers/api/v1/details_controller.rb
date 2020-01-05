@@ -11,7 +11,7 @@ class Api::V1::DetailsController < ApplicationController
             'good': @detail.good,
             'ok': @detail.ok,
             'bad': @detail.bad,
-            'quests': quests
+            'quests': quests.select(:id,:title,:stance,:category,:user_name,:user_id,:start_date,:due_date,:reward)
         }
         json_response(response)
     end
@@ -29,7 +29,7 @@ class Api::V1::DetailsController < ApplicationController
             'good': @detail.good,
             'ok': @detail.ok,
             'bad': @detail.bad,
-            'quests': quests
+            'quests': quests.select(:id,:title,:stance,:category,:user_name,:user_id,:start_date,:due_date,:reward)
         }
         json_response(response)
     end
@@ -52,7 +52,7 @@ class Api::V1::DetailsController < ApplicationController
             'good': @detail.good,
             'ok': @detail.ok,
             'bad': @detail.bad,
-            'quests': quests
+            'quests': quests.select(:id,:title,:stance,:category,:user_name,:user_id,:start_date,:due_date,:reward)
         }
         json_response(response)
     end
