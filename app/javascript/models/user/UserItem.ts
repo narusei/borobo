@@ -1,4 +1,4 @@
-import { QuestProperty } from "models/quest/QuestProperty";
+import { QuestListItem } from "models/quest/QuestListItem";
 
 export class UserItem {
   id?: number;
@@ -8,5 +8,5 @@ export class UserItem {
   good?: number;
   ok?: number;
   bad?: number;
-  quests?: QuestProperty[];
+  quests?: QuestListItem[];
 }

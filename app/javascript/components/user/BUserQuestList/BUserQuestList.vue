@@ -11,12 +11,7 @@
       </div>
     </ul>
     <div class="quest-box">
-      <BQuestList
-        :tabNum="pageTabNum"
-        :questList="questList"
-        :categorizedHitoQuestList="categorizedHitoQuestList"
-        :categorizedMonoQuestList="categorizedMonoQuestList"
-      ></BQuestList>
+      <BQuestList :tabNum="pageTabNum" :questList="questListModel"></BQuestList>
     </div>
     <footer></footer>
   </div>
@@ -24,8 +19,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Emit, Watch } from "vue-property-decorator";
-import BQuestList from "@/components/user/BQuestList/BQuestList.vue";
-import { QuestProperty } from "@/models/quest/QuestProperty";
+import BQuestList from "@/components/common/BQuestList";
+import { QuestListItem } from "@/models/quest/QuestListItem";
 
 @Component({
   components: {
@@ -39,11 +34,13 @@ export default class BQuestListPage extends Vue {
   // 4.@Watch
   // 5.method
   @Prop({})
-  questList: QuestProperty[];
+  questList: QuestListItem[];
+
+  questListModel: QuestListItem[] = [];
 
   pageTabNum: number = 0;
-  categorizedHitoQuestList: QuestProperty[] = [];
-  categorizedMonoQuestList: QuestProperty[] = [];
+  categorizedHitoQuestList: QuestListItem[] = [];
+  categorizedMonoQuestList: QuestListItem[] = [];
 
   //未変更 Userに関連のあるクエスト取ってくる
 
@@ -58,6 +55,11 @@ export default class BQuestListPage extends Vue {
   }
 
   setTab(num: number) {
+    if (num == 0) {
+      this.questListModel = this.categorizedHitoQuestList;
+    } else if (num == 1) {
+      this.questListModel = this.categorizedMonoQuestList;
+    }
     this.pageTabNum = num;
   }
 }

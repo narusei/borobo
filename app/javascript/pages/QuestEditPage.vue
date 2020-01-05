@@ -16,6 +16,8 @@ import { QuestInfo } from "@/models/quest/QuestInfo.ts";
 export default class QuestEditPage extends Vue {
   private questStore = getModule(QuestStore, this.$store);
   // 1.@Prop
+  @Prop()
+  questId!: number;
   // 2.property
   // 3.getter
   // 4.@Watch
@@ -25,7 +27,7 @@ export default class QuestEditPage extends Vue {
       this.questStore.questEdit(param);
       this.$router.push({
         name: "QuestDetailPage",
-        params: { questId: String(this.questStore.questItem.id) }
+        params: { questId: String(this.questId) }
       });
     } catch {
       console.log("PUT Error!");

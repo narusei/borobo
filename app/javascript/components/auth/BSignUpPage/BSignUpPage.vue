@@ -1,7 +1,9 @@
 <template>
   <section class="sign-up">
     <div class="top-bar">
-      <div class="borobo-logo">Borobo</div>
+      <router-link :to="{ name: 'TopPage' }">
+        <div class="borobo-logo">Borobo</div>
+      </router-link>
     </div>
     <div class="sign-up-content">
       <div class="card sign-up-card">

@@ -10,10 +10,8 @@ export default {
     return http.post(baseUrl + "/quests", { params: param });
   },
 
-  getQuest(params: any, questId: number): any {
-    return http.get(baseUrl + "/quests/" + questId, {
-      params: params
-    });
+  getQuest(questId: number): any {
+    return http.get(baseUrl + "/quests/" + questId, {});
   },
 
   editQuest(param: any, questId: number) {
@@ -31,27 +29,25 @@ export default {
     return http.post(baseUrl + "/quests", { params: params });
   },
 
-  getUserItem(params: any, userId: number): any {
-    return http.get(baseUrl + "/users/" + userId + "/users_info", {
-      params: params
-    });
+  getUserItem(userId: number): any {
+    return http.get(baseUrl + "/users/" + userId + "/details", {});
   },
 
   createUser(param: any, userId: number) {
-    return http.post(baseUrl + "/users/" + userId + "/users_info", {
+    return http.post(baseUrl + "/users/" + userId + "/details", {
       params: param
     });
   },
 
   updateUser(param: any, userId: number) {
-    return http.put(baseUrl + "/users/" + userId + "/users_info", {
+    return http.put(baseUrl + "/users/" + userId + "/details", {
       params: param
     });
   },
 
   applyVoted(params: any, userId: number, usersInfoId: number): any {
     return http.put(
-      baseUrl + "/users/" + userId + "/users_info/" + usersInfoId + "/review",
+      baseUrl + "/users/" + userId + "/details/" + usersInfoId + "/review",
       {
         params: params
       }

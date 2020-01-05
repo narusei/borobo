@@ -2,6 +2,7 @@
   <div>
     <b-quest-list-page
       @getQuestList="getQuestList($event)"
+      @reload="reload($event)"
       :questList="questList"
       :userId="MyId"
     />
@@ -14,6 +15,7 @@ import { getModule } from "vuex-module-decorators";
 import BQuestListPage from "@/components/quest-list/BQuestListPage";
 import QuestListStore from "@/store/quest";
 import AuthStore from "store/auth/index";
+import { QuestSearchParameter } from "@/models/quest/QuestSearchParameter";
 
 @Component({
   components: {
@@ -28,14 +30,6 @@ export default class QuestListPage extends Vue {
   //get
   //@Watch()
   //通常メソッド
-  created() {
-    try {
-      this.questListStore.getQuestList("ヒト");
-    } catch {
-      console.log("fails");
-    }
-  }
-
   get questList() {
     return this.questListStore.questList;
   }
@@ -44,8 +38,33 @@ export default class QuestListPage extends Vue {
     return this.authStore.authItem.id;
   }
 
-  getQuestList(param: any) {
-    this.questListStore.getQuestList(param);
+  created() {
+    try {
+      this.questListStore.getQuestList({
+        category: 0,
+        stance: "demand",
+        top: 8,
+        skip: 0
+      });
+    } catch {
+      console.log("fails");
+    }
+  }
+
+  getQuestList(param: QuestSearchParameter) {
+    try {
+      this.questListStore.getQuestList(param);
+    } catch {
+      console.log("Get QuestList faild!");
+    }
+  }
+
+  reload(param: QuestSearchParameter) {
+    try {
+      this.questListStore.reloadQuestList(param);
+    } catch {
+      console.log("Reload faild!");
+    }
   }
 }
 </script>

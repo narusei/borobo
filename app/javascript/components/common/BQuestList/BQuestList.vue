@@ -1,36 +1,56 @@
 <template>
   <div>
     <div v-if="tabNum == 0">
-      <div v-for="quest in questList" :key="quest.id">
-        <b-quest
-          :questId="quest.id"
-          :userName="quest.user_name"
-          :questTitle="quest.title"
-          :questStartDate="quest.start_date"
-          :questDueDate="quest.due_date"
-          :questReward="quest.reward"
-        />
-      </div>
+      <template v-if="questList.length > 0">
+        <div v-for="quest in questList" :key="quest.id">
+          <b-quest
+            :questId="quest.id"
+            :userName="quest.user_name"
+            :questTitle="quest.title"
+            :questStartDate="quest.start_date"
+            :questDueDate="quest.due_date"
+            :questReward="quest.reward"
+          />
+        </div>
+        <template>
+          <b-button @click="reload()" type="is-mainColor" expanded
+            >RELOAD</b-button
+          >
+        </template>
+      </template>
+      <template v-else>
+        <div class="empty-quest">クエストがありません</div>
+      </template>
     </div>
     <div v-if="tabNum == 1">
-      <div v-for="quest in questList" :key="quest.id">
-        <b-quest
-          :questId="quest.id"
-          :userName="quest.user_name"
-          :questTitle="quest.title"
-          :questStartDate="quest.start_date"
-          :questDueDate="quest.due_date"
-          :questReward="quest.reward"
-        />
-      </div>
+      <template v-if="questList.length > 0">
+        <div v-for="quest in questList" :key="quest.id">
+          <b-quest
+            :questId="quest.id"
+            :userName="quest.user_name"
+            :questTitle="quest.title"
+            :questStartDate="quest.start_date"
+            :questDueDate="quest.due_date"
+            :questReward="quest.reward"
+          />
+        </div>
+        <template>
+          <b-button @click="reload()" type="is-mainColor" expanded
+            >RELOAD</b-button
+          >
+        </template>
+      </template>
+      <template v-else>
+        <div class="empty-quest">クエストがありません</div>
+      </template>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
 import BQuest from "@/components/common/BQuest/BQuest.vue";
-import { QuestProperty } from "@/models/quest/QuestProperty.ts";
+import { QuestListItem } from "@/models/quest/QuestListItem.ts";
 @Component({
   components: {
     BQuest
@@ -43,11 +63,21 @@ export default class BQuestList extends Vue {
   tabNum!: number;
 
   @Prop({})
-  questList: QuestProperty[];
+  questList: QuestListItem[];
   // 2.property
   // 3.getter
   // 4.@Watch
   // 5.method
+  @Emit("reload")
+  reload() {
+    return this.tabNum;
+  }
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.empty-quest {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

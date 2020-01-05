@@ -1,9 +1,9 @@
 <template>
   <div>
-    <top-bar :pageName="pageName" />
-    <b-quest-search-container :latestQid="latestQid" @searchQuestList="searchQuestList($event)" />
+    <top-bar :pageName="'検索'" />
+    <b-quest-search-container @searchQuestList="searchQuestList($event)" />
     <div class="quest-box">
-      <b-quest-list :questList="questList" />
+      <b-quest-list :questList="questList" @reload="reload($event)" />
     </div>
   </div>
 </template>
@@ -13,7 +13,8 @@ import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 import BQuestList from "@/components/common/BQuestList";
 import BQuestSearchContainer from "@/components/quest-search/BQuestSearchContainer/BQuestSearchContainer.vue";
 import TopBar from "@/components/common/BTopBar";
-import { QuestProperty } from "@/models/quest/QuestProperty";
+import { QuestListItem } from "@/models/quest/QuestListItem";
+import { QuestSearchParameter } from "@/models/quest/QuestSearchParameter";
 
 @Component({
   components: {
@@ -28,18 +29,26 @@ export default class BQuestSearchPage extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-  @Prop({})
-  latestQid: number;
 
   @Prop({ default: () => [] })
-  questList: QuestProperty[];
+  questList: QuestListItem[];
+
+  searchParamModel?: QuestSearchParameter;
 
   @Emit("searchQuestList")
-  searchQuestList(param: any) {
+  searchQuestList(param: QuestSearchParameter) {
+    this.searchParamModel = param;
     return param;
   }
 
-  pageName: string = "検索";
+  @Emit("reload")
+  reload(num: number) {
+    this.searchParamModel.category = num;
+    this.searchParamModel.stance = "demand";
+    this.searchParamModel.skip = this.questList.length;
+    this.searchParamModel.top = 8;
+    return this.searchParamModel;
+  }
 }
 </script>
 

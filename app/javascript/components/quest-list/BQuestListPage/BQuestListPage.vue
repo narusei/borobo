@@ -4,7 +4,11 @@
       <header class="header">
         <div class="header-container">
           <router-link :to="{ name: 'UserPage', params: { userId: userId } }">
-            <b-icon class="user-icon" icon="account-circle" size="is-large"></b-icon>
+            <b-icon
+              class="user-icon"
+              icon="account-circle"
+              size="is-large"
+            ></b-icon>
           </router-link>
           <router-link :to="{ name: 'QuestSearchPage' }">
             <b-icon icon="magnify" size="is-medium" class="magnify"></b-icon>
@@ -22,7 +26,11 @@
         </div>
       </ul>
       <div class="quest-box">
-        <b-quest-list v-bind:tabNum="pageTabNum" :questList="questList" />
+        <b-quest-list
+          v-bind:tabNum="pageTabNum"
+          :questList="questList"
+          @reload="reload($event)"
+        />
       </div>
     </div>
     <div class="plus-icon-button">
@@ -38,7 +46,8 @@ import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 
 import BQuestList from "@/components/common/BQuestList";
 import QuestCreatePage from "@/pages/QuestCreatePage.vue";
-import { QuestProperty } from "@/models/quest/QuestProperty";
+import { QuestListItem } from "@/models/quest/QuestListItem";
+import { QuestSearchParameter } from "@/models/quest/QuestSearchParameter";
 
 @Component({
   components: {
@@ -55,21 +64,41 @@ export default class BQuestListPage extends Vue {
   userId: number;
 
   @Prop({})
-  questList: QuestProperty[];
+  questList: QuestListItem[];
 
   pageTabNum: number = 0;
 
   @Emit("getQuestList")
-  getQuestList(param: any) {
-    return this.questList;
+  getQuestList(param: QuestSearchParameter) {
+    return param;
+  }
+
+  @Emit("reload")
+  reload(num: number) {
+    return {
+      category: num,
+      stance: "demand",
+      top: 8,
+      skip: this.questList.length
+    };
   }
 
   setTab(num: number) {
     this.pageTabNum = num;
     if (num == 0) {
-      this.getQuestList("ヒト");
+      this.getQuestList({
+        category: num,
+        stance: "demand",
+        top: 8,
+        skip: 0
+      });
     } else {
-      this.getQuestList("モノ");
+      this.getQuestList({
+        category: num,
+        stance: "demand",
+        top: 8,
+        skip: 0
+      });
     }
   }
 }

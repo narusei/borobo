@@ -42,14 +42,12 @@
         </label>
       </div>
       <ul class="tab">
-        <div class="hito" @click="setTab(0)">
+        <b-radio @click="setTab(0)" native-value="0" type="is-mainColor">
           ヒト
-          <div id="chose" v-if="pageTabNum == 0"></div>
-        </div>
-        <div class="mono" @click="setTab(1)">
+        </b-radio>
+        <b-radio @click="setTab(1)" native-value="1" type="is-mainColor">
           モノ
-          <div id="chose" v-if="pageTabNum == 1"></div>
-        </div>
+        </b-radio>
       </ul>
       <section>
         <b-button @click="searchQuestList" class="quest-search-button"
@@ -71,8 +69,6 @@ export default class BQuestSearchContainer extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-  @Prop({})
-  latestQId: number;
 
   pageTabNum: number = 0;
   pageTabStr: string = "";
@@ -95,7 +91,8 @@ export default class BQuestSearchContainer extends Vue {
     ).split(" ");
     return {
       search_uname: this.searchWordAuthor,
-      latest_qid: this.latestQId,
+      top: 8,
+      skip: 0,
       category: this.pageTabStr,
       stance: "demand",
       search_title: this.searchWordTitle,
@@ -104,7 +101,7 @@ export default class BQuestSearchContainer extends Vue {
     };
   }
   @Emit("searchQuestList")
-  searchQuestList(): any {
+  searchQuestList() {
     return this.searchWord;
   }
 

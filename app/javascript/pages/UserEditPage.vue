@@ -17,6 +17,8 @@ import { UserInfo } from "@/models/user/UserInfo";
 export default class UserEditPage extends Vue {
   private questStore = getModule(QuestStore, this.$store);
   //@Prop()
+  @Prop({})
+  userId: number;
   //通常プロパティ
   //get
   //@Watch()
@@ -26,6 +28,14 @@ export default class UserEditPage extends Vue {
       this.questStore.updateUser(param);
     } catch {
       console.log("Update User faild!");
+    }
+  }
+
+  created() {
+    try {
+      this.questStore.getUserItem(this.userId);
+    } catch {
+      console.log("error!");
     }
   }
 }

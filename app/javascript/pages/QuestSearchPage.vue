@@ -1,7 +1,7 @@
 <template>
   <b-quest-search-page
-    :latestQid="latestQid"
     @searchQuestList="searchQuestList($event)"
+    @reload="reload($event)"
     :questList="questList"
   ></b-quest-search-page>
 </template>
@@ -27,19 +27,33 @@ export default class QuestSearchPage extends Vue {
     return this.questSearchStore.questList;
   }
 
-  get latestQid() {
-    return this.questSearchStore.questList[
-      this.questSearchStore.questList.length - 1
-    ].id;
-  }
-
-  getQuestList(param: any) {
-    this.questSearchStore.getQuestList(param);
+  created() {
+    try {
+      this.questSearchStore.getQuestList({
+        category: 0,
+        stance: "demand",
+        top: 8,
+        skip: 0
+      });
+    } catch {
+      console.log("faild!");
+    }
   }
 
   searchQuestList(param: any) {
-    this.getQuestList("");
-    this.questSearchStore.searchQuestList(param);
+    try {
+      this.questSearchStore.searchQuestList(param);
+    } catch {
+      console.log("Search faild!");
+    }
+  }
+
+  reload(param: any) {
+    try {
+      this.questSearchStore.reloadQuestList(param);
+    } catch {
+      console.log("Reload faild!");
+    }
   }
 }
 </script>

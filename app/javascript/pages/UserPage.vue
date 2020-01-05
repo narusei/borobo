@@ -44,11 +44,14 @@ export default class UserPage extends Vue {
     } else {
       return false;
     }
-    return false;
   }
 
   created() {
-    this.userStore.getUserItem("", Number(this.$route.params.userId));
+    try {
+      this.userStore.getUserItem(Number(this.userId));
+    } catch {
+      console.log("error!");
+    }
   }
 
   applyVoted(param: any) {

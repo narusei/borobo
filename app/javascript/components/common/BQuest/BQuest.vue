@@ -1,7 +1,9 @@
 <template>
   <div class="card">
     <div class="card-content">
-      <router-link :to="{ name: 'QuestDetailPage', params: { id: questId } }">
+      <router-link
+        :to="{ name: 'QuestDetailPage', params: { questId: questId } }"
+      >
         <div class="media">
           <div class="media-left">
             <b-icon
@@ -38,28 +40,26 @@ export default class BQuest extends Vue {
   @Prop({})
   questId!: number;
 
-  @Prop({ default: "トニーあああああああ" })
+  @Prop({ default: "" })
   userName!: string;
 
-  @Prop({ default: "関数電卓を貸してああああああああああああああああ" })
+  @Prop({ default: "" })
   questTitle!: string;
 
-  @Prop({ default: "Fri Jan 03 2020 11:52:18 GMT+0900 (日本標準時)" })
+  @Prop({ default: new Date() })
   questStartDate!: string;
 
-  @Prop({ default: "Fri Jan 03 2020 11:52:18 GMT+0900 (日本標準時)" })
+  @Prop({ default: "" })
   questDueDate!: string;
 
-  @Prop({ default: "たけのこの里" })
+  @Prop({ default: "" })
   questReward!: string;
 
   get questFormatedDate(): string {
     const startDate = String(
-      format(new Date("2004-04-01T00:00:01+09:00"), "MM/dd hh:mm")
+      format(new Date(this.questStartDate), "MM/dd hh:mm")
     );
-    const dueDate = String(
-      format(new Date("2004-04-01T00:00:01+09:00"), "MM/dd hh:mm")
-    );
+    const dueDate = String(format(new Date(this.questDueDate), "MM/dd hh:mm"));
     return startDate + "~" + dueDate;
   }
 }

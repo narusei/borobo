@@ -1,33 +1,39 @@
 <template>
   <section class="quest-detail">
-    <top-bar :pageName="title" />
+    <b-quest-detail-header
+      :questTitle="questItem.title"
+      :questId="questId"
+      @deleteQuest="deleteQuest($event)"
+    />
     <div class="qd-user-info">
       <div class="qd-user">
         <div>
-          <router-link :to="{ name: 'UserPage', params: { userId: userId } }">
+          <router-link
+            :to="{ name: 'UserPage', params: { userId: questItem.user_id } }"
+          >
             <b-icon
               icon="account-circle"
               size="is-large"
               class="account"
             ></b-icon>
           </router-link>
-          <div>{{ name }}</div>
+          <div>{{ questItem.name }}</div>
         </div>
       </div>
       <div class="triangle-ui">
         <div class="triangle"></div>
       </div>
-      <div class="qd-title">{{ title }}</div>
+      <div class="qd-title">{{ questItem.title }}</div>
     </div>
     <div class="qd-info">
-      <div class="qd-description">{{ description }}</div>
+      <div class="qd-description">{{ questItem.detail }}</div>
       <div class="qd-period">
         <b-icon icon="calendar"></b-icon>
         <div class="period">{{ questFormatedDate }}</div>
       </div>
       <div class="qd-reward">
         <b-icon icon="gift"></b-icon>
-        <div class="reward">{{ reward }}</div>
+        <div class="reward">{{ questItem.reward }}</div>
       </div>
     </div>
     <div class="qd-chat">
@@ -42,49 +48,44 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
 import { format } from "date-fns";
 import router from "@/router/index.ts";
-import TopBar from "@/components/common/BTopBar";
+import BQuestDetailHeader from "@/components/quest-detail/BQuestDetailHeader";
+import { QuestItem } from "@/models/quest/QuestItem";
 @Component({
-  components: { TopBar }
+  components: { BQuestDetailHeader }
 })
 export default class BQuestDetailPage extends Vue {
   // 1.@Prop
+  @Prop({ default: () => {} })
+  questItem!: QuestItem;
+
+  @Prop({ default: 0 })
+  questId!: number;
   // 2.property
   // 3.getter
   // 4.@Watch
   // 5.method
-  // 仮置き
-  @Prop({ default: 0 })
-  userId: number;
-  @Prop({ default: "トニー" })
-  name: string;
-  @Prop({ default: "関数電卓を貸して！" })
-  title: string;
-  @Prop({
-    default:
-      "テストで関数電卓が必要になったのでかしてほしいです。使用したい時間はテストの時間のみなので終わったらすぐお返しします。引き渡し場所は2号館3階を希望です。"
-  })
-  description: string;
-  @Prop({ default: format(new Date(), "MM/dd hh:mm:ss") })
-  startDatetime: string;
-
-  @Prop({ default: format(new Date(), "MM/dd hh:mm:ss") })
-  dueDatetime: string;
-  @Prop({ default: "たけのこの里一個" })
-  reward: string;
 
   get questFormatedDate(): string {
     const startDate = String(
-      format(new Date(this.startDatetime), "MM/dd hh:mm")
+      format(new Date(this.questItem.start_date), "MM/dd hh:mm")
     );
-    const dueDate = String(format(new Date(this.dueDatetime), "MM/dd hh:mm"));
+    const dueDate = String(
+      format(new Date(this.questItem.due_date), "MM/dd hh:mm")
+    );
     return startDate + "~" + dueDate;
   }
 
+  // あとで対応したい
   back() {
     router.go(-1);
+  }
+
+  @Emit("deleteQuest")
+  deleteQuest(questId: number) {
+    return questId;
   }
 }
 </script>

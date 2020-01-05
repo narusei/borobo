@@ -3,12 +3,14 @@
     <div class="back-button" @click="back">
       <b-icon icon="chevron-left" size="is-medium"></b-icon>
     </div>
-    <div class="page-title">{{ userName }}のページ</div>
-    <div class="user-edit" v-if="myPage">
-      <a @click="signOut">
-        <b-icon icon="logout" size="is-medium" class="cogs"></b-icon>
+    <div class="page-title">{{ qurstTitle }}</div>
+    <div class="user-edit" v-if="myQuest">
+      <a @click="deleteQuest()">
+        <b-icon icon="delete" size="is-medium" class="cogs"></b-icon>
       </a>
-      <router-link :to="{ name: 'UserEditPage', params: { userId: userId } }">
+      <router-link
+        :to="{ name: 'QuestEditPage', params: { questId: questId } }"
+      >
         <b-icon icon="pencil" size="is-medium" class="cogs"></b-icon>
       </router-link>
     </div>
@@ -27,30 +29,29 @@ export default class BUserTopBar extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-  @Prop({ default: "borobo" })
-  userName!: string;
+  @Prop({ default: "" })
+  questTitle!: string;
 
   @Prop({ default: 0 })
-  userId!: number;
+  questId!: number;
 
   @Prop({ default: false })
-  myPage!: boolean;
+  myQuest!: boolean;
 
-  @Emit("userSignOut")
-  userSignOut() {}
+  @Emit("deleteQuest")
+  deleteQuest() {
+    return this.questId;
+  }
 
+  // あとで対応したい
   back() {
     router.go(-1);
   }
 
-  settingMyPage() {
-    alert();
-  }
-
-  signOut() {
-    const answer = window.confirm("ログアウトしますか？");
+  onDeleteQuest() {
+    const answer = window.confirm("本当に削除しますか？");
     if (answer) {
-      this.userSignOut();
+      this.deleteQuest();
     } else {
       return;
     }

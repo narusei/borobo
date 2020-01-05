@@ -7,6 +7,7 @@ import QuestSearchPage from "@/pages/QuestSearchPage.vue";
 import QuestListPage from "@/pages/QuestListPage.vue";
 import QuestDetailPage from "@/pages/QuestDetailPage.vue";
 import QuestCreatePage from "@/pages/QuestCreatePage.vue";
+import QuestEditPage from "@/pages/QuestEditPage.vue";
 import UserCreatePage from "@/pages/UserCreatePage.vue";
 import UserEditPage from "@/pages/UserEditPage.vue";
 import UserPage from "@/pages/UserPage.vue";
@@ -40,30 +41,38 @@ const routes = [
     component: QuestSearchPage
   },
   {
+    path: "/quest-detail/:questId",
+    name: "QuestDetailPage",
+    component: QuestDetailPage,
+    props: true
+  },
+  {
     path: "/quest-create",
     name: "QuestCreatePage",
     component: QuestCreatePage
   },
   {
-    path: "/user-create",
-    name: "UserCreatePage",
-    component: UserCreatePage
-  },
-  {
-    path: "/user-edit",
-    name: "UserEditPage",
-    component: UserEditPage
-  },
-  {
-    path: "/quest-detail/:id",
-    name: "QuestDetailPage",
-    component: QuestDetailPage,
+    path: "/quest-detail/:questId/edit",
+    name: "QuestEditPage",
+    component: QuestEditPage,
     props: true
   },
   {
     path: "/user-page/:userId",
     name: "UserPage",
     component: UserPage,
+    props: true
+  },
+  {
+    path: "/user-create",
+    name: "UserCreatePage",
+    component: UserCreatePage,
+    props: true
+  },
+  {
+    path: "/user-page/:userId/edit",
+    name: "UserEditPage",
+    component: UserEditPage,
     props: true
   }
 ];
@@ -72,6 +81,23 @@ const router = new VueRouter({
   // mode: "history",
   base: process.env.BASE_URL,
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  var token = localStorage.getItem("Token");
+  if (
+    from.name == "TopPage" ||
+    from.name == "SignUpPage" ||
+    from.name == "SignInPage"
+  ) {
+    next();
+  } else {
+    if (token) {
+      next();
+    } else {
+      next({ name: "SignInPage" });
+    }
+  }
 });
 
 export default router;

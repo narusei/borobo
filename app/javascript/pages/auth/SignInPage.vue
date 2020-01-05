@@ -20,7 +20,12 @@ export default class SignInPage extends Vue {
   // 4.@Watch
   // 5.method
   postSignInInfo(param: any) {
-    this.authStore.postSignInInfo(param);
+    try {
+      this.authStore.postSignInInfo(param);
+      this.$router.push({ name: "QuestListPage" });
+    } catch {
+      console.log("Sign in faild!");
+    }
   }
 }
 </script>
