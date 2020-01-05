@@ -1,13 +1,37 @@
 class Api::V1::DetailsController < ApplicationController
     def show
         @detail = Detail.find_by(id:params[:id])
-        json_response(@detail)
+        @author = User.find_by(id:params[:user_id])
+        quests = Quest.where(user_id: params[:user_id])
+        response = {
+            'id':@detail.id,
+            'user_id': @detail.user_id,
+            'user_name': @detail.user_name,
+            'profile': @detail.profile,
+            'good': @detail.good,
+            'ok': @detail.ok,
+            'bad': @detail.bad,
+            'quests': quests
+        }
+        json_response(response)
     end
-
+    # @rentals = Rental.all.includes(:rooms)
     def update
         @detail = Detail.find_by(user_id:params[:user_id])
+        @author = User.find_by(id:params[:user_id])
+        quests = Quest.where(user_id: params[:user_id])
         @detail.update(detail_params)
-        json_response(@detail)
+        response = {
+            'id':@detail.id,
+            'user_id': @detail.user_id,
+            'user_name': @detail.user_name,
+            'profile': @detail.profile,
+            'good': @detail.good,
+            'ok': @detail.ok,
+            'bad': @detail.bad,
+            'quests': quests
+        }
+        json_response(response)
     end
     
     def create
@@ -17,8 +41,20 @@ class Api::V1::DetailsController < ApplicationController
 
     def review
         @detail = Detail.find_by(user_id:params[:user_id])
+        @author = User.find_by(id:params[:user_id])
+        quests = Quest.where(user_id: params[:user_id])
         @detail.update( ok: params[:ok], good: params[:good], bad: params[:bad] )
-        json_response(@detail)
+        response = {
+            'id':@detail.id,
+            'user_id': @detail.user_id,
+            'user_name': @detail.user_name,
+            'profile': @detail.profile,
+            'good': @detail.good,
+            'ok': @detail.ok,
+            'bad': @detail.bad,
+            'quests': quests
+        }
+        json_response(response)
     end
 
     private
