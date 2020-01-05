@@ -3,12 +3,8 @@
     <div>
       <header class="header">
         <div class="header-container">
-          <router-link :to="{ name: 'UserPage', params: { toMyPage: true } }">
-            <b-icon
-              class="user-icon"
-              icon="account-circle"
-              size="is-large"
-            ></b-icon>
+          <router-link :to="{ name: 'UserPage', params: { userId: userId } }">
+            <b-icon class="user-icon" icon="account-circle" size="is-large"></b-icon>
           </router-link>
           <router-link :to="{ name: 'QuestSearchPage' }">
             <b-icon icon="magnify" size="is-medium" class="magnify"></b-icon>
@@ -40,7 +36,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 
-import BQuestList from "@/components/quest-list/BQuestList";
+import BQuestList from "@/components/common/BQuestList";
 import QuestCreatePage from "@/pages/QuestCreatePage.vue";
 import { QuestProperty } from "@/models/quest/QuestProperty";
 
@@ -55,6 +51,9 @@ export default class BQuestListPage extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
+  @Prop({})
+  userId: number;
+
   @Prop({})
   questList: QuestProperty[];
 
@@ -73,10 +72,6 @@ export default class BQuestListPage extends Vue {
       this.getQuestList("モノ");
     }
   }
-
-  toSearchPage() {}
-
-  toCreateQuest() {}
 }
 </script>
 

@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import BQuest from "@/components/user/BQuest";
+import BQuest from "@/components/common/BQuest";
 import { QuestProperty } from "@/models/quest/QuestProperty.ts";
 @Component({
   components: {

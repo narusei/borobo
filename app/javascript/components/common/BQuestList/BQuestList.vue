@@ -15,6 +15,7 @@
     <div v-if="tabNum == 1">
       <div v-for="quest in questList" :key="quest.id">
         <b-quest
+          :questId="quest.id"
           :userName="quest.user_name"
           :questTitle="quest.title"
           :questStartDate="quest.start_date"
@@ -28,8 +29,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import BQuest from "@/components/quest-search/BQuest";
-import { QuestProperty } from "@/models/quest/QuestProperty";
+import BQuest from "@/components/common/BQuest/BQuest.vue";
+import { QuestProperty } from "@/models/quest/QuestProperty.ts";
 @Component({
   components: {
     BQuest
@@ -37,8 +38,10 @@ import { QuestProperty } from "@/models/quest/QuestProperty";
 })
 export default class BQuestList extends Vue {
   // 1.@Prop
+
   @Prop({ default: 0 })
   tabNum!: number;
+
   @Prop({})
   questList: QuestProperty[];
   // 2.property

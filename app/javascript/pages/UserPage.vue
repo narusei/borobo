@@ -27,6 +27,8 @@ export default class UserPage extends Vue {
   private userStore = getModule(UserStore, this.$store);
   private authStore = getModule(AuthStore, this.$store);
   // 1.@Prop
+  @Prop({})
+  userId: number;
   // 2.property
   // 3.getter
   // 4.@Watch
@@ -37,10 +39,12 @@ export default class UserPage extends Vue {
 
   get myPage() {
     //マイページであるかの判定
-    // if (this.authStore.authInfo.id == this.userStore.userItem[0].user_id) {
-    //   return true;
-    // }
-    return true;
+    if (this.authStore.authItem.id == this.userId) {
+      return true;
+    } else {
+      return false;
+    }
+    return false;
   }
 
   created() {
