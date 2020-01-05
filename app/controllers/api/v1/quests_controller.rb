@@ -17,6 +17,7 @@ class Api::V1::QuestsController < ApplicationController
         top = params[:top].to_i
         skip = params[:skip].to_i
         @quests = @quests.limit(top).offset(skip)
+        @quests = @quests.select(:id,:title,:stance,:category,:user_name,:user_id,:start_date,:due_date,:reward)
         json_response(@quests)
     end
     # POST /Quests
