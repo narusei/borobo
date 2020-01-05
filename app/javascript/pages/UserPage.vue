@@ -41,8 +41,9 @@ export default class UserPage extends Vue {
     //マイページであるかの判定
     if (this.authStore.authItem.id == this.userId) {
       return true;
+    } else {
+      return false;
     }
-
     return false;
   }
 
