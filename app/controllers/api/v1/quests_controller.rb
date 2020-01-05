@@ -4,12 +4,12 @@ class Api::V1::QuestsController < ApplicationController
     # GET /Quests
     def index
         exec_query = 'Quest'
-        exec_query += 'where("title = ?", params[:category])' if params[:category].present?
+        exec_query += 'where("title = ?", params[:search_keyword])' if params[:search_keyword].present?
         exec_query += 'where("user_name = ?", params[:search_uname])' if params[:seach_uname].present?
         exec_query += 'where("tags = ?", params[:search_tags])' if params[:search_tags].present?
         exec_query += 'where("category = ?", params[:category])' if params[:category].present?
         exec_query += 'where("reward = ?", params[:reward])' if params[:reward].present?    
-        @books = eval(exec_query)
+        @quests = eval(exec_query)
         json_response(@quests) 
         
     end
@@ -37,6 +37,6 @@ class Api::V1::QuestsController < ApplicationController
     private
 
     def quest_params
-        params.permit( :title, :stance, :category, :user_name :detail, :tags, :detail, :start_date, :due_date, :reward)
+        params.permit( :title, :stance, :category, :user_id, :user_name, :detail, :tags, :detail, :start_date, :due_date, :reward)
     end
 end
