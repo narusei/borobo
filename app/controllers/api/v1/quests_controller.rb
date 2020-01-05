@@ -37,6 +37,6 @@ class Api::V1::QuestsController < ApplicationController
     private
 
     def quest_params
-        params.permit(:category, :detail, :from_to, :status, :tag, :author, :title,:reward)
+        params.permit( :title, :stance, :category, :user_name :detail, :tags, :detail, :start_date, :due_date, :reward)
     end
 end

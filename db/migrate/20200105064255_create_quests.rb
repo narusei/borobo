@@ -4,6 +4,7 @@ class CreateQuests < ActiveRecord::Migration[6.0]
       t.string :title
       t.string :stance
       t.string :category
+      t.string :user_name
       t.string :tags
       t.text :detail
       t.datetime :start_date

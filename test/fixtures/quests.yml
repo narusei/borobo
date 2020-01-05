@@ -4,18 +4,20 @@ one:
   title: MyString
   stance: MyString
   category: MyString
+  user_name: MyString
   tags: MyString
   detail: MyText
-  start_date: 2020-01-05 06:25:40
-  due_date: 2020-01-05 06:25:40
+  start_date: 2020-01-05 06:42:55
+  due_date: 2020-01-05 06:42:55
   reward: MyString
 
 two:
   title: MyString
   stance: MyString
   category: MyString
+  user_name: MyString
   tags: MyString
   detail: MyText
-  start_date: 2020-01-05 06:25:40
-  due_date: 2020-01-05 06:25:40
+  start_date: 2020-01-05 06:42:55
+  due_date: 2020-01-05 06:42:55
   reward: MyString
