@@ -1,30 +1,30 @@
 class Api::V1::DetailsController < ApplicationController
     def show
-        @details = Detail.find_by(user_id:params[user_id])
-        json_response(@details)
+        @detail = Detail.find_by(id:params[:id])
+        json_response(@detail)
     end
 
     def update
-        @details = Detail.find_by(user_id:params[:id])
-        @details = @details.update(detail_params)
-        json_response(@details)
+        @detail = Detail.find_by(user_id:params[:user_id])
+        @detail.update(detail_params)
+        json_response(@detail)
     end
     
     def create
-        @detail = Detail.create!(detail_params)
-        json_response(@details)
+        @detail = Detail.create!(user_id:params[:user_id],user_name:params[:user_name],profile:params[:profile])
+        json_response(@detail)
     end
 
     def review
-        @details = Detail.find_by(user_id:params[:id])
-        @details = Detail.update(ok:params[:ok],good:params[:good],bad:[:bad])
-        json_response(@details)
+        @detail = Detail.find_by(user_id:params[:user_id])
+        @detail.update( ok: params[:ok], good: params[:good], bad: params[:bad] )
+        json_response(@detail)
     end
 
     private
 
     def detail_params
-        params.permit(:user_name,:profile,user_id:params[:user_id])
+        params.permit(:user_name,:profile,:user_id)
     end
 
 end

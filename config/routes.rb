@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       }
     end
   end
+
+  put 'api/v1/users/:user_id/details/:id/review' => 'api/v1/details#review'
+  
   namespace :api do
     namespace :v1 do
       resources :users do
