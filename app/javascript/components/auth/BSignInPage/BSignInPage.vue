@@ -17,13 +17,6 @@
               password-reveal
             ></b-input>
           </b-field>
-          <b-field label="re-password">
-            <b-input
-              v-model="rePassword"
-              type="password"
-              password-reveal
-            ></b-input>
-          </b-field>
           <div class="sign-in-button">
             <b-button @click="postSignInInfo()" type="is-mainColor"
               >Sign In</b-button
@@ -42,7 +35,6 @@ import { Component, Prop, Vue, Emit } from "vue-property-decorator";
 export default class BSignInPage extends Vue {
   mail: string = "";
   password: string = "";
-  rePassword: string = "";
 
   @Emit("postSignInInfo")
   postSignInInfo() {
@@ -79,7 +71,7 @@ export default class BSignInPage extends Vue {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 0px 10px 10px 10px;
 }
 
 .sign-in-title {
