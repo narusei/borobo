@@ -3,22 +3,42 @@
     <div class="search-container">
       <div class="cp-iptxt">
         <label class="ef">
-          <input type="text" placeholder="ユーザー名を入力" v-model="searchWordAuthor" />
+          <input
+            type="text"
+            placeholder="ユーザー名を入力"
+            v-model="searchWordAuthor"
+          />
         </label>
       </div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input type="text" placeholder="キーワードを入力" v-model="searchWordTitle" />
+          <input
+            type="text"
+            placeholder="タイトルを入力"
+            v-model="searchWordTitle"
+          />
         </label>
+      </div>
+      <div class="input-tags">
+        <section>
+          <b-field label>
+            <b-taginput
+              class="tag-input"
+              v-model="searchWordTagsStr"
+              ellipsis
+              icon="label"
+              placeholder="タグを入力"
+            />
+          </b-field>
+        </section>
       </div>
       <div class="cp-iptxt">
         <label class="ef">
-          <input type="text" placeholder="タグを入力" v-model="searchWordTagsStr" />
-        </label>
-      </div>
-      <div class="cp-iptxt">
-        <label class="ef">
-          <input type="text" placeholder="報酬を入力" v-model="searchWordReward" />
+          <input
+            type="text"
+            placeholder="報酬を入力"
+            v-model="searchWordReward"
+          />
         </label>
       </div>
       <ul class="tab">
@@ -32,7 +52,9 @@
         </div>
       </ul>
       <section>
-        <b-button @click="searchQuestList" class="quest-search-button">検索</b-button>
+        <b-button @click="searchQuestList" class="quest-search-button"
+          >検索</b-button
+        >
       </section>
     </div>
   </div>
@@ -57,7 +79,7 @@ export default class BQuestSearchContainer extends Vue {
   searchWordAuthor: string = "";
   searchWordTitle: string = "";
   searchWordTagsStr: string = "";
-  searchWordTags: string[] = null;
+  searchWordTags: string[] = [];
   searchWordReward: string = "";
 
   get searchWord() {
@@ -74,8 +96,9 @@ export default class BQuestSearchContainer extends Vue {
     return {
       search_uname: this.searchWordAuthor,
       latest_qid: this.latestQId,
-      search_category: this.pageTabStr,
-      search_keyword: this.searchWordTitle,
+      category: this.pageTabStr,
+      stance: "demand",
+      search_title: this.searchWordTitle,
       search_tags: this.searchWordTags,
       search_reward: this.searchWordReward
     };
@@ -115,6 +138,10 @@ export default class BQuestSearchContainer extends Vue {
 }
 .ef input[type="text"]:focus {
   outline: none;
+}
+
+.input-tags {
+  margin: 10px;
 }
 
 .quest-search-button {
