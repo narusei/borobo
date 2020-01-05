@@ -3,14 +3,39 @@ class Api::V1::QuestsController < ApplicationController
     # before_action :set_quest
     # GET /Quests
     def index
-        exec_query = 'Quest'
-        exec_query += 'where("title = ?", params[:search_keyword])' if params[:search_keyword].present?
-        exec_query += 'where("user_name = ?", params[:search_uname])' if params[:seach_uname].present?
-        exec_query += 'where("tags = ?", params[:search_tags])' if params[:search_tags].present?
-        exec_query += 'where("category = ?", params[:category])' if params[:category].present?
-        exec_query += 'where("reward = ?", params[:reward])' if params[:reward].present?    
-        @quests = eval(exec_query)
-        json_response(@quests) 
+        def index
+            latest_qid = params[:latest_qid] if params[:latest_qid].present?
+            # tags_exist =  params[:search_tags].present?
+            # reward_exist =  params[:search_reward].present?
+            # author_exist =  params[:search_uname].present?
+            # keyword_exist = params[:search_title].present?
+            # category_exist = params[:category].present?
+            # quest_tag = params[:search_tags]
+            # quest_category = params[:category]
+            # quest_reward = params[:search_reward]
+            # quest_author = params[:search_uname]
+            # quest_keyword = params[:search_title]
+            # @quests = Quest.limit(8).offset(0) if params[:latest_qid].present?
+            
+            if latest_qid == nil then
+                @quests = Quest.limit(8).offset(0)
+                json_response(@quests)
+            else
+                    # if tags_exist && reward_exist && category_exist && keyword_exist && author_exist
+                    #     @quests = 
+                render json: Quest.where([ 
+                    { category: params[:category] },
+                    { title: params[:search_title] },
+                    { tags: params[:search_tags] },
+                    { reward: params[:search_reward]},
+                    { user_name: params[:search_uname]}
+                ].reduce({}) do |pre, cur|
+                    cur.values.first.present? ? pre.merge(cur) : pre
+                end
+                ), status: 200
+            end
+            # json_response(@quests) 
+        end
         
     end
     # POST /Quests
