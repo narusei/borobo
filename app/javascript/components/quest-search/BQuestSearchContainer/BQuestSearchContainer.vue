@@ -74,7 +74,7 @@ export default class BQuestSearchContainer extends Vue {
   // 4.@Watch
   // 5.method
 
-  pageTabNum: number = 0;
+  pageTabNum: string = "";
   pageTabStr: string = "";
   searchWordAuthor: string = "";
   searchWordTitle: string = "";
@@ -83,9 +83,9 @@ export default class BQuestSearchContainer extends Vue {
   searchWordReward: string = "";
 
   get searchWord() {
-    if (this.pageTabNum == 0) {
+    if (Number(this.pageTabNum) == 0) {
       this.pageTabStr = "ヒト";
-    } else if (this.pageTabNum == 1) {
+    } else if (Number(this.pageTabNum) == 1) {
       this.pageTabStr = "モノ";
     }
     this.searchWordTags = this.replaceAll(

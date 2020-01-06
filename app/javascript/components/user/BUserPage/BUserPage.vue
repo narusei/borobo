@@ -3,7 +3,7 @@
     <b-user-top-bar
       class="top-bar"
       :userName="userItem.user_name"
-      :userId="userItem.id"
+      :userId="userItem.user_id"
       :myPage="myPage"
       @userSignOut="userSignOut($event)"
     />

@@ -3,39 +3,40 @@ const baseUrl = "http://localhost:3000/api/v1";
 
 export default {
   getQuestList(params: any) {
-    return http.get(baseUrl + "/quests", { params: params });
+    return http.get(baseUrl + "/quests", { params: params, auth: true });
   },
 
   createQuest(param: any) {
-    return http.post(baseUrl + "/quests", { params: param });
+    return http.post(baseUrl + "/quests", { params: param, auth: true });
   },
 
   getQuest(questId: number): any {
-    return http.get(baseUrl + "/quests/" + questId, {});
+    return http.get(baseUrl + "/quests/" + questId, { auth: true });
   },
 
   editQuest(param: any, questId: number) {
     return http.put(baseUrl + "/quests/" + questId, {
-      params: param
+      params: param,
+      auth: true
     });
   },
 
   deleteQuest(questId: number) {
-    return http.delete(baseUrl + "/quests/" + questId, {});
+    return http.delete(baseUrl + "/quests/" + questId, { auth: true });
   },
 
   searchQuestList(params: any) {
-    console.log(params);
-    return http.post(baseUrl + "/quests", { params: params });
+    return http.post(baseUrl + "/quests", { params: params, auth: true });
   },
 
   getUserItem(userId: number): any {
-    return http.get(baseUrl + "/users/" + userId + "/details", {});
+    return http.get(baseUrl + "/users/" + userId + "/details", { auth: true });
   },
 
   createUser(param: any, userId: number) {
     return http.post(baseUrl + "/users/" + userId + "/details", {
-      params: param
+      params: param,
+      auth: true
     });
   },
 

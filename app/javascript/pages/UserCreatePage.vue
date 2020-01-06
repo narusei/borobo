@@ -25,7 +25,10 @@ export default class UserCreatePage extends Vue {
   //通常メソッド
   createUser(param: UserInfo) {
     try {
-      this.questStore.createUser(param, this.authStore.authItem.id);
+      this.questStore.createUser({
+        param: param,
+        userId: this.authStore.authItem.id
+      });
       this.$router.push({ name: "QuestListPage" });
     } catch {
       console.log("Create User faild!");

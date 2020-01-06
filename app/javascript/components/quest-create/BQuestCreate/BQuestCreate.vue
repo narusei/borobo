@@ -5,8 +5,8 @@
       <div class="cp-ipselect cp-sl01">
         <select required v-model="questInfoModel.category">
           <option value hidden>モノ/ヒト</option>
-          <option value="モノ">モノ</option>
-          <option value="ヒト">ヒト</option>
+          <option value="0">モノ</option>
+          <option value="1">ヒト</option>
         </select>
       </div>
       <div class="item-text">タイトル</div>

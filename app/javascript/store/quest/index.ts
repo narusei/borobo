@@ -95,9 +95,10 @@ export default class QuestStore extends VuexModule {
   }
 
   @Action({ rawError: true })
-  async createUser(param: UserInfo, userId: number) {
+  async createUser(param_obj: { param: UserInfo; userId: number }) {
+    console.log(param_obj.userId);
     await questApi
-      .createUser(param, userId)
+      .createUser(param_obj.param, param_obj.userId)
       .then(response => {
         this.context.commit(MUTATION.SET_USER_ITEM, response.data);
       })
