@@ -90,11 +90,6 @@ export default class BQuestSearchContainer extends Vue {
   searchWordReward: string = "";
 
   get searchWord(): any {
-    this.searchWordTags = this.replaceAll(
-      this.searchWordTagsStr,
-      "　",
-      " "
-    ).split(" ");
     return {
       search_uname: this.searchWordAuthor,
       top: 8,
