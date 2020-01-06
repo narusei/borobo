@@ -24,7 +24,7 @@ class Api::V1::QuestsController < ApplicationController
     # POST /Quests
     def create
         @user = current_api_user
-        @quest = Quest.create!( title:params[:titile], stance:params[:stance], category:params[:category],tags:params[:tags],detail:params[:detail],start_date:params[:start_date],due_date:params[:due_date],reward:params[:reward],user_id:current_api_user)
+        @quest = Quest.create!(title:params[:title], stance:params[:stance], category:params[:category], tags:params[:tags], detail:params[:detail], start_date:params[:start_date], due_date:params[:due_date], reward:params[:reward], user_id: @user.id, user_name: @user.detail.user_name)
         json_response(@quest, :created)
     end
     # GET /Quests/:id

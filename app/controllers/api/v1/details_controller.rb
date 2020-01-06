@@ -44,7 +44,7 @@ class Api::V1::DetailsController < ApplicationController
     
     def create
         @user = current_api_user
-        @detail = Detail.create!(user_id:current_api_user,user_name:params[:user_name],profile:params[:profile])
+        @detail = Detail.create!(user_id:@user.id,user_name:params[:user_name],profile:params[:profile])
         json_response(@detail)
     end
 
