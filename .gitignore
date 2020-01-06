@@ -66,5 +66,5 @@ yarn-debug.log*
 /storage/*
 !/storage/.keep
 
-!/tmp/pid/.keep
-!/tmp/sockets/.keep
+/.vscode/*
+
