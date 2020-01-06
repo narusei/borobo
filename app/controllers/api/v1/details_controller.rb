@@ -1,4 +1,5 @@
 class Api::V1::DetailsController < ApplicationController
+    before_action :authenticate_user!
     def show
         @detail = Detail.find_by(id:params[:id])
         @author = User.find_by(id:params[:user_id])
@@ -35,7 +36,8 @@ class Api::V1::DetailsController < ApplicationController
     end
     
     def create
-        @detail = Detail.create!(user_id:params[:user_id],user_name:params[:user_name],profile:params[:profile])
+        @user = current_user
+        @detail = Detail.create!(user_id:current_user,user_name:params[:user_name],profile:params[:profile])
         json_response(@detail)
     end
 
