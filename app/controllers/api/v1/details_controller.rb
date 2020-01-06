@@ -1,11 +1,18 @@
 class Api::V1::DetailsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_api_user!
+
+    def index
+        user = User.find_by(id:params[:user_id])
+        detail = user.detail
+        json_response(detail)
+    end
+
     def show
         @detail = Detail.find_by(id:params[:id])
         @author = User.find_by(id:params[:user_id])
         quests = Quest.where(user_id: params[:user_id])
         response = {
-            'id':@detail.id,
+            'id': @detail.id,
             'user_id': @detail.user_id,
             'user_name': @detail.user_name,
             'profile': @detail.profile,
@@ -36,8 +43,8 @@ class Api::V1::DetailsController < ApplicationController
     end
     
     def create
-        @user = current_user
-        @detail = Detail.create!(user_id:current_user,user_name:params[:user_name],profile:params[:profile])
+        @user = current_api_user
+        @detail = Detail.create!(user_id:current_api_user,user_name:params[:user_name],profile:params[:profile])
         json_response(@detail)
     end
 
