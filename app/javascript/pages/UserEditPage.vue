@@ -1,5 +1,5 @@
 <template>
-  <b-user-edit-page @editUser="editUser($event)" />
+  <b-user-edit-page @editUser="editUser($event)" :userItem="userItem" />
 </template>
 
 <script lang="ts">
@@ -21,6 +21,9 @@ export default class UserEditPage extends Vue {
   userId: number;
   //通常プロパティ
   //get
+  get userItem() {
+    return this.questStore.userItem;
+  }
   //@Watch()
   //通常メソッド
   editUser(param: UserInfo) {

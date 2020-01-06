@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar pageName="新規作成" />
+    <top-bar pageName="編集" />
     <b-quest-create :questInfo="questInfo" @questCreate="questEdit($event)" />
   </div>
 </template>

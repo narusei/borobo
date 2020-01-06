@@ -21,9 +21,9 @@ export default class QuestCreatePage extends Vue {
   //get
   //@Watch()
   //通常メソッド
-  questCreate(param: QuestInfo) {
+  async questCreate(param: QuestInfo) {
     try {
-      this.questStore.questCreate(param);
+      await this.questStore.questCreate(param);
       this.$router.push({
         name: "QuestDetailPage",
         params: { questId: String(this.questStore.questItem.id) }
