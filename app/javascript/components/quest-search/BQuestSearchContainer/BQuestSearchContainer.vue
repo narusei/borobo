@@ -44,19 +44,11 @@
       <ul class="tab">
         <section>
           <div class="block">
-            <b-radio
-              v-model="pageTabStr"
-              native-value="ヒト"
-              type="is-mainColor"
-            >
-              ヒト
-            </b-radio>
-            <b-radio
-              v-model="pageTabStr"
-              native-value="モノ"
-              type="is-mainColor"
-            >
+            <b-radio v-model="pageTabStr" native-value="0" type="is-mainColor">
               モノ
+            </b-radio>
+            <b-radio v-model="pageTabStr" native-value="1" type="is-mainColor">
+              ヒト
             </b-radio>
           </div>
         </section>

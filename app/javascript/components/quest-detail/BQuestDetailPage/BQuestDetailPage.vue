@@ -1,7 +1,6 @@
 <template>
   <section class="quest-detail">
     <b-quest-detail-header
-      :questTitle="questItem.title"
       :questId="questId"
       :myQuest="isMyQuest"
       @deleteQuest="deleteQuest($event)"

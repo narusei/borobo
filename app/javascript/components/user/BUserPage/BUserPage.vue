@@ -11,6 +11,7 @@
       :userItem="userItem"
       :userName="userItem.user_name"
       :userDetail="userItem.profile"
+      :myPage="myPage"
       @applyVoted="applyVoted($event)"
     />
     <b-user-quest-list :questList="userItem.quests" />

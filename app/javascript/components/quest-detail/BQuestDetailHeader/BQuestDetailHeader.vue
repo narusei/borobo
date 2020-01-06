@@ -3,7 +3,7 @@
     <div class="back-button" @click="back">
       <b-icon icon="chevron-left" size="is-medium"></b-icon>
     </div>
-    <div class="page-title">{{ questTitle }}</div>
+    <div class="page-title">詳細</div>
     <div class="user-edit" v-if="myQuest">
       <a @click="onDeleteQuest()">
         <b-icon icon="delete" size="is-medium" class="cogs"></b-icon>
@@ -29,8 +29,6 @@ export default class BUserTopBar extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-  @Prop({ default: "" })
-  questTitle!: string;
 
   @Prop({ default: 0 })
   questId!: number;
@@ -45,7 +43,7 @@ export default class BUserTopBar extends Vue {
 
   // あとで対応したい
   back() {
-    this.$router.push({ name: "QuestListPage" });
+    router.go(-1);
   }
 
   onDeleteQuest() {

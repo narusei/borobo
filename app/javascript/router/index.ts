@@ -84,14 +84,10 @@ const router = new VueRouter({
 
 // router.beforeEach((to, from, next) => {
 //   var token = localStorage.getItem("Token");
-//   if (
-//     from.name == "TopPage" ||
-//     from.name == "SignUpPage" ||
-//     from.name == "SignInPage"
-//   ) {
+//   if (token) {
 //     next();
 //   } else {
-//     if (token) {
+//     if (from.name == "TopPage") {
 //       next();
 //     } else {
 //       next({ name: "SignInPage" });

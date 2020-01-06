@@ -13,6 +13,7 @@
         :propGoodNum="userItem.good"
         :propOkNum="userItem.ok"
         :propBadNum="userItem.bad"
+        :myPage="myPage"
         @applyVoted="applyVoted($event)"
       />
     </div>
@@ -43,6 +44,9 @@ export default class BUserProfile extends Vue {
 
   @Prop({ default: "" })
   userDetail: string;
+
+  @Prop({ default: false })
+  myPage: boolean;
 
   @Emit("applyVoted")
   applyVoted(param: any) {

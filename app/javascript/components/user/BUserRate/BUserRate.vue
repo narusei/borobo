@@ -48,6 +48,9 @@ export default class BUserRate extends Vue {
   @Prop({ default: 0 })
   propBadNum: number;
 
+  @Prop({ default: false })
+  myPage: boolean;
+
   @Emit("applyVoted")
   applyVoted(): any {
     console.log("apply");
@@ -76,67 +79,79 @@ export default class BUserRate extends Vue {
   }
 
   goodNumPlus() {
-    const answer = window.confirm("評価しますか？");
-    if (answer) {
-      if (this.voteFlag == false) {
-        if (this.voted === "good") {
-          return;
+    if (!this.myPage) {
+      const answer = window.confirm("評価しますか？");
+      if (answer) {
+        if (this.voteFlag == false) {
+          if (this.voted === "good") {
+            return;
+          }
+          if (this.voted === "ok") {
+            this.okNum--;
+          }
+          if (this.voted === "bad") {
+            this.badNum--;
+          }
         }
-        if (this.voted === "ok") {
-          this.okNum--;
-        }
-        if (this.voted === "bad") {
-          this.badNum--;
-        }
+        this.voted = "good";
+        this.goodNum++;
+        this.voteFlag = false;
+        this.applyVoted();
+      } else {
+        return;
       }
-      this.voted = "good";
-      this.goodNum++;
-      this.voteFlag = false;
-      this.applyVoted();
     } else {
       return;
     }
   }
   okNumPlus() {
-    const answer = window.confirm("評価しますか？");
-    if (answer) {
-      if (this.voteFlag == false) {
-        if (this.voted == "good") {
-          this.goodNum--;
+    if (!this.myPage) {
+      const answer = window.confirm("評価しますか？");
+      if (answer) {
+        if (this.voteFlag == false) {
+          if (this.voted == "good") {
+            this.goodNum--;
+          }
+          if (this.voted == "ok") {
+            return;
+          }
+          if (this.voted == "bad") {
+            this.badNum--;
+          }
         }
-        if (this.voted == "ok") {
-          return;
-        }
-        if (this.voted == "bad") {
-          this.badNum--;
-        }
+        this.voted = "ok";
+        this.okNum++;
+        this.voteFlag = false;
+        this.applyVoted();
+      } else {
+        return;
       }
-      this.voted = "ok";
-      this.okNum++;
-      this.voteFlag = false;
-      this.applyVoted();
     } else {
       return;
     }
   }
   badNumPlus() {
-    const answer = window.confirm("評価しますか？");
-    if (answer) {
-      if (this.voteFlag == false) {
-        if (this.voted == "good") {
-          this.goodNum--;
+    if (!this.myPage) {
+      const answer = window.confirm("評価しますか？");
+      if (answer) {
+        if (this.voteFlag == false) {
+          if (this.voted == "good") {
+            this.goodNum--;
+          }
+          if (this.voted == "ok") {
+            this.okNum--;
+          }
+          if (this.voted == "bad") {
+            return;
+          }
         }
-        if (this.voted == "ok") {
-          this.okNum--;
-        }
-        if (this.voted == "bad") {
-          return;
-        }
+        this.voted = "bad";
+        this.badNum++;
+        this.voteFlag = false;
+        this.applyVoted();
+      } else {
+        return;
       }
-      this.voted = "bad";
-      this.badNum++;
-      this.voteFlag = false;
-      this.applyVoted();
     } else {
       return;
     }
