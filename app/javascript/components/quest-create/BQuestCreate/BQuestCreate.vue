@@ -35,7 +35,7 @@
         <b-field label>
           <b-taginput
             class="tag-input"
-            v-model="questInfoModel.tag"
+            v-model="questInfoModel.tags"
             ellipsis
             icon="label"
             placeholder="タグを入力"
