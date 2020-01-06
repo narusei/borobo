@@ -31,12 +31,14 @@ class Api::V1::QuestsController < ApplicationController
             'id': @quest.id,
             'title': @quest.title,
             'category': @quest.category,
+            'user_id': @quest.user_id,
             'user_name': @quest.user_name,
             'tags': tags_array,
             'detail': @quest.detail,
             'start_date': @quest.start_date,
             'due_date': @quest.due_date,
-            'reward': @quest.reward
+            'reward': @quest.reward,
+            'stance': @quest.stance
         }
         json_response(ques)
     end
@@ -49,12 +51,14 @@ class Api::V1::QuestsController < ApplicationController
             'id': @quest.id,
             'title': @quest.title,
             'category': @quest.category,
+            'user_id': @quest.user_id,
             'user_name': @quest.user_name,
             'tags': tags_array,
             'detail': @quest.detail,
             'start_date': @quest.start_date,
             'due_date': @quest.due_date,
-            'reward': @quest.reward
+            'reward': @quest.reward,
+            'stance': @quest.stance
         }
         json_response(ques)
     end
@@ -68,12 +72,14 @@ class Api::V1::QuestsController < ApplicationController
             'id': @quest.id,
             'title': @quest.title,
             'category': @quest.category,
+            'user_id': @quest.user_id,
             'user_name': @quest.user_name,
             'tags': tags_array,
             'detail': @quest.detail,
             'start_date': @quest.start_date,
             'due_date': @quest.due_date,
-            'reward': @quest.reward
+            'reward': @quest.reward,
+            'stance': @quest.stance
         }
         json_response(ques)
     end
