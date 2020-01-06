@@ -3,7 +3,18 @@ const baseUrl = "http://localhost:3000/api/v1";
 
 export default {
   getQuestList(params: any) {
-    return http.get(baseUrl + "/quests", { params: params, auth: true });
+    return http.get(
+      baseUrl +
+        "/quests?top=" +
+        params.top +
+        "&skip=" +
+        params.skip +
+        "&category=" +
+        params.category +
+        "&stance=" +
+        params.stance,
+      { auth: true }
+    );
   },
 
   createQuest(param: any) {
@@ -26,7 +37,26 @@ export default {
   },
 
   searchQuestList(params: any) {
-    return http.post(baseUrl + "/quests", { params: params, auth: true });
+    return http.get(
+      baseUrl +
+        "/quests?top=" +
+        params.top +
+        "&skip=" +
+        params.skip +
+        "&category=" +
+        params.category +
+        "&stance=" +
+        params.stance +
+        "&search_uname=" +
+        params.search_uname +
+        "&search_title=" +
+        params.search_title +
+        "&search_tags=" +
+        params.search_tags +
+        "&search_reward=" +
+        params.search_reward,
+      { auth: true }
+    );
   },
 
   getUserItem(userId: number): any {

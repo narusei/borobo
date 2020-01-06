@@ -3,9 +3,9 @@
     <div class="back-button" @click="back">
       <b-icon icon="chevron-left" size="is-medium"></b-icon>
     </div>
-    <div class="page-title">{{ qurstTitle }}</div>
+    <div class="page-title">{{ questTitle }}</div>
     <div class="user-edit" v-if="myQuest">
-      <a @click="deleteQuest()">
+      <a @click="onDeleteQuest()">
         <b-icon icon="delete" size="is-medium" class="cogs"></b-icon>
       </a>
       <router-link
@@ -45,7 +45,7 @@ export default class BUserTopBar extends Vue {
 
   // あとで対応したい
   back() {
-    router.go(-1);
+    this.$router.push({ name: "QuestListPage" });
   }
 
   onDeleteQuest() {

@@ -43,8 +43,7 @@ const routes = [
   {
     path: "/quest-detail/:questId",
     name: "QuestDetailPage",
-    component: QuestDetailPage,
-    props: true
+    component: QuestDetailPage
   },
   {
     path: "/quest-create",

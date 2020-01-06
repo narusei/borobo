@@ -3,6 +3,7 @@
     <b-quest-detail-header
       :questTitle="questItem.title"
       :questId="questId"
+      :myQuest="isMyQuest"
       @deleteQuest="deleteQuest($event)"
     />
     <div class="qd-user-info">
@@ -36,14 +37,14 @@
         <div class="reward">{{ questItem.reward }}</div>
       </div>
     </div>
-    <div class="qd-chat">
+    <!-- <div class="qd-chat">
       <b-button
         type="is-mainColor"
         size="is-large"
         icon-right="comment-text-multiple-outline"
         rounded
       ></b-button>
-    </div>
+    </div> -->
   </section>
 </template>
 
@@ -63,6 +64,9 @@ export default class BQuestDetailPage extends Vue {
 
   @Prop({ default: 0 })
   questId!: number;
+
+  @Prop({ default: false })
+  isMyQuest!: boolean;
   // 2.property
   // 3.getter
   // 4.@Watch
@@ -76,11 +80,6 @@ export default class BQuestDetailPage extends Vue {
       format(new Date(this.questItem.due_date), "MM/dd hh:mm")
     );
     return startDate + "~" + dueDate;
-  }
-
-  // あとで対応したい
-  back() {
-    router.go(-1);
   }
 
   @Emit("deleteQuest")

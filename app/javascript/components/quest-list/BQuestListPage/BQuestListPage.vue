@@ -17,11 +17,11 @@
       </header>
       <ul class="tab">
         <div class="hito" @click="setTab(0)">
-          ヒト
+          モノ
           <div id="chose" v-if="pageTabNum == 0"></div>
         </div>
         <div class="mono" @click="setTab(1)">
-          モノ
+          ヒト
           <div id="chose" v-if="pageTabNum == 1"></div>
         </div>
       </ul>
