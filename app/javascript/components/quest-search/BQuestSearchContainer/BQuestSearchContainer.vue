@@ -44,10 +44,18 @@
       <ul class="tab">
         <section>
           <div class="block">
-            <b-radio v-model="pageTabNum" native-value="0" type="is-mainColor">
+            <b-radio
+              v-model="pageTabStr"
+              native-value="ヒト"
+              type="is-mainColor"
+            >
               ヒト
             </b-radio>
-            <b-radio v-model="pageTabNum" native-value="1" type="is-mainColor">
+            <b-radio
+              v-model="pageTabStr"
+              native-value="モノ"
+              type="is-mainColor"
+            >
               モノ
             </b-radio>
           </div>
@@ -74,7 +82,6 @@ export default class BQuestSearchContainer extends Vue {
   // 4.@Watch
   // 5.method
 
-  pageTabNum: string = "";
   pageTabStr: string = "";
   searchWordAuthor: string = "";
   searchWordTitle: string = "";
@@ -82,12 +89,7 @@ export default class BQuestSearchContainer extends Vue {
   searchWordTags: string[] = [];
   searchWordReward: string = "";
 
-  get searchWord() {
-    if (Number(this.pageTabNum) == 0) {
-      this.pageTabStr = "ヒト";
-    } else if (Number(this.pageTabNum) == 1) {
-      this.pageTabStr = "モノ";
-    }
+  get searchWord(): any {
     this.searchWordTags = this.replaceAll(
       this.searchWordTagsStr,
       "　",
