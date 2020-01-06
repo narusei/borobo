@@ -1,5 +1,6 @@
 class Api::V1::QuestsController < ApplicationController
     protect_from_forgery
+    before_action :authenticate_api_user!
     # before_action :set_quest
     # GET /Quests
     def index
@@ -22,19 +23,59 @@ class Api::V1::QuestsController < ApplicationController
     end
     # POST /Quests
     def create
-        @quest = Quest.create!(quest_params)
-        json_response(@quest, :created)
+        @user = current_api_user
+        @quest = Quest.create!(title:params[:title], stance:params[:stance], category:params[:category], tags:params[:tags], detail:params[:detail], start_date:params[:start_date], due_date:params[:due_date], reward:params[:reward], user_id: @user.id, user_name: @user.detail.user_name)
+        tag_db = @quest.tags
+        tags_array = tag_db.split(',').map { |m| m.delete('[]"\\\\')}
+        ques = {
+            'id': @quest.id,
+            'title': @quest.title,
+            'category': @quest.category,
+            'user_name': @quest.user_name,
+            'tags': tags_array,
+            'detail': @quest.detail,
+            'start_date': @quest.start_date,
+            'due_date': @quest.due_date,
+            'reward': @quest.reward
+        }
+        json_response(ques)
     end
     # GET /Quests/:id
     def show
         @quest = Quest.find(params[:id])
-        json_response(@quest)
+        tag_db = @quest.tags
+        tags_array = tag_db.split(',').map { |m| m.delete('[]"\\\\')}
+        ques = {
+            'id': @quest.id,
+            'title': @quest.title,
+            'category': @quest.category,
+            'user_name': @quest.user_name,
+            'tags': tags_array,
+            'detail': @quest.detail,
+            'start_date': @quest.start_date,
+            'due_date': @quest.due_date,
+            'reward': @quest.reward
+        }
+        json_response(ques)
     end
     # PUT /Quests/:id
     def update
         @quest = Quest.find(params[:id])
         @quest.update(quest_params)
-        json_response(@quest)
+        tag_db = @quest.tags
+        tags_array = tag_db.split(',').map { |m| m.delete('[]"\\\\')}
+        ques = {
+            'id': @quest.id,
+            'title': @quest.title,
+            'category': @quest.category,
+            'user_name': @quest.user_name,
+            'tags': tags_array,
+            'detail': @quest.detail,
+            'start_date': @quest.start_date,
+            'due_date': @quest.due_date,
+            'reward': @quest.reward
+        }
+        json_response(ques)
     end
     # DELETE /Quests/:id
     def destroy
