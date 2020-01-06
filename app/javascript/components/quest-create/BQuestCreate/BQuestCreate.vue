@@ -92,10 +92,10 @@ import { QuestInfo } from "@/models/quest/QuestInfo.ts";
 })
 export default class BQuestCreate extends Vue {
   // 1.@Prop
-  @Prop({ default: {} })
+  @Prop({ default: () => ({}) })
   questInfo!: QuestInfo;
   // 2.property
-  questInfoModel: QuestInfo = this.questInfo;
+  questInfoModel: QuestInfo = { ...this.questInfo };
   // 3.getter
   // 4.@Watch
   // 5.method

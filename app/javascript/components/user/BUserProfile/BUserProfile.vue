@@ -38,12 +38,10 @@ export default class BUserProfile extends Vue {
   @Prop({})
   userItem: UserItem;
 
-  @Prop({ default: "トニー" })
+  @Prop({ default: "" })
   userName: string;
 
-  @Prop({
-    default: "東京電機大学未来科学部情報メディア学科17fi029大林正樹ああ"
-  })
+  @Prop({ default: "" })
   userDetail: string;
 
   @Emit("applyVoted")

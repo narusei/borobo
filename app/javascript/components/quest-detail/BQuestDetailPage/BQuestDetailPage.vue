@@ -58,7 +58,7 @@ import { QuestItem } from "@/models/quest/QuestItem";
 })
 export default class BQuestDetailPage extends Vue {
   // 1.@Prop
-  @Prop({ default: () => {} })
+  @Prop({ default: () => ({}) })
   questItem!: QuestItem;
 
   @Prop({ default: 0 })

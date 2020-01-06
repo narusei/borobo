@@ -14,7 +14,7 @@ import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 import { getModule } from "vuex-module-decorators";
 import BQuestListPage from "@/components/quest-list/BQuestListPage";
 import QuestListStore from "@/store/quest";
-import AuthStore from "store/auth/index";
+import AuthStore from "@/store/auth";
 import { QuestSearchParameter } from "@/models/quest/QuestSearchParameter";
 
 @Component({

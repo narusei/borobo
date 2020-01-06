@@ -1,5 +1,5 @@
 import http from "@/utils/requests";
-const baseUrl = "http://localhost:8000";
+const baseUrl = "http://localhost:3000/api/v1";
 
 export default {
   getQuestList(params: any) {

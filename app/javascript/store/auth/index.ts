@@ -12,7 +12,7 @@ export default class AuthStore extends VuexModule {
     authApi
       .postSignInInfo(param)
       .then(response => {
-        this.context.commit(MUTATION.SET_AUTH_INFO, response.data);
+        this.context.commit(MUTATION.SET_AUTH_INFO, response.data.data);
         const auth_header = {
           uid: response.headers["uid"],
           client: response.headers["client"],
@@ -31,7 +31,7 @@ export default class AuthStore extends VuexModule {
     authApi
       .postSignUpInfo(param)
       .then(response => {
-        this.context.commit(MUTATION.SET_AUTH_INFO, response.data);
+        this.context.commit(MUTATION.SET_AUTH_INFO, response.data.data);
         const auth_header = {
           uid: response.headers["uid"],
           client: response.headers["client"],
@@ -50,7 +50,7 @@ export default class AuthStore extends VuexModule {
     authApi
       .userSignOut()
       .then(response => {
-        this.context.commit(MUTATION.USER_LOG_OUT, response.data);
+        this.context.commit(MUTATION.USER_LOG_OUT, response.data.data);
       })
       .catch(response => console.log(response));
   }
@@ -67,7 +67,6 @@ export default class AuthStore extends VuexModule {
 
   @Mutation
   [MUTATION.USER_LOG_OUT](payload: any) {
-    console.log(payload);
     localStorage.removeItem("AuthenticationHeader");
   }
 }

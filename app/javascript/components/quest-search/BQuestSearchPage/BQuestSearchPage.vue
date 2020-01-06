@@ -37,7 +37,7 @@ export default class BQuestSearchPage extends Vue {
 
   @Emit("searchQuestList")
   searchQuestList(param: QuestSearchParameter) {
-    this.searchParamModel = param;
+    this.searchParamModel = { ...param };
     return param;
   }
 

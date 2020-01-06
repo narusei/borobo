@@ -83,21 +83,21 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
-  var token = localStorage.getItem("Token");
-  if (
-    from.name == "TopPage" ||
-    from.name == "SignUpPage" ||
-    from.name == "SignInPage"
-  ) {
-    next();
-  } else {
-    if (token) {
-      next();
-    } else {
-      next({ name: "SignInPage" });
-    }
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   var token = localStorage.getItem("Token");
+//   if (
+//     from.name == "TopPage" ||
+//     from.name == "SignUpPage" ||
+//     from.name == "SignInPage"
+//   ) {
+//     next();
+//   } else {
+//     if (token) {
+//       next();
+//     } else {
+//       next({ name: "SignInPage" });
+//     }
+//   }
+// });
 
 export default router;

@@ -48,10 +48,10 @@ export default class BUserEditContents extends Vue {
   // 3.getter
   // 4.@Watch
   // 5.method
-  @Prop({ default: {} })
+  @Prop({ default: () => ({}) })
   userInfo!: UserInfo;
 
-  userInfoModel: UserInfo = this.userInfo;
+  userInfoModel: UserInfo = { ...this.userInfo };
 
   @Emit("editUser")
   editUser() {
