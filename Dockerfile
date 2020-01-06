@@ -22,6 +22,7 @@ COPY . $APP_HOME
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
+RUN export SECRET_KEY_BASE=`bundle exec rake secret`
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
