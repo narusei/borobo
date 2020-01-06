@@ -1,5 +1,6 @@
 class Api::V1::QuestsController < ApplicationController
     protect_from_forgery
+    before_action :authenticate_api_user!
     # before_action :set_quest
     # GET /Quests
     def index
@@ -22,7 +23,8 @@ class Api::V1::QuestsController < ApplicationController
     end
     # POST /Quests
     def create
-        @quest = Quest.create!(quest_params)
+        @user = current_api_user
+        @quest = Quest.create!( title:params[:titile], stance:params[:stance], category:params[:category],tags:params[:tags],detail:params[:detail],start_date:params[:start_date],due_date:params[:due_date],reward:params[:reward],user_id:current_api_user)
         json_response(@quest, :created)
     end
     # GET /Quests/:id
