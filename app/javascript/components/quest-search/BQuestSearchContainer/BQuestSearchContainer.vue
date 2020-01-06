@@ -42,12 +42,16 @@
         </label>
       </div>
       <ul class="tab">
-        <b-radio @click="setTab(0)" native-value="0" type="is-mainColor">
-          ヒト
-        </b-radio>
-        <b-radio @click="setTab(1)" native-value="1" type="is-mainColor">
-          モノ
-        </b-radio>
+        <section>
+          <div class="block">
+            <b-radio v-model="pageTabNum" native-value="0" type="is-mainColor">
+              ヒト
+            </b-radio>
+            <b-radio v-model="pageTabNum" native-value="1" type="is-mainColor">
+              モノ
+            </b-radio>
+          </div>
+        </section>
       </ul>
       <section>
         <b-button @click="searchQuestList" class="quest-search-button"
@@ -105,10 +109,6 @@ export default class BQuestSearchContainer extends Vue {
     return this.searchWord;
   }
 
-  setTab(num: number) {
-    this.pageTabNum = num;
-  }
-
   //tag splitAll
   replaceAll(str, beforeStr, afterStr) {
     var reg = new RegExp(beforeStr, "g");
@@ -152,6 +152,7 @@ export default class BQuestSearchContainer extends Vue {
 }
 
 ul.tab {
+  margin-left: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
   .hito {
