@@ -13,5 +13,4 @@ export default new Vuex.Store({
     quest,
     auth
   }
-  // check git
 });
