@@ -1,9 +1,12 @@
 version: "3"
 services:
   db:
-    image: postgres
+    image: postgres:13.0-alpine
     volumes:
       - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
     tty: true
   app:
     build: .
