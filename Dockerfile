@@ -24,6 +24,5 @@ COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 RUN export SECRET_KEY_BASE=`bundle exec rake secret`
 ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
-
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# puma.sockを配置するディレクトリを作成
+RUN mkdir -p tmp/sockets
