@@ -34,6 +34,9 @@ default: &default
     - .woff2
 
   extensions:
+    - .tsx
+    - .ts
+    - .vue
     - .mjs
     - .js
     - .sass
@@ -71,10 +74,9 @@ development:
     quiet: false
     pretty: false
     headers:
-      'Access-Control-Allow-Origin': '*'
+      "Access-Control-Allow-Origin": "*"
     watch_options:
-      ignored: '**/node_modules/**'
-
+      ignored: "**/node_modules/**"
 
 test:
   <<: *default
