@@ -1,24 +1,17 @@
-# README
+# Borobo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Boroboはクローズドコミュニティにおける借り手(**Boro**wer)のための掲示板(**bo**ard)サービスです
 
-Things you may want to cover:
+従来の掲示板サービスは、  
+「私物を売りたい人」「知識を売りたい人」「経験を売りたい人」
+などの貸したい人が主役でした。  
+供給の掲示に対して、需要が参画する形です。
 
-* Ruby version
+そこでBoroboは  
+「忘れ物をしてしまったので貸して欲しい」  
+「問題解決できないので教えて欲しい」  
+「初めての海外旅行で不安なので注意するべきことを教えて欲しい」  
+などの借りたい人を主役に据えたいというプロダクトです。
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+現在開発中のため、Docsなどは未公開です。  
+何かありましたらissueを立てていただけたら嬉しいです。
