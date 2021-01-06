@@ -13,4 +13,5 @@ environment.config.merge({
 environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin())
 environment.loaders.prepend('vue', vue)
 environment.loaders.prepend('typescript', typescript)
+environment.splitChunks()
 module.exports = environment
